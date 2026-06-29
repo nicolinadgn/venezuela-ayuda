@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇻🇪 Ayuda por país — Apoya Venezuela</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --amarillo: #C8920A; --azul: #003DA5; --rojo: #B01818;
+      --bg: #F9F7F3; --surface: #FFFFFF; --border: #E4E0D8;
+      --text: #1A1A1A; --muted: #6B6560; --accent-light: #FFF8E8;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .top-bar { background: var(--azul); color: #fff; text-align: center; padding: 11px 24px; font-size: 0.82rem; font-weight: 500; }
+    .top-bar a { color: #FFD87A; text-decoration: none; font-weight: 600; }
+    .hero { background: #fff; border-bottom: 1px solid var(--border); padding: 48px 24px 40px; text-align: center; }
+    .flag-bar { display: flex; justify-content: center; margin-bottom: 24px; }
+    .flag-bar span { display: block; height: 5px; width: 40px; border-radius: 3px; margin: 0 3px; }
+    .flag-bar .s1 { background: var(--amarillo); } .flag-bar .s2 { background: var(--azul); } .flag-bar .s3 { background: var(--rojo); }
+    .hero-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 12px; }
+    .hero h1 em { font-style: normal; color: var(--amarillo); }
+    .hero-sub { max-width: 560px; margin: 0 auto; font-size: 0.93rem; color: var(--muted); line-height: 1.7; }
+    .country-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 16px 24px; overflow-x: auto; }
+    .country-nav-inner { display: flex; gap: 10px; max-width: 900px; margin: 0 auto; white-space: nowrap; flex-wrap: wrap; }
+    .country-pill { display: inline-block; padding: 7px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; font-size: 0.8rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: all 0.18s; }
+    .country-pill:hover { background: var(--azul); color: #fff; border-color: var(--azul); }
+    main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .country-section { margin-bottom: 64px; scroll-margin-top: 80px; }
+    .country-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding: 20px 24px; background: #fff; border: 1px solid var(--border); border-radius: 14px; }
+    .country-flag { font-size: 2rem; }
+    .country-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .country-sub { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+    .subsection { margin-bottom: 20px; }
+    .subsection-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    .cards { display: flex; flex-direction: column; gap: 8px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; display: flex; align-items: flex-start; gap: 12px; transition: border-color 0.18s, box-shadow 0.18s; }
+    .card:hover { border-color: #C8920A55; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .card-highlight { border-color: var(--amarillo); background: var(--accent-light); }
+    .card-icon { font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+    .card-body { flex: 1; min-width: 0; }
+    .card-name { font-weight: 600; font-size: 0.92rem; color: var(--text); margin-bottom: 3px; }
+    .card-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+    .card-detail a { color: var(--azul); text-decoration: none; font-weight: 500; }
+    .card-detail a:hover { text-decoration: underline; }
+    .card-badge { flex-shrink: 0; font-size: 0.65rem; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; align-self: flex-start; }
+    .badge-red { background: #FDECEA; color: #8B1010; border: 1px solid #F5C0C0; }
+    .badge-yellow { background: #FFF3D0; color: #7A5500; border: 1px solid #F0D070; }
+    .badge-green { background: #EAFAF1; color: #1A6B3C; border: 1px solid #A8DFC0; }
+    .badge-blue { background: #EAF0FF; color: #0030A0; border: 1px solid #B0C8F8; }
+    .info-box { background: #FFF8E8; border: 1px solid #F0D070; border-left: 4px solid var(--amarillo); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; font-size: 0.85rem; color: #5A3E00; line-height: 1.6; }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 0.76rem; background: #fff; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">← <a href="index.html">Volver al directorio completo</a> &nbsp;·&nbsp; apoyavenezuela.org</div>
+  <section class="hero">
+    <div class="flag-bar"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
+    <p class="hero-eyebrow">Ayuda según tu ubicación · Terremoto Venezuela 2026</p>
+    <h1>Ayuda desde <em>tu país</em></h1>
+    <p class="hero-sub">Las formas de ayudar varían según dónde estés. Encuentra aquí los recursos, puntos de acopio y canales específicos para tu país.</p>
+  </section>
+
+  <div class="country-nav">
+    <div class="country-nav-inner">
+      <a class="country-pill" href="#espana">🇪🇸 España</a>
+      <a class="country-pill" href="#colombia">🇨🇴 Colombia</a>
+      <a class="country-pill" href="#usa">🇺🇸 USA</a>
+      <a class="country-pill" href="#italia">🇮🇹 Italia</a>
+      <a class="country-pill" href="#uk">🇬🇧 Reino Unido</a>
+      <a class="country-pill" href="#otros-paises">🌍 Otros países</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="info-box">
+      💡 <strong>Lo más efectivo desde cualquier país:</strong> donar dinero a fundaciones verificadas ya activas en Venezuela. El dinero llega en horas; los objetos físicos tardan días y cuestan más en envío que en valor. → <a href="https://donaxvenezuela.org" target="_blank">donaxvenezuela.org</a>
+    </div>
+
+    <!-- ESPAÑA -->
+    <section class="country-section" id="espana">
+      <div class="country-header">
+        <span class="country-flag">🇪🇸</span>
+        <div>
+          <div class="country-title">España</div>
+          <div class="country-sub">Bizum, transferencia, puntos de acopio en Madrid</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">💡 Desgravación fiscal</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <span class="card-icon">💡</span>
+            <div class="card-body">
+              <div class="card-name">Hasta el 80% de desgravación en tu declaración</div>
+              <div class="card-detail">Si donas hasta 250€ a una ONG reconocida en España, te desgravas el <strong>80%</strong>. Es decir, si donas 100€, solo te cuestan 20€. A partir de 250€, la desgravación es del 40%. Consulta en tu gestor o en la web de la AEAT.</div>
+            </div>
+            <span class="card-badge badge-green">80% desgravación</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Donar por Bizum o transferencia</p>
+        <div class="cards">
+          <div class="card"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">Cruz Roja Española</div><div class="card-detail">Bizum <strong>33512</strong> · SMS "VENEZUELA" al <strong>38092</strong> (= 6€) · <a href="https://cruzroja.es" target="_blank">cruzroja.es →</a></div></div></div>
+          <div class="card"><span class="card-icon">✝️</span><div class="card-body"><div class="card-name">Cáritas Madrid</div><div class="card-detail">Bizum <strong>33645</strong> · ES67 0075 7007 8506 0715 0747 (concepto: VENEZUELA) · Tel: 91 548 95 80</div></div></div>
+          <div class="card"><span class="card-icon">🌾</span><div class="card-body"><div class="card-name">Acción contra el Hambre</div><div class="card-detail">Bizum <strong>03770</strong> · ES95 0049 1892 6124 1330 0946</div></div></div>
+          <div class="card"><span class="card-icon">👨‍🍳</span><div class="card-body"><div class="card-name">World Central Kitchen</div><div class="card-detail">Bizum <strong>03843</strong> · <a href="https://donarespana.wck.org" target="_blank">donarespana.wck.org →</a></div></div></div>
+          <div class="card"><span class="card-icon">🍽️</span><div class="card-body"><div class="card-name">Meals4Hope</div><div class="card-detail">Bizum <strong>11976</strong> · ES47 0081 0065 1400 0212 7418</div></div></div>
+          <div class="card"><span class="card-icon">🤝</span><div class="card-body"><div class="card-name">Fundación Altamarcam</div><div class="card-detail">Bizum <strong>03357</strong> · ES04 0128 0010 9801 0025 8133 (concepto: VENEZUELA) · Canaliza íntegramente a Acción contra el Hambre y Corazón de Titán</div></div></div>
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Donio — apoyo directo a La Guaira</div><div class="card-detail"><a href="https://donio.es" target="_blank">donio.es →</a></div></div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Puntos de acopio en Madrid</p>
+        <div class="cards">
+          <div class="card"><span class="card-icon">📦</span><div class="card-body"><div class="card-name">Calle Fernando VI, 10</div><div class="card-detail">Insumos médicos prioritarios, también ropa en buen estado. Organizado por <strong>@lamarcawell</strong> y <strong>@tracyandersonstudio</strong> · Hasta viernes 17h · Sale el sábado a Venezuela</div></div><span class="card-badge badge-red">Hasta viernes</span></div>
+          <div class="card"><span class="card-icon">📦</span><div class="card-body"><div class="card-name">Movistar Arena — Muelles norte</div><div class="card-detail">Agua, alimentos no perecederos, insumos médicos, pastillas potabilizadoras, mascarillas de alta protección · De 12 a 15h · Desde el 29 de junio</div></div></div>
+          <div class="card"><span class="card-icon">🐾</span><div class="card-body"><div class="card-name">Cinesa Méndez Álvaro — Mascotas</div><div class="card-detail">Sala 5, salida de emergencia · Domingos 10h–15h · Reciben: comida de animales, medicinas, insumos de higiene (NO ropa)</div></div></div>
+          <div class="card"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">Refugiados sin Fronteras & Diáspora en Movimiento</div><div class="card-detail">Calle Matilde Landa, 26</div></div></div>
+          <div class="card"><span class="card-icon">🛍️</span><div class="card-body"><div class="card-name">Sambil Madrid — Planta 0</div><div class="card-detail">Punto de donación activo</div></div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Corporate matching — si trabajas en una empresa</p>
+        <div class="cards">
+          <div class="card"><span class="card-icon">🏢</span><div class="card-body"><div class="card-name">Chamos + Benevity</div><div class="card-detail">Si tu empresa usa Benevity, puedes donar a Chamos y tu empresa duplica la donación. Pregunta en RRHH · <a href="https://benevity.com/nonprofits" target="_blank">benevity.com/nonprofits →</a></div></div><span class="card-badge badge-blue">Matching</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOMBIA -->
+    <section class="country-section" id="colombia">
+      <div class="country-header">
+        <span class="country-flag">🇨🇴</span>
+        <div>
+          <div class="country-title">Colombia</div>
+          <div class="country-sub">Puntos de recolección en varias ciudades · Donaciones online</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Donaciones online desde Colombia</p>
+        <div class="cards">
+          <div class="card"><span class="card-icon">🤝</span><div class="card-body"><div class="card-name">Cadena International</div><div class="card-detail">Atención psicológica y humanitaria · WhatsApp: <strong>+57 319 241 9107</strong> · <a href="https://cadena.org" target="_blank">cadena.org →</a></div></div></div>
+          <div class="card"><span class="card-icon">🌽</span><div class="card-body"><div class="card-name">Las Tigresas de la Patria + ABACO</div><div class="card-detail">Alianza con Banco de Alimentos de Colombia · <a href="https://donahoy.abaco.org.co" target="_blank">donahoy.abaco.org.co →</a></div></div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Puntos de recolección física — Las Tigresas de la Patria</p>
+        <div class="cards">
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Bogotá</div><div class="card-detail">Lilian Pineda / Hilda López — Calle 22B #31-43 G12, Salón 101</div></div></div>
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Medellín</div><div class="card-detail">Eliana López — Central Mayorista de Antioquia, Bloque 21, Local 6</div></div></div>
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Cali</div><div class="card-detail">Alexandra Vásquez — Carrera 1 #31-134, Ferretería Tuercas y Tornillos, B/ Santander</div></div></div>
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Barranquilla</div><div class="card-detail">Ana Lucía Pineda / María Tulena — Carrera 49C #80-76</div></div></div>
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Cúcuta</div><div class="card-detail">Lorena Larrota — Av 5 #16N-108, Zona Industrial Ciudadela del Calzado</div></div></div>
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Cartagena</div><div class="card-detail">Antonella Farah / Carolina Ariza — Cra 6 #4-109, Bocagrande, Frente al Campito, Primer Piso</div></div></div>
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Bucaramanga</div><div class="card-detail">Diana Vásquez — Calle 43 #12-56 Edificio Lesalone, Barrio García Rovira</div></div></div>
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Montería</div><div class="card-detail">María Victoria Pineda — Calle 69 #3-86, Barrio El Recreo</div></div></div>
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Florencia</div><div class="card-detail">Marisol Arciniegas — Cra 10A #7-08, Barrio Avenidas</div></div></div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:12px;">
+        <strong>Instrucciones de empaque (Las Tigresas):</strong> Una caja, un solo tipo de donación. Arroz o lentejas en bolsas selladas · ropa nueva (no usada) · juguetes nuevos (no bélicos) · azúcar en empaque original. Usa cajas resistentes, séllalas bien y escribe el contenido claramente al frente.
+      </div>
+    </section>
+
+    <!-- USA -->
+    <section class="country-section" id="usa">
+      <div class="country-header">
+        <span class="country-flag">🇺🇸</span>
+        <div>
+          <div class="country-title">Estados Unidos</div>
+          <div class="country-sub">PayPal, Venmo, Zelle, GoFundMe · Puntos en Miami</div>
+        </div>
+      </div>
+      <div class="subsection">
+        <p class="subsection-title">Donaciones online desde USA</p>
+        <div class="cards">
+          <div class="card card-highlight"><span class="card-icon">⭐</span><div class="card-body"><div class="card-name">CRS — Catholic Relief Services</div><div class="card-detail">PayPal, Apple Pay, Venmo disponibles. Al donar recibes recibo y tax ID · <a href="https://crs.org" target="_blank">crs.org →</a></div></div><span class="card-badge badge-yellow">Tax ID</span></div>
+          <div class="card"><span class="card-icon">🧒</span><div class="card-body"><div class="card-name">Fundana</div><div class="card-detail">Venmo: <strong>@fundana-venezuela</strong> · PayPal: <strong>fundanainternational@gmail.com</strong> · Zelle: <strong>fundanazelle@gmail.com</strong></div></div></div>
+          <div class="card"><span class="card-icon">🇺🇸</span><div class="card-body"><div class="card-name">VACC Foundation</div><div class="card-detail">Venezuelan-American Chamber of Commerce · <a href="https://vaccfoundation.org/donate-now" target="_blank">vaccfoundation.org/donate-now →</a></div></div></div>
+          <div class="card"><span class="card-icon">💚</span><div class="card-body"><div class="card-name">We Love Foundation</div><div class="card-detail"><a href="https://welove.foundation" target="_blank">welove.foundation →</a></div></div></div>
+          <div class="card"><span class="card-icon">💵</span><div class="card-body"><div class="card-name">Un Dólar por Venezuela</div><div class="card-detail"><a href="https://undolarporvenezuela.com" target="_blank">undolarporvenezuela.com →</a></div></div></div>
+          <div class="card"><span class="card-icon">🛏️</span><div class="card-body"><div class="card-name">Colchones — HEVENF (GoFundMe)</div><div class="card-detail">Con $25 regalas un colchón a una familia. +800 ya entregados. HEVENF entrega directamente en Caracas · Ver perfil de <strong>@winnithefit</strong> para el link</div></div><span class="card-badge badge-green">$25 = 1 colchón</span></div>
+          <div class="card"><span class="card-icon">☀️</span><div class="card-body"><div class="card-name">Sun.Risas</div><div class="card-detail"><a href="https://fundraise.sunrisas.org/earthquake" target="_blank">fundraise.sunrisas.org/earthquake →</a></div></div></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <p class="subsection-title">Puntos de recolección física</p>
+        <div class="cards">
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Miami — Caracas Bakery</div><div class="card-detail">7283 Biscayne Blvd, Miami, FL 33138 · Máscaras respiradoras y bolsas de emergencia</div></div></div>
+          <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Doral, FL — Las Tigresas de la Patria</div><div class="card-detail">Taty Henríquez — 1850 NW 84 Avenue, Doral, FL 32126, GEM</div></div></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <p class="subsection-title">Mandar dinero a familiares en Venezuela</p>
+        <div class="cards">
+          <div class="card"><span class="card-icon">💸</span><div class="card-body"><div class="card-name">Remesa365</div><div class="card-detail">El dinero llega al momento · App disponible en iOS y Android · <strong>@remesa365</strong></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ITALIA -->
+    <section class="country-section" id="italia">
+      <div class="country-header">
+        <span class="country-flag">🇮🇹</span>
+        <div>
+          <div class="country-title">Italia</div>
+          <div class="country-sub">Donaciones internacionales · Organizaciones activas</div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card"><span class="card-icon">🌍</span><div class="card-body"><div class="card-name">Cadena International</div><div class="card-detail">Organización humanitaria activa en Venezuela · <a href="https://cadena.org" target="_blank">cadena.org →</a></div></div></div>
+        <div class="card"><span class="card-icon">🧒</span><div class="card-body"><div class="card-name">Save the Children</div><div class="card-detail"><a href="https://savethechildren.it" target="_blank">savethechildren.it →</a></div></div></div>
+        <div class="card"><span class="card-icon">🌍</span><div class="card-body"><div class="card-name">UNICEF Italia</div><div class="card-detail"><a href="https://unicef.it" target="_blank">unicef.it →</a></div></div></div>
+        <div class="card"><span class="card-icon">💛</span><div class="card-body"><div class="card-name">donaxvenezuela.org</div><div class="card-detail">Directorio de todas las fundaciones verificadas · <a href="https://donaxvenezuela.org" target="_blank">donaxvenezuela.org →</a></div></div></div>
+      </div>
+    </section>
+
+    <!-- UK -->
+    <section class="country-section" id="uk">
+      <div class="country-header">
+        <span class="country-flag">🇬🇧</span>
+        <div>
+          <div class="country-title">Reino Unido</div>
+          <div class="country-sub">Donaciones internacionales · Corporate matching</div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card"><span class="card-icon">🤝</span><div class="card-body"><div class="card-name">Chamos + Benevity</div><div class="card-detail">Registrados en Benevity para equipos en UK. Tu empresa puede duplicar tu donación · <a href="https://benevity.com/nonprofits" target="_blank">benevity.com/nonprofits →</a></div></div><span class="card-badge badge-blue">Matching</span></div>
+        <div class="card"><span class="card-icon">🧒</span><div class="card-body"><div class="card-name">Save the Children UK</div><div class="card-detail"><a href="https://savethechildren.org.uk" target="_blank">savethechildren.org.uk →</a></div></div></div>
+        <div class="card"><span class="card-icon">💛</span><div class="card-body"><div class="card-name">donaxvenezuela.org</div><div class="card-detail">Directorio de todas las fundaciones verificadas · <a href="https://donaxvenezuela.org" target="_blank">donaxvenezuela.org →</a></div></div></div>
+        <div class="card"><span class="card-icon">🔗</span><div class="card-body"><div class="card-name">U Were Late / Comparte Colombia</div><div class="card-detail">Iniciativa solidaria venezolana en UK · <strong>@uwerelate</strong> en Instagram</div></div></div>
+      </div>
+    </section>
+
+    <!-- OTROS PAÍSES -->
+    <section class="country-section" id="otros-paises">
+      <div class="country-header">
+        <span class="country-flag">🌍</span>
+        <div>
+          <div class="country-title">Desde cualquier otro país</div>
+          <div class="country-sub">Recursos válidos desde cualquier parte del mundo</div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card card-highlight"><span class="card-icon">⭐</span><div class="card-body"><div class="card-name">donaxvenezuela.org</div><div class="card-detail">Directorio centralizado. La mayoría de fundaciones aceptan donaciones internacionales · <a href="https://donaxvenezuela.org" target="_blank">donaxvenezuela.org →</a></div></div></div>
+        <div class="card"><span class="card-icon">☀️</span><div class="card-body"><div class="card-name">Sun.Risas — desde cualquier parte del mundo</div><div class="card-detail"><a href="https://fundraise.sunrisas.org/earthquake" target="_blank">fundraise.sunrisas.org/earthquake →</a></div></div></div>
+        <div class="card"><span class="card-icon">💵</span><div class="card-body"><div class="card-name">Un Dólar por Venezuela</div><div class="card-detail"><a href="https://undolarporvenezuela.com" target="_blank">undolarporvenezuela.com →</a></div></div></div>
+        <div class="card"><span class="card-icon">💸</span><div class="card-body"><div class="card-name">Mandar dinero a familiares — Remesa365</div><div class="card-detail">El dinero llega al momento · <strong>@remesa365</strong></div></div></div>
+        <div class="card"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">Teleconsultas médicas voluntarias</div><div class="card-detail">Si eres médico, únete desde cualquier país · <a href="https://sos.reservadoc.com" target="_blank">sos.reservadoc.com →</a></div></div></div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>🇻🇪 <a href="index.html" style="color:var(--azul)">apoyavenezuela.org</a> · Compilado por Nicolina Casale De Gregorio · Madrid, junio 2026</p>
+    <p style="margin-top:6px">¿Tu país no está aquí o tienes información nueva? Escríbenos para añadirlo.</p>
+  </footer>
+</body>
+</html>
