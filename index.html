@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇻🇪 Auxilio Venezuela — Recursos de Ayuda</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amarillo: #C8920A;
+      --azul: #003DA5;
+      --rojo: #B01818;
+      --bg: #F9F7F3;
+      --surface: #FFFFFF;
+      --surface2: #F3F1EC;
+      --border: #E4E0D8;
+      --text: #1A1A1A;
+      --muted: #6B6560;
+      --accent-light: #FFF8E8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* HERO */
+    .hero {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+
+    .flag-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 28px;
+    }
+    .flag-bar span {
+      display: block;
+      height: 5px;
+      width: 40px;
+      border-radius: 3px;
+      margin: 0 3px;
+    }
+    .flag-bar .s1 { background: var(--amarillo); }
+    .flag-bar .s2 { background: var(--azul); }
+    .flag-bar .s3 { background: var(--rojo); }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5.5vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--rojo);
+    }
+
+    .hero-sub {
+      max-width: 580px;
+      margin: 0 auto 36px;
+      font-size: 0.97rem;
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1.75;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      padding: 24px 0 0;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-num.red { color: var(--rojo); }
+    .stat-num.yellow { color: var(--amarillo); }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* URGENT BANNER */
+    .donation-banner {
+      background: #C8920A;
+      color: #fff;
+      text-align: center;
+      padding: 12px 24px;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    .donation-banner a {
+      color: #fff;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .urgent-banner {
+      background: var(--rojo);
+      color: #fff;
+      text-align: center;
+      padding: 14px 24px;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    .urgent-banner a {
+      color: #fff;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(249,247,243,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      overflow-x: auto;
+    }
+
+    .nav-inner {
+      display: flex;
+      max-width: 900px;
+      margin: 0 auto;
+      white-space: nowrap;
+    }
+
+    .nav a {
+      display: inline-block;
+      padding: 13px 14px;
+      font-size: 0.77rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      border-bottom-color: var(--amarillo);
+    }
+
+    /* MAIN */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* SUBSECTIONS */
+    .subsection { margin-bottom: 28px; }
+
+    .subsection-title {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* CARDS */
+    .cards { display: flex; flex-direction: column; gap: 7px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .card:hover {
+      border-color: #C8920A55;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .card-icon { font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+
+    .card-body { flex: 1; min-width: 0; }
+
+    .card-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .card-detail {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .card-detail a {
+      color: var(--azul);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .card-detail a:hover { text-decoration: underline; }
+
+    .card-badge {
+      flex-shrink: 0;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+    .badge-yellow { background: #FFF3D0; color: #7A5500; border: 1px solid #F0D070; }
+    .badge-red    { background: #FDECEA; color: #8B1010; border: 1px solid #F5C0C0; }
+    .badge-blue   { background: #EAF0FF; color: #0030A0; border: 1px solid #B0C8F8; }
+    .badge-green  { background: #EAFAF1; color: #1A6B3C; border: 1px solid #A8DFC0; }
+
+    /* HIGHLIGHT CARD */
+    .card-highlight {
+      border-color: var(--amarillo);
+      background: var(--accent-light);
+    }
+    .card-highlight:hover { border-color: var(--amarillo); box-shadow: 0 2px 16px rgba(200,146,10,0.12); }
+
+    /* PRIORITY CARD */
+    .card-priority {
+      border-color: var(--rojo);
+      border-width: 2px;
+      background: #FFF8F8;
+    }
+    .card-priority:hover { box-shadow: 0 2px 16px rgba(176,24,24,0.10); }
+
+    /* PHONE GRID */
+    .phone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 7px;
+    }
+
+    .phone-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      transition: border-color 0.18s;
+    }
+    .phone-card:hover { border-color: #B0180044; }
+
+    .phone-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 3px; }
+    .phone-number { font-size: 0.98rem; font-weight: 700; color: var(--text); letter-spacing: 0.01em; }
+
+    /* CTA BOX */
+    .cta-box {
+      background: var(--azul);
+      border-radius: 16px;
+      padding: 36px 32px;
+      text-align: center;
+      margin: 48px 0 0;
+      color: #fff;
+    }
+    .cta-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .cta-box p { font-size: 0.9rem; opacity: 0.8; margin-bottom: 22px; line-height: 1.6; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--amarillo);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.88; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.76rem;
+      background: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .hero-stats { gap: 28px; }
+      .stat-num { font-size: 1.6rem; }
+      .phone-grid { grid-template-columns: 1fr 1fr; }
+      .nav a { padding: 12px 9px; font-size: 0.7rem; }
+      .cta-box { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DONATION BANNER -->
+  <div class="donation-banner">
+    💛 ¿Quieres donar? → <a href="#donaciones">Ver fundaciones verificadas</a>
+  </div>
+
+  <!-- URGENT BANNER -->
+  <div class="urgent-banner">
+    🚨 Coordinación urgente sobre el terreno → <a href="https://ayudaencamino.com" target="_blank">ayudaencamino.com</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="flag-bar">
+      <span class="s1"></span>
+      <span class="s2"></span>
+      <span class="s3"></span>
+    </div>
+    <p class="hero-eyebrow">Emergencia · Terremoto en Venezuela</p>
+    <h1>Venezuela<br>necesita <em>auxilio</em></h1>
+    <p class="hero-sub">Dos terremotos golpearon el norte del país con apenas 39 segundos de diferencia. Este directorio reúne todos los recursos verificados para donar, buscar personas, coordinar ayuda y apoyar la salud mental.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num red">+1.000</div>
+        <div class="stat-label">fallecidos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num yellow">+4.300</div>
+        <div class="stat-label">heridos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Miles</div>
+        <div class="stat-label">sin hogar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#donaciones">💛 Donar</a>
+      <a href="#busqueda">🔍 Buscar personas</a>
+      <a href="#emergencias">🚨 Emergencias</a>
+      <a href="#coordinacion">🤝 Coordinación</a>
+      <a href="#salud-mental">🧠 Salud mental</a>
+      <a href="#otros">✈️ Más recursos</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- DONACIONES -->
+    <section class="section" id="donaciones">
+      <div class="section-header">
+        <span class="section-icon">💛</span>
+        <h2 class="section-title">Donaciones</h2>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Directorio centralizado de fundaciones verificadas</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <span class="card-icon">⭐</span>
+            <div class="card-body">
+              <div class="card-name">donaxvenezuela.org</div>
+              <div class="card-detail">Todas las fundaciones verificadas ya activas en Venezuela en un solo lugar. <a href="https://donaxvenezuela.org" target="_blank">donaxvenezuela.org →</a></div>
+            </div>
+            <span class="card-badge badge-yellow">Recomendado</span>
+          </div>
+          <div class="card">
+            <span class="card-icon">🔒</span>
+            <div class="card-body">
+              <div class="card-name">Donar Seguro</div>
+              <div class="card-detail"><a href="https://donarseguro.com" target="_blank">donarseguro.com →</a></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🌐</span>
+            <div class="card-body">
+              <div class="card-name">Hazlohoy.org</div>
+              <div class="card-detail"><a href="https://hazlohoy.org" target="_blank">hazlohoy.org →</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Desde España — Bizum y transferencia</p>
+        <div class="cards">
+          <div class="card">
+            <span class="card-icon">🏥</span>
+            <div class="card-body">
+              <div class="card-name">Cruz Roja Española</div>
+              <div class="card-detail">Bizum <strong>33512</strong> · SMS "VENEZUELA" al <strong>38092</strong> (= 6€) · <a href="https://www.cruzroja.es" target="_blank">cruzroja.es →</a></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">✝️</span>
+            <div class="card-body">
+              <div class="card-name">Cáritas Madrid</div>
+              <div class="card-detail">Bizum <strong>33645</strong> · ES67 0075 7007 8506 0715 0747 (concepto: VENEZUELA) · Tel: 91 548 95 80</div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🍽️</span>
+            <div class="card-body">
+              <div class="card-name">Meals4Hope</div>
+              <div class="card-detail">Bizum <strong>11976</strong> · ES47 0081 0065 1400 0212 7418</div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🌾</span>
+            <div class="card-body">
+              <div class="card-name">Acción contra el Hambre</div>
+              <div class="card-detail">Bizum <strong>03770</strong> · ES95 0049 1892 6124 1330 0946</div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">👨‍🍳</span>
+            <div class="card-body">
+              <div class="card-name">World Central Kitchen — #ChefsForVenezuela</div>
+              <div class="card-detail">Equipos ya distribuyendo comidas en zonas afectadas · Bizum <strong>03843</strong> · <a href="https://donarespana.wck.org" target="_blank">donarespana.wck.org →</a></div>
+            </div>
+            <span class="card-badge badge-green">Activos</span>
+          </div>
+          <div class="card">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">Donio — apoyo directo a La Guaira</div>
+              <div class="card-detail">Desde España · <a href="https://donio.es" target="_blank">donio.es →</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Fundaciones internacionales</p>
+        <div class="cards">
+          <div class="card">
+            <span class="card-icon">🐼</span>
+            <div class="card-body">
+              <div class="card-name">Bambi Foundation</div>
+              <div class="card-detail"><a href="https://bambifoundation.org" target="_blank">bambifoundation.org →</a></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">☀️</span>
+            <div class="card-body">
+              <div class="card-name">Sun.Risas</div>
+              <div class="card-detail">Compra insumos directamente en Venezuela · <a href="https://fundraise.sunrisas.org/earthquake" target="_blank">fundraise.sunrisas.org/earthquake →</a></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🇺🇸</span>
+            <div class="card-body">
+              <div class="card-name">VACC Foundation</div>
+              <div class="card-detail">Venezuelan-American Chamber of Commerce · <a href="https://vaccfoundation.org/donate-now" target="_blank">vaccfoundation.org/donate-now →</a></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🌊</span>
+            <div class="card-body">
+              <div class="card-name">Aguas para Venezuela</div>
+              <div class="card-detail"><a href="https://aguasparavenezuela.org" target="_blank">aguasparavenezuela.org →</a></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">👶</span>
+            <div class="card-body">
+              <div class="card-name">Aldeas Infantiles SOS</div>
+              <div class="card-detail"><a href="https://sos.aldeasinfantiles.es" target="_blank">sos.aldeasinfantiles.es →</a></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🧒</span>
+            <div class="card-body">
+              <div class="card-name">Save the Children</div>
+              <div class="card-detail"><a href="https://www.savethechildren.es" target="_blank">savethechildren.es →</a></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🤝</span>
+            <div class="card-body">
+              <div class="card-name">Cadena International</div>
+              <div class="card-detail"><a href="https://www.cadena.org" target="_blank">cadena.org →</a></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">💚</span>
+            <div class="card-body">
+              <div class="card-name">La Vecina Rubia + UNICEF España</div>
+              <div class="card-detail">+125.000€ recaudados · <a href="https://unicef.es" target="_blank">unicef.es →</a></div>
+            </div>
+            <span class="card-badge badge-green">+125K€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Con match del 25% adicional</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <span class="card-icon">🛵</span>
+            <div class="card-body">
+              <div class="card-name">Yummy Rides</div>
+              <div class="card-detail">Yummy, Slash, Kavak, Wawa y Félix añaden un <strong>25%</strong> a cada donación. Sin comisiones de pago (Stripe + BNC). · <a href="https://dona.yummyrides.com" target="_blank">dona.yummyrides.com →</a></div>
+            </div>
+            <span class="card-badge badge-yellow">+25% match</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BÚSQUEDA -->
+    <section class="section" id="busqueda">
+      <div class="section-header">
+        <span class="section-icon">🔍</span>
+        <h2 class="section-title">Búsqueda de personas</h2>
+      </div>
+      <div class="cards">
+        <div class="card card-highlight">
+          <span class="card-icon">🔗</span>
+          <div class="card-body">
+            <div class="card-name">Yummy SOS — Búsqueda centralizada</div>
+            <div class="card-detail">Cruza y unifica reportes de desaparecidos de múltiples plataformas (Venezuela Te Busca, Desaparecidos Terremoto y más) · <a href="https://sos.yummyrides.com" target="_blank">sos.yummyrides.com →</a></div>
+          </div>
+          <span class="card-badge badge-yellow">Centralizado</span>
+        </div>
+        <div class="card">
+          <span class="card-icon">👤</span>
+          <div class="card-body">
+            <div class="card-name">Desaparecidos Terremoto Venezuela</div>
+            <div class="card-detail"><a href="https://desaparecidosterremotovenezuela.com" target="_blank">desaparecidosterremotovenezuela.com →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🔎</span>
+          <div class="card-body">
+            <div class="card-name">Venezuela Te Busca</div>
+            <div class="card-detail">Registro de desaparecidos · <a href="https://venezuelatebusca.com" target="_blank">venezuelatebusca.com →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🤖</span>
+          <div class="card-body">
+            <div class="card-name">VzlaEncuentra — IA con reconocimiento facial</div>
+            <div class="card-detail">Creado por ingenieros venezolanos · <a href="https://vzlaencuentra.com" target="_blank">vzlaencuentra.com →</a></div>
+          </div>
+          <span class="card-badge badge-blue">IA</span>
+        </div>
+        <div class="card">
+          <span class="card-icon">🧒</span>
+          <div class="card-body">
+            <div class="card-name">Niños perdidos — Nexo Signal</div>
+            <div class="card-detail"><a href="https://busca.nexosignal.co" target="_blank">busca.nexosignal.co →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🏥</span>
+          <div class="card-body">
+            <div class="card-name">Hospitales en Venezuela</div>
+            <div class="card-detail">Busca familiares ingresados · <a href="https://hospitalesenvenezuela.com" target="_blank">hospitalesenvenezuela.com →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🏠</span>
+          <div class="card-body">
+            <div class="card-name">Puertas Abiertas Venezuela</div>
+            <div class="card-detail">Registro de familias afectadas · <a href="https://puertasabiertasvzla.org" target="_blank">puertasabiertasvzla.org →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🔴</span>
+          <div class="card-body">
+            <div class="card-name">Cruz Roja Venezolana — Contacto familiar</div>
+            <div class="card-detail">Restablecimiento del contacto entre familiares · <strong>0422 799 4880</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMERGENCIAS -->
+    <section class="section" id="emergencias">
+      <div class="section-header">
+        <span class="section-icon">🚨</span>
+        <h2 class="section-title">Números de emergencia en Venezuela</h2>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Línea general</p>
+        <div class="phone-grid">
+          <div class="phone-card"><div class="phone-label">Universal (Policía / Ambulancia / Bomberos)</div><div class="phone-number">911</div></div>
+          <div class="phone-card"><div class="phone-label">CANTV fijo</div><div class="phone-number">171</div></div>
+          <div class="phone-card"><div class="phone-label">Movilnet</div><div class="phone-number">*1</div></div>
+          <div class="phone-card"><div class="phone-label">Digitel</div><div class="phone-number">112</div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Ambulancias — Caracas</p>
+        <div class="cards">
+          <div class="card"><span class="card-icon">🚁</span><div class="card-body"><div class="card-name">Aeroambulancias</div><div class="card-detail">(0212) 993.25.41 · 992.89.80 · 992.89.90 · 991.79.40</div></div></div>
+          <div class="card"><span class="card-icon">🚑</span><div class="card-body"><div class="card-name">Rescarven</div><div class="card-detail">(0212) 993.69.11 · 993.69.91 · 993.13.10 · 993.33.67</div></div></div>
+          <div class="card"><span class="card-icon">🚑</span><div class="card-body"><div class="card-name">Servicio Metropolitano</div><div class="card-detail">(0212) 545.45.45 · 545.46.55 · 577.92.09</div></div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Bomberos por zona</p>
+        <div class="phone-grid">
+          <div class="phone-card"><div class="phone-label">Chacao</div><div class="phone-number">0212-2653261</div></div>
+          <div class="phone-card"><div class="phone-label">La Guaira</div><div class="phone-number">0212-3327620</div></div>
+          <div class="phone-card"><div class="phone-label">Metropolitanos</div><div class="phone-number">0212-5454545</div></div>
+          <div class="phone-card"><div class="phone-label">Estado Miranda</div><div class="phone-number">0212-2356967</div></div>
+          <div class="phone-card"><div class="phone-label">Plaza Venezuela</div><div class="phone-number">0212-7936457</div></div>
+          <div class="phone-card"><div class="phone-label">D.C.</div><div class="phone-number">0212-5454545</div></div>
+          <div class="phone-card"><div class="phone-label">La Urbina</div><div class="phone-number">0212-2426299</div></div>
+          <div class="phone-card"><div class="phone-label">Protección Civil</div><div class="phone-number">0800-7248451</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COORDINACIÓN -->
+    <section class="section" id="coordinacion">
+      <div class="section-header">
+        <span class="section-icon">🤝</span>
+        <h2 class="section-title">Coordinación de ayuda</h2>
+      </div>
+      <div class="cards">
+        <div class="card card-priority">
+          <span class="card-icon">🚐</span>
+          <div class="card-body">
+            <div class="card-name">Ayuda en Camino</div>
+            <div class="card-detail">El recurso más activo en campo ahora mismo · <a href="https://ayudaencamino.com" target="_blank">ayudaencamino.com →</a></div>
+          </div>
+          <span class="card-badge badge-red">Urgente</span>
+        </div>
+        <div class="card">
+          <span class="card-icon">🏗️</span>
+          <div class="card-body">
+            <div class="card-name">Grupo Ávila — Inspecciones técnicas gratuitas</div>
+            <div class="card-detail">Evaluación estructural de viviendas afectadas · <a href="https://instagram.com/grupoavila.ve" target="_blank">@grupoavila.ve →</a></div>
+          </div>
+          <span class="card-badge badge-green">Gratuito</span>
+        </div>
+        <div class="card">
+          <span class="card-icon">🏥</span>
+          <div class="card-body">
+            <div class="card-name">Once Trece — Insumos médicos gratuitos</div>
+            <div class="card-detail">Catálogo de insumos en stock, totalmente gratis para personal de salud e instituciones de primera línea · <a href="https://oncetrece.net/GRIOT/solicitud/" target="_blank">oncetrece.net →</a></div>
+          </div>
+          <span class="card-badge badge-green">Gratuito</span>
+        </div>
+        <div class="card">
+          <span class="card-icon">🗺️</span>
+          <div class="card-body">
+            <div class="card-name">Mapa de emergencia y rescate</div>
+            <div class="card-detail"><a href="https://terremotovenezuela.app" target="_blank">terremotovenezuela.app →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">📋</span>
+          <div class="card-body">
+            <div class="card-name">Enlaza Venezuela</div>
+            <div class="card-detail">Pide o ofrece ayuda directa por WhatsApp · <a href="https://enlazavenezuela.com" target="_blank">enlazavenezuela.com →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">⚡</span>
+          <div class="card-body">
+            <div class="card-name">VzlaYuda</div>
+            <div class="card-detail">Coordinación sin intermediarios · <a href="https://vzlayuda.com" target="_blank">vzlayuda.com →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🔗</span>
+          <div class="card-body">
+            <div class="card-name">Efecto Red</div>
+            <div class="card-detail">Conecta afectados con médicos, psicólogos e ingenieros voluntarios · <a href="https://efecto-red.com" target="_blank">efecto-red.com →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">📦</span>
+          <div class="card-body">
+            <div class="card-name">AJE Venezuela — Centros de acopio verificados</div>
+            <div class="card-detail"><a href="https://ajevenezuela.org/ayuda-venezuela" target="_blank">ajevenezuela.org/ayuda-venezuela →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🔍</span>
+          <div class="card-body">
+            <div class="card-name">Red Ayuda Venezuela</div>
+            <div class="card-detail">Buscador de recursos · <a href="https://redayudavenezuela.com" target="_blank">redayudavenezuela.com →</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🛏️</span>
+          <div class="card-body">
+            <div class="card-name">Camas para Venezuela</div>
+            <div class="card-detail"><a href="https://camasparavenezuela.com" target="_blank">camasparavenezuela.com →</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SALUD MENTAL -->
+    <section class="section" id="salud-mental">
+      <div class="section-header">
+        <span class="section-icon">🧠</span>
+        <h2 class="section-title">Salud mental y apoyo psicológico</h2>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Líneas de primeros auxilios psicológicos</p>
+        <div class="phone-grid">
+          <div class="phone-card"><div class="phone-label">Federación de Psicólogos</div><div class="phone-number" style="font-size:0.82rem">0212-4163116</div></div>
+          <div class="phone-card"><div class="phone-label">Psicólogos Sin Fronteras</div><div class="phone-number" style="font-size:0.82rem">0412-9270304</div></div>
+          <div class="phone-card"><div class="phone-label">SNC</div><div class="phone-number" style="font-size:0.82rem">0414-4265181</div></div>
+          <div class="phone-card"><div class="phone-label">Rehabilitarte</div><div class="phone-number" style="font-size:0.82rem">0424-6115506</div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Atención online gratuita</p>
+        <div class="cards">
+          <div class="card">
+            <span class="card-icon">💚</span>
+            <div class="card-body">
+              <div class="card-name">Escucha Activa</div>
+              <div class="card-detail">Hasta 2 sesiones gratuitas para afectados dentro y fuera de Venezuela · <a href="https://escuchaactiva.com" target="_blank">escuchaactiva.com →</a></div>
+            </div>
+            <span class="card-badge badge-green">Gratis</span>
+          </div>
+          <div class="card">
+            <span class="card-icon">🌐</span>
+            <div class="card-body">
+              <div class="card-name">Cadena International — Atención psicológica virtual</div>
+              <div class="card-detail">WhatsApp: <strong>+57 319 241 9107</strong></div>
+            </div>
+            <span class="card-badge badge-green">Gratis</span>
+          </div>
+          <div class="card">
+            <span class="card-icon">💊</span>
+            <div class="card-body">
+              <div class="card-name">ReservaDoc — Teleconsultas médicas voluntarias</div>
+              <div class="card-detail">Cualquier especialidad, desde cualquier país · <a href="https://sos.reservadoc.com" target="_blank">sos.reservadoc.com →</a></div>
+            </div>
+            <span class="card-badge badge-green">Gratis</span>
+          </div>
+          <div class="card">
+            <span class="card-icon">🦵</span>
+            <div class="card-body">
+              <div class="card-name">Fisioterapeutas Voluntarios</div>
+              <div class="card-detail">+1.250 fisioterapeutas voluntarios en toda Venezuela. Búsqueda por estado y área clínica · <a href="https://fisioterapeutasvoluntarios.org" target="_blank">fisioterapeutasvoluntarios.org →</a></div>
+            </div>
+            <span class="card-badge badge-green">+1.250</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OTROS -->
+    <section class="section" id="otros">
+      <div class="section-header">
+        <span class="section-icon">✈️</span>
+        <h2 class="section-title">Más recursos</h2>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Alojamiento de emergencia</p>
+        <div class="cards">
+          <div class="card">
+            <span class="card-icon">🏠</span>
+            <div class="card-body">
+              <div class="card-name">Airbnb.org</div>
+              <div class="card-detail">Alojamiento gratuito para afectados por el terremoto · <a href="https://airbnb.org" target="_blank">airbnb.org →</a></div>
+            </div>
+            <span class="card-badge badge-green">Gratis</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Comunicación sin internet</p>
+        <div class="cards">
+          <div class="card">
+            <span class="card-icon">📱</span>
+            <div class="card-body">
+              <div class="card-name">Apps para llamar sin internet</div>
+              <div class="card-detail"><strong>Talk 360</strong> · <strong>Yolla</strong> · <strong>Rebtel</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Voluntariado y empleo humanitario</p>
+        <div class="cards">
+          <div class="card">
+            <span class="card-icon">🙋</span>
+            <div class="card-body">
+              <div class="card-name">Cruz Roja Venezolana — Registro de voluntarios</div>
+              <div class="card-detail"><a href="https://ee.ifrc.org/x/Iaw9NksQ" target="_blank">ee.ifrc.org/x/Iaw9NksQ →</a></div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">💼</span>
+            <div class="card-body">
+              <div class="card-name">Cruz Roja Venezolana — Posiciones remuneradas</div>
+              <div class="card-detail">Líder de Proyecto · Oficial de Salud · Psicólogo · Oficial de Primeros Auxilios · <strong>postulaciones@cruzroja.ve</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <h3>La distancia no es excusa para ayudar</h3>
+      <p>Donar dinero directamente a organizaciones verificadas es lo más rápido y efectivo que puedes hacer ahora mismo. Cada euro cuenta.</p>
+      <a class="cta-btn" href="https://donaxvenezuela.org" target="_blank">Ver todas las fundaciones verificadas →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>🇻🇪 Compilado por Nicolina Casale De Gregorio · Madrid, junio 2026</p>
+    <p style="margin-top:6px">Recursos recopilados de fuentes verificadas. Si tienes un recurso nuevo para añadir, <a href="mailto:nicolina@example.com" style="color:var(--azul)">escríbeme</a>.</p>
+  </footer>
+
+</body>
+</html>
