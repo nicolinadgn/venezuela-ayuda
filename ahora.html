@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇻🇪 Ahora mismo — Apoya Venezuela</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amarillo: #C8920A;
+      --azul: #003DA5;
+      --rojo: #B01818;
+      --bg: #F9F7F3;
+      --surface: #FFFFFF;
+      --border: #E4E0D8;
+      --text: #1A1A1A;
+      --muted: #6B6560;
+      --accent-light: #FFF8E8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      background: var(--azul);
+      color: #fff;
+      text-align: center;
+      padding: 11px 24px;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+    .top-bar a {
+      color: #FFD87A;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top-bar a:hover { text-decoration: underline; }
+
+    /* HERO */
+    .hero {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+
+    .flag-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .flag-bar span {
+      display: block;
+      height: 5px;
+      width: 40px;
+      border-radius: 3px;
+      margin: 0 3px;
+    }
+    .flag-bar .s1 { background: var(--amarillo); }
+    .flag-bar .s2 { background: var(--azul); }
+    .flag-bar .s3 { background: var(--rojo); }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amarillo);
+    }
+
+    .hero-sub {
+      max-width: 520px;
+      margin: 0 auto;
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* URGENT ALERT */
+    .urgent-alert {
+      background: #FFF3CD;
+      border: 1px solid #F0C040;
+      border-left: 4px solid var(--amarillo);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .urgent-alert-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .urgent-alert-body { font-size: 0.85rem; color: #5A3E00; line-height: 1.55; }
+    .urgent-alert-body strong { color: #3A2800; }
+
+    /* MAIN */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* CITY SECTION */
+    .city-section {
+      margin-bottom: 64px;
+    }
+
+    .city-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .city-icon { font-size: 1.4rem; }
+
+    .city-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .city-date {
+      margin-left: auto;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* SUBSECTIONS */
+    .subsection { margin-bottom: 28px; }
+
+    .subsection-title {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* INITIATIVE CARDS */
+    .cards { display: flex; flex-direction: column; gap: 10px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .card:hover {
+      border-color: #C8920A55;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .card-priority {
+      border-color: var(--rojo);
+      border-width: 2px;
+      background: #FFF8F8;
+    }
+
+    .card-highlight {
+      border-color: var(--amarillo);
+      background: var(--accent-light);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .card-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+    .card-body { flex: 1; min-width: 0; }
+
+    .card-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .card-tagline {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .card-badge {
+      flex-shrink: 0;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+    .badge-red    { background: #FDECEA; color: #8B1010; border: 1px solid #F5C0C0; }
+    .badge-yellow { background: #FFF3D0; color: #7A5500; border: 1px solid #F0D070; }
+    .badge-green  { background: #EAFAF1; color: #1A6B3C; border: 1px solid #A8DFC0; }
+    .badge-blue   { background: #EAF0FF; color: #0030A0; border: 1px solid #B0C8F8; }
+
+    /* CARD META */
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* CARD DESCRIPTION */
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-desc a {
+      color: var(--azul);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .card-desc a:hover { text-decoration: underline; }
+
+    /* LOGISTICS CALLOUT */
+    .logistics-box {
+      background: var(--azul);
+      color: #fff;
+      border-radius: 14px;
+      padding: 28px 24px;
+      margin-bottom: 40px;
+    }
+
+    .logistics-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .logistics-box p {
+      font-size: 0.88rem;
+      opacity: 0.85;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .logistics-contact {
+      background: rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    /* ADD INITIATIVE */
+    .add-box {
+      background: var(--surface);
+      border: 2px dashed var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .add-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .add-box p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .add-btn {
+      display: inline-block;
+      background: var(--amarillo);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .add-btn:hover { opacity: 0.85; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.76rem;
+      background: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .city-date { display: none; }
+      .card-meta { gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    ← <a href="index.html">Volver al directorio completo</a> &nbsp;·&nbsp; apoyavenezuela.org
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="flag-bar">
+      <span class="s1"></span>
+      <span class="s2"></span>
+      <span class="s3"></span>
+    </div>
+    <p class="hero-eyebrow">Iniciativas · Actualizado hoy</p>
+    <h1>Ahora <em>mismo</em></h1>
+    <p class="hero-sub">Eventos, llamados a voluntarios y acciones urgentes organizadas por ciudad. Si tienes una iniciativa para añadir, escríbenos.</p>
+  </section>
+
+  <main>
+
+    <!-- LLAMADO LOGÍSTICO — DESTACADO GLOBAL -->
+    <div class="logistics-box">
+      <h3>🚨 Llamado urgente al sector logístico</h3>
+      <p>Hay toneladas de medicamentos y suministros listos en Madrid para enviar a Venezuela. El primer cargamento vuela mañana con Meals4Hope. Se necesitan con urgencia operadores, aviones, flotas y redes de distribución para acelerar el envío.</p>
+      <div class="logistics-contact">
+        📦 Si trabajas en logística o conoces a alguien que pueda ayudar, contacta a <strong>@alemorrisonandco</strong> o <strong>@unavzlanaenmadrid</strong> en Instagram.<br>
+        ✈️ Centro de operaciones: <strong>C. del Haya, 7 — Madrid</strong>
+      </div>
+    </div>
+
+    <!-- MADRID -->
+    <section class="city-section" id="madrid">
+      <div class="city-header">
+        <span class="city-icon">🇪🇸</span>
+        <h2 class="city-title">Madrid</h2>
+        <span class="city-date">29 de junio de 2026</span>
+      </div>
+
+      <!-- EVENTOS HOY -->
+      <div class="subsection">
+        <p class="subsection-title">Eventos hoy</p>
+        <div class="cards">
+
+          <!-- UNIDOS -->
+          <div class="card card-highlight">
+            <div class="card-top">
+              <span class="card-icon">🎪</span>
+              <div class="card-body">
+                <div class="card-name">UNIDOS — Evento solidario por Venezuela</div>
+                <div class="card-tagline">Mercadillo de ropa donada · Rifas · Pop up gastronómico. Todo lo recaudado va a World Central Kitchen y Yummy Rides.</div>
+              </div>
+              <span class="card-badge badge-yellow">Hoy</span>
+            </div>
+            <div class="card-meta">
+              <span class="meta-pill">🕓 16:00 – 22:00h</span>
+              <span class="meta-pill">📍 Lazo Café, Paseo Santa María de la Cabeza 80</span>
+            </div>
+            <div class="card-desc">
+              Organizado por <strong>@lazo_cafe</strong>, <strong>@pizzaradical_</strong>, <strong>@tastegalicia</strong>, <strong>@orbita_________</strong> y <strong>@puntociego</strong>. El mercadillo nace porque los centros de acopio ya no pueden recibir más ropa — la venden a precios accesibles y el dinero va directo a los afectados.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- VOLUNTARIOS -->
+      <div class="subsection">
+        <p class="subsection-title">Se necesitan voluntarios</p>
+        <div class="cards">
+
+          <!-- HILLSONG -->
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">📦</span>
+              <div class="card-body">
+                <div class="card-name">Hillsong Madrid — Preparar +2.000 cajas</div>
+                <div class="card-tagline">Ayuda a empacar y organizar más de 2.000 cajas de suministros para enviar a Venezuela.</div>
+              </div>
+              <span class="card-badge badge-red">Urgente hoy</span>
+            </div>
+            <div class="card-meta">
+              <span class="meta-pill">🕓 Desde las 17:00h</span>
+              <span class="meta-pill">📍 C. del Haya, 7 — Madrid</span>
+            </div>
+            <div class="card-desc">
+              Iniciativa de <strong>@hillsongmadrid</strong>. Sin experiencia previa necesaria — solo ganas de ayudar.
+            </div>
+          </div>
+
+          <!-- PARROQUIA CHAMBERI -->
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">⛪</span>
+              <div class="card-body">
+                <div class="card-name">Parroquia del Santísimo Cristo de la Victoria — Organización de insumos</div>
+                <div class="card-tagline">Se necesitan voluntarios para clasificar y organizar suministros en el centro de Chamberí.</div>
+              </div>
+              <span class="card-badge badge-green">Lunes y martes</span>
+            </div>
+            <div class="card-meta">
+              <span class="meta-pill">🕓 8:00 – 22:00h</span>
+              <span class="meta-pill">📍 Barrio de Chamberí, Madrid</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CENTROS DE ACOPIO -->
+      <div class="subsection">
+        <p class="subsection-title">Centros de acopio físico</p>
+        <div class="cards">
+
+          <!-- CALLE FERNANDO VI -->
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🏥</span>
+              <div class="card-body">
+                <div class="card-name">Centro de donación — Calle Fernando VI, 10</div>
+                <div class="card-tagline">Reciben insumos médicos como prioridad, y también ropa en buen estado. Todo sale el sábado hacia Venezuela.</div>
+              </div>
+              <span class="card-badge badge-red">Hasta viernes 17h</span>
+            </div>
+            <div class="card-meta">
+              <span class="meta-pill">⏰ Hasta el viernes a las 17:00h</span>
+              <span class="meta-pill">📍 Calle Fernando VI, 10</span>
+            </div>
+            <div class="card-desc">
+              Organizado por <strong>@lamarcawell</strong> y <strong>@tracyandersonstudio</strong>. Prioridad: insumos médicos.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DONACIÓN CORPORATIVA -->
+      <div class="subsection">
+        <p class="subsection-title">Si trabajas en una empresa</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <div class="card-top">
+              <span class="card-icon">🏢</span>
+              <div class="card-body">
+                <div class="card-name">Chamos + Benevity — Corporate matching</div>
+                <div class="card-tagline">Si tu empresa usa Benevity, puedes donar a Chamos y tu empresa duplica la donación. Pregunta en tu equipo de RRHH.</div>
+              </div>
+              <span class="card-badge badge-blue">Corporativo</span>
+            </div>
+            <div class="card-desc">
+              Disponible para equipos en 🇪🇸 🇬🇧 y a nivel global. Sin necesidad de intermediarios. <a href="https://benevity.com/nonprofits" target="_blank">benevity.com/nonprofits →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- VENEZUELA (desde fuera) -->
+    <section class="city-section" id="venezuela">
+      <div class="city-header">
+        <span class="city-icon">🇻🇪</span>
+        <h2 class="city-title">Venezuela</h2>
+        <span class="city-date">Activo ahora</span>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Donaciones para niños y medicamentos</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🧒</span>
+              <div class="card-body">
+                <div class="card-name">Fundana — Donaciones para niños</div>
+                <div class="card-tagline">100% verificada, va directo a los niños que más lo necesitan. Aceptan Venmo, PayPal y Zelle.</div>
+              </div>
+              <span class="card-badge badge-green">Verificada</span>
+            </div>
+            <div class="card-desc">
+              Venmo: <strong>@fundana-venezuela</strong> · PayPal: <strong>fundanainternational@gmail.com</strong> · Zelle: <strong>fundanazelle@gmail.com</strong><br>
+              Puntos de recolección en Caracas: Las Villas de Los Chiquiticos (Av. Río de Janeiro) y Fundana Galletas (Av. Mariscal Sucre). Horario 8am–5pm.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ADD INITIATIVE -->
+    <div class="add-box">
+      <h3>¿Tienes una iniciativa que añadir?</h3>
+      <p>Esta página se actualiza constantemente. Si organizas o conoces un evento, llamado a voluntarios o acción urgente, escríbenos y lo añadimos.</p>
+      <a class="add-btn" href="mailto:hola@apoyavenezuela.org">Enviar iniciativa →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>🇻🇪 <a href="index.html" style="color:var(--azul)">apoyavenezuela.org</a> · Compilado por Nicolina Casale De Gregorio · Madrid, junio 2026</p>
+    <p style="margin-top:6px">Esta página se actualiza con iniciativas en tiempo real. Última actualización: 29 de junio de 2026.</p>
+  </footer>
+
+</body>
+</html>
