@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html-root">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🇻🇪 Auxilio Venezuela — Recursos de Ayuda</title>
+  <meta name="description" content="Directorio de recursos verificados para ayudar tras el terremoto en Venezuela. Donaciones, búsqueda de personas, emergencias, salud mental.">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -361,19 +362,58 @@
       .nav a { padding: 12px 9px; font-size: 0.7rem; }
       .cta-box { padding: 28px 20px; }
     }
+
+    /* LANG TOGGLE */
+    .lang-toggle {
+      position: fixed;
+      top: 12px;
+      right: 16px;
+      z-index: 9999;
+      display: flex;
+      gap: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .lang-btn {
+      padding: 6px 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      transition: background 0.18s, color 0.18s;
+    }
+    .lang-btn.active {
+      background: var(--azul);
+      color: #fff;
+    }
+    .lang-btn:hover:not(.active) {
+      background: var(--bg);
+    }
   </style>
 </head>
 <body>
 
+  <!-- LANG TOGGLE -->
+  <div class="lang-toggle">
+    <button class="lang-btn active">ES</button>
+    <button class="lang-btn" onclick="window.location='/en/'">EN</button>
+  </div>
+
   <!-- VENEZUELA COLOR BANNERS -->
   <div style="background:#C8920A;color:#fff;text-align:center;padding:10px 24px;font-size:0.82rem;font-weight:600;">
-    💛 ¿Quieres donar? → <a href="#donaciones" style="color:#fff;text-decoration:underline;">Ver fundaciones verificadas</a>
+    <span data-es="💛 ¿Quieres donar? →" data-en="💛 Want to donate? →">💛 ¿Quieres donar? →</span> <a href="#donaciones" style="color:#fff;text-decoration:underline;" data-es="Ver fundaciones verificadas" data-en="See verified foundations">Ver fundaciones verificadas</a>
   </div>
   <div style="background:#003DA5;color:#fff;text-align:center;padding:10px 24px;font-size:0.82rem;font-weight:600;">
     🔵 <a href="ahora.html" style="color:#FFD87A;font-weight:700;text-decoration:none;">Hoy</a> &nbsp;·&nbsp; <a href="voluntarios.html" style="color:#FFD87A;font-weight:700;text-decoration:none;">🙋 Voluntarios</a> &nbsp;·&nbsp; <a href="paises.html" style="color:#FFD87A;font-weight:700;text-decoration:none;">🌍 Por país</a> &nbsp;·&nbsp; <a href="ninos.html" style="color:#FFD87A;font-weight:700;text-decoration:none;">🧒 Niños</a>
   </div>
   <div style="background:#B01818;color:#fff;text-align:center;padding:10px 24px;font-size:0.82rem;font-weight:600;">
-    🚨 Coordinación urgente sobre el terreno → <a href="https://ayudaencamino.com" target="_blank" style="color:#fff;font-weight:700;text-decoration:underline;">ayudaencamino.com</a>
+    <span data-es="🚨 Coordinación urgente sobre el terreno →" data-en="🚨 Urgent coordination on the ground →">🚨 Coordinación urgente sobre el terreno →</span> <a href="https://ayudaencamino.com" target="_blank" style="color:#fff;font-weight:700;text-decoration:underline;">ayudaencamino.com</a>
   </div>
 
 
@@ -385,21 +425,21 @@
       <span class="s2"></span>
       <span class="s3"></span>
     </div>
-    <p class="hero-eyebrow">Emergencia · Terremoto en Venezuela</p>
-    <h1>Venezuela<br>necesita <em>auxilio</em></h1>
+    <p class="hero-eyebrow" data-es="Emergencia · Terremoto en Venezuela" data-en="Emergency · Earthquake in Venezuela">Emergencia · Terremoto en Venezuela</p>
+    <h1 data-es="Venezuela necesita auxilio" data-en="Venezuela needs help"><span class="t">Venezuela</span><br><span class="t">necesita </span><em class="t" data-es="auxilio" data-en="help">auxilio</em></h1>
     <p class="hero-sub">Dos terremotos golpearon el norte del país con apenas 39 segundos de diferencia. Este directorio reúne todos los recursos verificados para donar, buscar personas, coordinar ayuda y apoyar la salud mental.</p>
     <div class="hero-stats">
       <div class="stat">
         <div class="stat-num red">+1.000</div>
-        <div class="stat-label">fallecidos</div>
+        <div class="stat-label" data-es="fallecidos" data-en="deaths">fallecidos</div>
       </div>
       <div class="stat">
         <div class="stat-num yellow">+4.300</div>
-        <div class="stat-label">heridos</div>
+        <div class="stat-label" data-es="heridos" data-en="injured">heridos</div>
       </div>
       <div class="stat">
         <div class="stat-num">Miles</div>
-        <div class="stat-label">sin hogar</div>
+        <div class="stat-label" data-es="sin hogar" data-en="displaced">sin hogar</div>
       </div>
     </div>
   </section>
@@ -425,7 +465,7 @@
     <section class="section" id="donaciones">
       <div class="section-header">
         <span class="section-icon">💛</span>
-        <h2 class="section-title">Donaciones</h2>
+        <h2 class="section-title" data-es="Donaciones" data-en="Donations">Donaciones</h2>
       </div>
 
       <!-- TAX DEDUCTION BOX -->
@@ -437,7 +477,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Directorio centralizado de fundaciones verificadas</p>
+        <p class="subsection-title" data-es="Directorio centralizado de fundaciones verificadas" data-en="Centralized directory of verified foundations">Directorio centralizado de fundaciones verificadas</p>
         <div class="cards">
           <div class="card card-highlight">
             <span class="card-icon">⭐</span>
@@ -481,7 +521,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Desde España — Bizum y transferencia</p>
+        <p class="subsection-title" data-es="Desde España — Bizum y transferencia" data-en="From Spain — Bizum &amp; bank transfer">Desde España — Bizum y transferencia</p>
         <div class="cards">
           <div class="card">
             <span class="card-icon">🏥</span>
@@ -530,7 +570,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Fundaciones internacionales</p>
+        <p class="subsection-title" data-es="Fundaciones internacionales" data-en="International foundations">Fundaciones internacionales</p>
         <div class="cards">
           <div class="card">
             <span class="card-icon">🐼</span>
@@ -593,7 +633,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Más opciones de donación</p>
+        <p class="subsection-title" data-es="Más opciones de donación" data-en="More donation options">Más opciones de donación</p>
         <div class="cards">
           <div class="card">
             <span class="card-icon">💊</span>
@@ -643,7 +683,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Con match del 25% adicional</p>
+        <p class="subsection-title" data-es="Con match del 25% adicional" data-en="With 25% additional match">Con match del 25% adicional</p>
         <div class="cards">
           <div class="card card-highlight">
             <span class="card-icon">🛵</span>
@@ -661,7 +701,7 @@
     <section class="section" id="busqueda">
       <div class="section-header">
         <span class="section-icon">🔍</span>
-        <h2 class="section-title">Búsqueda de personas</h2>
+        <h2 class="section-title" data-es="Búsqueda de personas" data-en="Finding missing persons">Búsqueda de personas</h2>
       </div>
       <div class="cards">
         <div class="card card-highlight">
@@ -729,11 +769,11 @@
     <section class="section" id="emergencias">
       <div class="section-header">
         <span class="section-icon">🚨</span>
-        <h2 class="section-title">Números de emergencia en Venezuela</h2>
+        <h2 class="section-title" data-es="Números de emergencia en Venezuela" data-en="Emergency numbers in Venezuela">Números de emergencia en Venezuela</h2>
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Línea general</p>
+        <p class="subsection-title" data-es="Línea general" data-en="General emergency line">Línea general</p>
         <div class="phone-grid">
           <div class="phone-card"><div class="phone-label">Universal (Policía / Ambulancia / Bomberos)</div><div class="phone-number">911</div></div>
           <div class="phone-card"><div class="phone-label">CANTV fijo</div><div class="phone-number">171</div></div>
@@ -743,7 +783,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Ambulancias — Caracas</p>
+        <p class="subsection-title" data-es="Ambulancias — Caracas" data-en="Ambulances — Caracas">Ambulancias — Caracas</p>
         <div class="cards">
           <div class="card"><span class="card-icon">🚁</span><div class="card-body"><div class="card-name">Aeroambulancias</div><div class="card-detail">(0212) 993.25.41 · 992.89.80 · 992.89.90 · 991.79.40</div></div></div>
           <div class="card"><span class="card-icon">🚑</span><div class="card-body"><div class="card-name">Rescarven</div><div class="card-detail">(0212) 993.69.11 · 993.69.91 · 993.13.10 · 993.33.67</div></div></div>
@@ -752,7 +792,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Bomberos por zona</p>
+        <p class="subsection-title" data-es="Bomberos por zona" data-en="Fire departments by zone">Bomberos por zona</p>
         <div class="phone-grid">
           <div class="phone-card"><div class="phone-label">Chacao</div><div class="phone-number">0212-2653261</div></div>
           <div class="phone-card"><div class="phone-label">La Guaira</div><div class="phone-number">0212-3327620</div></div>
@@ -770,11 +810,11 @@
     <section class="section" id="salud">
       <div class="section-header">
         <span class="section-icon">🏥</span>
-        <h2 class="section-title">Salud</h2>
+        <h2 class="section-title" data-es="Salud" data-en="Health</h2>
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Necesidad urgente ahora mismo</p>
+        <p class="subsection-title" data-es="Necesidad urgente ahora mismo" data-en="Urgent need right now">Necesidad urgente ahora mismo</p>
         <div class="cards">
           <div class="card card-priority">
             <span class="card-icon">😷</span>
@@ -793,7 +833,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Teleconsultas médicas — el recurso más importante</p>
+        <p class="subsection-title" data-es="Teleconsultas médicas — el recurso más importante" data-en="Medical teleconsults — the most important resource">Teleconsultas médicas — el recurso más importante</p>
         <div class="cards">
           <div class="card card-highlight">
             <span class="card-icon">⭐</span>
@@ -841,7 +881,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Primeros auxilios psicológicos</p>
+        <p class="subsection-title" data-es="Primeros auxilios psicológicos" data-en="Psychological first aid">Primeros auxilios psicológicos</p>
         <div class="cards">
           <div class="card">
             <span class="card-icon">💚</span>
@@ -887,7 +927,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Líneas de primeros auxilios psicológicos (Venezuela)</p>
+        <p class="subsection-title" data-es="Líneas de primeros auxilios psicológicos (Venezuela)" data-en="Psychological first aid lines (Venezuela)">Líneas de primeros auxilios psicológicos (Venezuela)</p>
         <div class="phone-grid">
           <div class="phone-card"><div class="phone-label">Federación de Psicólogos</div><div class="phone-number" style="font-size:0.82rem">0212-4163116</div></div>
           <div class="phone-card"><div class="phone-label">Psicólogos Sin Fronteras</div><div class="phone-number" style="font-size:0.82rem">0412-9270304</div></div>
@@ -901,7 +941,7 @@
     <section class="section" id="inspecciones">
       <div class="section-header">
         <span class="section-icon">🏗️</span>
-        <h2 class="section-title">Inspecciones técnicas y estructuras</h2>
+        <h2 class="section-title" data-es="Inspecciones técnicas y estructuras" data-en="Technical inspections &amp; structures">Inspecciones técnicas y estructuras</h2>
       </div>
       <div class="cards">
         <div class="card card-highlight">
@@ -954,7 +994,7 @@
     <section class="section" id="coordinacion">
       <div class="section-header">
         <span class="section-icon">🤝</span>
-        <h2 class="section-title">Coordinación de ayuda</h2>
+        <h2 class="section-title" data-es="Coordinación de ayuda" data-en="Aid coordination">Coordinación de ayuda</h2>
       </div>
       <div class="cards">
         <div class="card card-priority">
@@ -1039,7 +1079,7 @@
     <section class="section" id="mascotas">
       <div class="section-header">
         <span class="section-icon">🐾</span>
-        <h2 class="section-title">Mascotas y animales</h2>
+        <h2 class="section-title" data-es="Mascotas y animales" data-en="Pets &amp; animals">Mascotas y animales</h2>
       </div>
       <div class="cards">
         <div class="card card-priority">
@@ -1075,11 +1115,11 @@
     <section class="section" id="otros">
       <div class="section-header">
         <span class="section-icon">✈️</span>
-        <h2 class="section-title">Más recursos</h2>
+        <h2 class="section-title" data-es="Más recursos" data-en="More resources">Más recursos</h2>
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Enviar dinero a Venezuela</p>
+        <p class="subsection-title" data-es="Enviar dinero a Venezuela" data-en="Send money to Venezuela">Enviar dinero a Venezuela</p>
         <div class="cards">
           <div class="card">
             <span class="card-icon">💸</span>
@@ -1092,7 +1132,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Denunciar bloqueos y corrupción</p>
+        <p class="subsection-title" data-es="Denunciar bloqueos y corrupción" data-en="Report blockages &amp; corruption">Denunciar bloqueos y corrupción</p>
         <div class="cards">
           <div class="card">
             <span class="card-icon">📢</span>
@@ -1105,7 +1145,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Alojamiento de emergencia</p>
+        <p class="subsection-title" data-es="Alojamiento de emergencia" data-en="Emergency housing">Alojamiento de emergencia</p>
         <div class="cards">
           <div class="card">
             <span class="card-icon">🏠</span>
@@ -1119,7 +1159,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Comunicación sin internet</p>
+        <p class="subsection-title" data-es="Comunicación sin internet" data-en="Communication without internet">Comunicación sin internet</p>
         <div class="cards">
           <div class="card">
             <span class="card-icon">📱</span>
@@ -1132,7 +1172,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Protección infantil</p>
+        <p class="subsection-title" data-es="Protección infantil" data-en="Child protection">Protección infantil</p>
         <div class="cards">
           <div class="card card-priority">
             <span class="card-icon">🧒</span>
@@ -1146,7 +1186,7 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Voluntariado y empleo humanitario</p>
+        <p class="subsection-title" data-es="Voluntariado y empleo humanitario" data-en="Volunteering &amp; humanitarian jobs">Voluntariado y empleo humanitario</p>
         <div class="cards">
           <div class="card">
             <span class="card-icon">🙋</span>
@@ -1168,15 +1208,15 @@
 
     <!-- CTA -->
     <div class="cta-box">
-      <h3>La distancia no es excusa para ayudar</h3>
-      <p>Donar dinero directamente a organizaciones verificadas es lo más rápido y efectivo que puedes hacer ahora mismo. Cada euro cuenta.</p>
-      <a class="cta-btn" href="https://donaxvenezuela.org" target="_blank">Ver todas las fundaciones verificadas →</a>
+      <h3 data-es="La distancia no es excusa para ayudar" data-en="Distance is no excuse not to help">La distancia no es excusa para ayudar</h3>
+      <p data-es="Donar dinero directamente a organizaciones verificadas es lo más rápido y efectivo que puedes hacer ahora mismo. Cada euro cuenta." data-en="Donating money directly to verified organizations is the fastest and most effective thing you can do right now. Every euro counts.">Donar dinero directamente a organizaciones verificadas es lo más rápido y efectivo que puedes hacer ahora mismo. Cada euro cuenta.</p>
+      <a class="cta-btn" href="https://donaxvenezuela.org" target="_blank" data-es="Ver todas las fundaciones verificadas →" data-en="See all verified foundations →">Ver todas las fundaciones verificadas →</a>
     </div>
 
   </main>
 
   <footer>
-    <p>🇻🇪 Compilado por Nicolina Casale De Gregorio · Madrid, junio 2026</p>
+    <p data-es="🇻🇪 Compilado por Nicolina Casale De Gregorio · Madrid, junio 2026" data-en="🇻🇪 Compiled by Nicolina Casale De Gregorio · Madrid, June 2026">🇻🇪 Compilado por Nicolina Casale De Gregorio · Madrid, junio 2026</p>
     <p style="margin-top:6px">Recursos recopilados de fuentes verificadas. Si tienes un recurso nuevo para añadir, <a href="mailto:nicolina@example.com" style="color:var(--azul)">escríbeme</a>.</p>
   </footer>
 
