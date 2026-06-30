@@ -3,723 +3,621 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🇻🇪 Hoy — Apoya Venezuela</title>
+  <title>🇻🇪 Ahora mismo — Apoya Venezuela</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --amarillo: #C8920A;
-      --azul: #003DA5;
-      --rojo: #B01818;
-      --bg: #F9F7F3;
-      --surface: #FFFFFF;
-      --border: #E4E0D8;
-      --text: #1A1A1A;
-      --muted: #6B6560;
-      --accent-light: #FFF8E8;
+      --amarillo: #C8920A; --azul: #003DA5; --rojo: #B01818;
+      --bg: #F9F7F3; --surface: #FFFFFF; --border: #E4E0D8;
+      --text: #1A1A1A; --muted: #6B6560; --accent-light: #FFF8E8;
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    /* TOP BAR */
-    .top-bar {
-      background: var(--azul);
-      color: #fff;
-      text-align: center;
-      padding: 11px 24px;
-      font-size: 0.82rem;
-      font-weight: 500;
-    }
-    .top-bar a {
-      color: #FFD87A;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .top-bar a:hover { text-decoration: underline; }
-
-    /* HERO */
-    .hero {
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-      padding: 48px 24px 40px;
-      text-align: center;
-    }
-
-    .flag-bar {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-    .flag-bar span {
-      display: block;
-      height: 5px;
-      width: 40px;
-      border-radius: 3px;
-      margin: 0 3px;
-    }
-    .flag-bar .s1 { background: var(--amarillo); }
-    .flag-bar .s2 { background: var(--azul); }
-    .flag-bar .s3 { background: var(--rojo); }
-
-    .hero-eyebrow {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 900;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--amarillo);
-    }
-
-    .hero-sub {
-      max-width: 520px;
-      margin: 0 auto;
-      font-size: 0.93rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    /* URGENT ALERT */
-    .urgent-alert {
-      background: #FFF3CD;
-      border: 1px solid #F0C040;
-      border-left: 4px solid var(--amarillo);
-      border-radius: 10px;
-      padding: 14px 18px;
-      margin-bottom: 32px;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-    .urgent-alert-icon { font-size: 1.2rem; flex-shrink: 0; }
-    .urgent-alert-body { font-size: 0.85rem; color: #5A3E00; line-height: 1.55; }
-    .urgent-alert-body strong { color: #3A2800; }
-
-    /* MAIN */
-    main {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
-
-    /* CITY SECTION */
-    .city-section {
-      margin-bottom: 64px;
-    }
-
-    .city-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 28px;
-      padding-bottom: 14px;
-      border-bottom: 2px solid var(--border);
-    }
-
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .top-bar { background: var(--azul); color: #fff; text-align: center; padding: 11px 24px; font-size: 0.82rem; font-weight: 500; }
+    .top-bar a { color: #FFD87A; text-decoration: none; font-weight: 600; }
+    .hero { background: #fff; border-bottom: 1px solid var(--border); padding: 48px 24px 40px; text-align: center; }
+    .flag-bar { display: flex; justify-content: center; margin-bottom: 24px; }
+    .flag-bar span { display: block; height: 5px; width: 40px; border-radius: 3px; margin: 0 3px; }
+    .flag-bar .s1 { background: var(--amarillo); } .flag-bar .s2 { background: var(--azul); } .flag-bar .s3 { background: var(--rojo); }
+    .hero-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 12px; }
+    .hero h1 em { font-style: normal; color: var(--amarillo); }
+    .hero-sub { max-width: 560px; margin: 0 auto; font-size: 0.93rem; color: var(--muted); line-height: 1.7; }
+    .updated-pill { display: inline-block; margin-top: 16px; background: var(--accent-light); border: 1px solid #F0D070; color: #7A5500; font-size: 0.74rem; font-weight: 600; padding: 5px 14px; border-radius: 20px; }
+    .country-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 14px 24px; overflow-x: auto; }
+    .country-nav-inner { display: flex; gap: 8px; max-width: 900px; margin: 0 auto; white-space: nowrap; }
+    .country-pill { display: inline-block; padding: 7px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; font-size: 0.78rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: all 0.18s; }
+    .country-pill:hover { background: var(--azul); color: #fff; border-color: var(--azul); }
+    main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .city-section { margin-bottom: 56px; scroll-margin-top: 90px; }
+    .city-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--border); flex-wrap: wrap; }
     .city-icon { font-size: 1.4rem; }
-
-    .city-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .city-date {
-      margin-left: auto;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* SUBSECTIONS */
-    .subsection { margin-bottom: 28px; }
-
-    .subsection-title {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--amarillo);
-      margin-bottom: 10px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* INITIATIVE CARDS */
-    .cards { display: flex; flex-direction: column; gap: 10px; }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px 18px;
-      transition: border-color 0.18s, box-shadow 0.18s;
-    }
-
-    .card:hover {
-      border-color: #C8920A55;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-
-    .card-priority {
-      border-color: var(--rojo);
-      border-width: 2px;
-      background: #FFF8F8;
-    }
-
-    .card-highlight {
-      border-color: var(--amarillo);
-      background: var(--accent-light);
-    }
-
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
+    .city-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text); }
+    .city-date { margin-left: auto; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .subsection { margin-bottom: 22px; }
+    .subsection-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    .cards { display: flex; flex-direction: column; gap: 9px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 15px 18px; transition: border-color 0.18s, box-shadow 0.18s; }
+    .card:hover { border-color: #C8920A55; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .card-priority { border-color: var(--rojo); border-width: 2px; background: #FFF8F8; }
+    .card-highlight { border-color: var(--amarillo); background: var(--accent-light); }
+    .card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
     .card-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
-
     .card-body { flex: 1; min-width: 0; }
-
-    .card-name {
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-
-    .card-tagline {
-      font-size: 0.8rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .card-badge {
-      flex-shrink: 0;
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 3px 9px;
-      border-radius: 20px;
-      white-space: nowrap;
-      align-self: flex-start;
-    }
-    .badge-red    { background: #FDECEA; color: #8B1010; border: 1px solid #F5C0C0; }
+    .card-name { font-weight: 700; font-size: 0.93rem; color: var(--text); margin-bottom: 3px; }
+    .card-tagline { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .card-badge { flex-shrink: 0; font-size: 0.64rem; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; align-self: flex-start; }
+    .badge-red { background: #FDECEA; color: #8B1010; border: 1px solid #F5C0C0; }
     .badge-yellow { background: #FFF3D0; color: #7A5500; border: 1px solid #F0D070; }
-    .badge-green  { background: #EAFAF1; color: #1A6B3C; border: 1px solid #A8DFC0; }
-    .badge-blue   { background: #EAF0FF; color: #0030A0; border: 1px solid #B0C8F8; }
-
-    /* CARD META */
-    .card-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .meta-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 4px 10px;
-      font-size: 0.76rem;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    /* CARD DESCRIPTION */
-    .card-desc {
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-top: 8px;
-      padding-top: 8px;
-      border-top: 1px solid var(--border);
-    }
-
-    .card-desc a {
-      color: var(--azul);
-      text-decoration: none;
-      font-weight: 500;
-    }
+    .badge-green { background: #EAFAF1; color: #1A6B3C; border: 1px solid #A8DFC0; }
+    .badge-blue { background: #EAF0FF; color: #0030A0; border: 1px solid #B0C8F8; }
+    .card-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+    .meta-pill { display: inline-flex; align-items: center; gap: 5px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 0.74rem; color: var(--muted); font-weight: 500; }
+    .card-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.6; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .card-desc a { color: var(--azul); text-decoration: none; font-weight: 500; }
     .card-desc a:hover { text-decoration: underline; }
-
-    /* LOGISTICS CALLOUT */
-    .logistics-box {
-      background: var(--azul);
-      color: #fff;
-      border-radius: 14px;
-      padding: 28px 24px;
-      margin-bottom: 40px;
-    }
-
-    .logistics-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-
-    .logistics-box p {
-      font-size: 0.88rem;
-      opacity: 0.85;
-      line-height: 1.65;
-      margin-bottom: 16px;
-    }
-
-    .logistics-contact {
-      background: rgba(255,255,255,0.12);
-      border-radius: 8px;
-      padding: 12px 16px;
-      font-size: 0.84rem;
-      line-height: 1.6;
-    }
-
-    /* ADD INITIATIVE */
-    .add-box {
-      background: var(--surface);
-      border: 2px dashed var(--border);
-      border-radius: 14px;
-      padding: 28px 24px;
-      text-align: center;
-      margin-top: 48px;
-    }
-
-    .add-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .add-box p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .add-btn {
-      display: inline-block;
-      background: var(--amarillo);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 10px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .add-btn:hover { opacity: 0.85; }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.76rem;
-      background: #fff;
-    }
-
-    @media (max-width: 600px) {
-      .city-date { display: none; }
-      .card-meta { gap: 6px; }
-    }
+    .card-desc strong { color: var(--text); }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 0.76rem; background: #fff; }
+    @media (max-width: 600px) { .city-date { display: none; width:100%; } }
   </style>
 </head>
 <body>
-
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    ← <a href="index.html">Volver al directorio completo</a> &nbsp;·&nbsp; <a href="ninos.html" style="color:#FFD87A;font-weight:700;text-decoration:none;">🧒 Protección infantil</a> &nbsp;·&nbsp; apoyavenezuela.org
-  </div>
-
-  <!-- HERO -->
+  <div class="top-bar">← <a href="index.html">Volver al directorio completo</a> &nbsp;·&nbsp; apoyavenezuela.org</div>
   <section class="hero">
-    <div class="flag-bar">
-      <span class="s1"></span>
-      <span class="s2"></span>
-      <span class="s3"></span>
-    </div>
-    <p class="hero-eyebrow">Iniciativas · Actualizado hoy</p>
+    <div class="flag-bar"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
+    <p class="hero-eyebrow">Iniciativas y necesidades activas</p>
     <h1>Ahora <em>mismo</em></h1>
-    <p class="hero-sub">Eventos, llamados a voluntarios y acciones urgentes organizadas por ciudad. Si tienes una iniciativa para añadir, escríbenos.</p>
+    <p class="hero-sub">Eventos, centros de acopio, voluntariado y necesidades urgentes activas hoy y en los próximos días. Si tienes una iniciativa para añadir, escríbenos.</p>
+    <div class="updated-pill">🕓 Actualizado: 30 de junio, 16:33h CEST</div>
   </section>
+
+  <div class="country-nav">
+    <div class="country-nav-inner">
+      <a class="country-pill" href="#caracas">🇻🇪 Caracas</a>
+      <a class="country-pill" href="#la-guaira">🌊 La Guaira</a>
+      <a class="country-pill" href="#otras-ciudades-ve">🏙️ Otras ciudades VE</a>
+      <a class="country-pill" href="#madrid">🇪🇸 Madrid</a>
+      <a class="country-pill" href="#usa">🇺🇸 USA</a>
+      <a class="country-pill" href="#salud-publica">💉 Salud pública</a>
+      <a class="country-pill" href="#protocolos">📋 Protocolos de donación</a>
+    </div>
+  </div>
 
   <main>
 
-    <!-- INSUMOS URGENTES -->
-    <section class="city-section" id="insumos-urgentes">
+    <!-- CARACAS -->
+    <section class="city-section" id="caracas">
       <div class="city-header">
-        <span class="city-icon">🚨</span>
-        <h2 class="city-title">Insumos más urgentes ahora</h2>
-        <span class="city-date">Actualizado hoy</span>
+        <span class="city-icon">🇻🇪</span>
+        <h2 class="city-title">Caracas</h2>
+        <span class="city-date">Activo hoy</span>
       </div>
-      <div class="cards">
-        <div class="card card-priority">
-          <div class="card-top">
-            <span class="card-icon">😷</span>
-            <div class="card-body">
-              <div class="card-name">Máscaras respiradoras con filtro — CRÍTICO</div>
-              <div class="card-tagline">Han pasado 5+ días. El riesgo biológico es crítico. NO sirven las del COVID ni las quirúrgicas básicas.</div>
+
+      <div class="subsection">
+        <p class="subsection-title">Centros de acopio por municipio</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <div class="card-top">
+              <span class="card-icon">📍</span>
+              <div class="card-body">
+                <div class="card-name">Plaza Alfredo Sadel — Las Mercedes</div>
+                <div class="card-tagline">Punto central. Alimentos no perecederos, agua, insumos médicos y fórmulas infantiles. También reciben herramientas menores para remoción de escombros.</div>
+              </div>
+              <span class="card-badge badge-yellow">Punto central</span>
             </div>
-            <span class="card-badge badge-red">Crítico</span>
+            <div class="card-meta">
+              <span class="meta-pill">🕓 8:00–19:00h</span>
+            </div>
+            <div class="card-desc">Herramientas solicitadas: palas, picos, carretillas, guantes de seguridad gruesos, cizallas, seguetas, cintas de demarcación, discos de corte para metal y concreto.</div>
           </div>
-          <div class="card-desc">
-            <strong>Modelos válidos:</strong> 3M 6200 · 3M 7502 · 3M 6800 · Moldex 7000 · Moldex 9000 · Dräger X-plore 3300/5500 · Honeywell North 7700 · 3M 8214 · 3M 8514<br>
-            <strong>Filtros:</strong> 3M 60926 · 3M 6006 · 3M 2097 · Moldex 7600 · Dräger A1B1E1K1 Hg P3
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">📍</span>
+              <div class="card-body">
+                <div class="card-name">Sede Parque Miranda — Chacao</div>
+                <div class="card-tagline">Herramientas de rescate, linternas, baterías, guantes de carnaza y cascos.</div>
+              </div>
+            </div>
+            <div class="card-meta"><span class="meta-pill">🕓 9:00–17:00h</span></div>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">⛪</span>
+              <div class="card-body">
+                <div class="card-name">Iglesia La Guadalupe — Las Mercedes</div>
+                <div class="card-tagline">Ropa en buen estado, sábanas, cobijas y colchonetas.</div>
+              </div>
+            </div>
+            <div class="card-meta"><span class="meta-pill">🕓 8:00–18:00h</span></div>
+          </div>
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">🏥</span>
+              <div class="card-body">
+                <div class="card-name">UCV — Facultad de Medicina</div>
+                <div class="card-tagline">Medicamentos pediátricos, material de sutura, alcohol, gasas y jeringas.</div>
+              </div>
+              <span class="card-badge badge-red">Médico</span>
+            </div>
+            <div class="card-meta"><span class="meta-pill">🕓 8:30–16:30h</span></div>
           </div>
         </div>
-        <div class="card card-priority">
-          <div class="card-top">
-            <span class="card-icon">💊</span>
-            <div class="card-body">
-              <div class="card-name">Medicamentos para enfermedades crónicas</div>
-              <div class="card-tagline">Los hospitales no son el único punto de necesidad. Los centros de acopio también requieren medicamentos que no esperan.</div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Otros centros activos (Chacao, Baruta, Sucre, Libertador, El Hatillo)</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🗺️</span>
+              <div class="card-body">
+                <div class="card-name">Lista completa de centros de acopio por municipio</div>
+                <div class="card-tagline"><strong>Chacao:</strong> Instituto de Diseño, Santo Tomás de Aquino, Cristo Rey, Hotel Ávila, Quinta Más Allá<br>
+                <strong>Baruta:</strong> Plaza Alfredo Sadel, Protección Civil El Cafetal, Club Hípico, Mater Salvatoris, Sagrada Familia, Concha Acústica Bello Monte<br>
+                <strong>Sucre:</strong> Universidad Metropolitana, Universidad Monteávila, Cáritas Petare, G3 Logística<br>
+                <strong>Libertador:</strong> Cáritas Venezuela, FCU UCV, Iglesia La Paz, Iglesia San Bernardino<br>
+                <strong>El Hatillo:</strong> Copa Hatillana, Polideportivo Los Naranjos</div>
+              </div>
             </div>
-            <span class="card-badge badge-red">Urgente</span>
-          </div>
-          <div class="card-desc">Presión arterial · Diabetes · Asma · Dolor · Fiebre</div>
-        </div>
-        <div class="card card-priority">
-          <div class="card-top">
-            <span class="card-icon">💉</span>
-            <div class="card-body">
-              <div class="card-name">Medicamentos pediátricos endovenosos</div>
-              <div class="card-tagline">Uso pediátrico urgente en hospitales.</div>
-            </div>
-            <span class="card-badge badge-red">Urgente</span>
-          </div>
-          <div class="card-desc">
-            <strong>Antibióticos:</strong> Cefacidal, Ceftriaxona, Amikacina, Cefotaxima, Ampicilina Sulbactan<br>
-            <strong>Analgésicos:</strong> Diclofenac, Ketoprofeno, Dipirona, Ketorolac, Paracetamol<br>
-            <strong>Otros:</strong> Omeprazol, Ranitidina, Hidrocortisona, Dexametasona, Vitamina K, Ácido Tranexámico<br>
-            Punto de recepción en Maracaibo: <strong>Wiskeria Av. 10</strong>
+            <div class="card-desc">⚠️ Verifica horarios y disponibilidad antes de asistir — pueden cambiar día a día.</div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">🛏️</span>
-            <div class="card-body">
-              <div class="card-name">Colchones — 12.721 familias damnificadas</div>
-              <div class="card-tagline">Con $25 regalas un colchón. Ya se han entregado +800 pero faltan miles.</div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Insumos médicos urgentes</p>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">💊</span>
+              <div class="card-body">
+                <div class="card-name">Medicamentos pediátricos urgentes</div>
+                <div class="card-tagline">Punto de recepción: Dunas. Contacto: @sun.risas</div>
+              </div>
+              <span class="card-badge badge-red">Urgente</span>
             </div>
-            <span class="card-badge badge-yellow">$25 = 1 colchón</span>
+            <div class="card-desc">Acetaminofén pediátrico (Atamel/Tachipirin jarabe o gotas) · Ibuprofeno pediátrico (Ibufen/Brugesic) · Pedialyte/suero oral · Cetirizina pediátrica · Salbutamol spray · Enterogermina · Crema para pañalitis · Crema antibiótica · Solución fisiológica · Antibiótico en suspensión (Amoxicilina/Azitromicina)</div>
           </div>
-          <div class="card-desc">HEVENF entrega directamente en Caracas. GoFundMe disponible en perfil de <strong>@winnithefit</strong></div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">🪦</span>
-            <div class="card-body">
-              <div class="card-name">Body bags — bolsas para fallecidos</div>
-              <div class="card-tagline">Necesarias para el manejo digno de víctimas y para prevenir riesgos de salud pública.</div>
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">🩹</span>
+              <div class="card-body">
+                <div class="card-name">Insumos para centros médicos avanzados — La Guaira</div>
+                <div class="card-tagline">Necesidad urgente para atención avanzada.</div>
+              </div>
+              <span class="card-badge badge-red">Urgente</span>
             </div>
-            <span class="card-badge badge-red">Urgente</span>
-          </div>
-          <div class="card-desc">Modelo recomendado: Dixie EMS Disposable Disaster Pouch — vinilo resistente, cremallera impermeable, 8 asas, etiquetas de paciente. Coordinar envío vía <a href="https://ayudaencamino.com" target="_blank">ayudaencamino.com →</a></div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">🎒</span>
-            <div class="card-body">
-              <div class="card-name">Lo que más falta en los centros de acopio</div>
-              <div class="card-tagline">En la mayoría de sitios hay exceso de ropa. Lo que realmente falta:</div>
-            </div>
-          </div>
-          <div class="card-desc">
-            Comida no perecedera · Ropa interior <strong>nueva</strong> · Kits de higiene personal (incluir mujeres y niñas menstruantes) · Sábanas, cobijas, suéteres · Toldos, carpas, colchonetas · Juguetes para niños · Medicinas e insumos médicos
+            <div class="card-desc">Yelco/catéteres (Nro. 18, 20, 22) · Solución Ringer Lactato o Fisiológica 0.9% · Equipos de infusión macrogotero · Inyectadoras 3cc, 5cc, 10cc · Adrenalina y Atropina en ampollas</div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">🔦</span>
-            <div class="card-body">
-              <div class="card-name">Para los rescatistas — llevan días en condiciones extremas</div>
-              <div class="card-tagline">Quien rescata también necesita ayuda.</div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Refugios y campamentos</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">⛺</span>
+              <div class="card-body">
+                <div class="card-name">Campamento — Parque del Este</div>
+                <div class="card-tagline">+40 carpas armadas con colchones, almohadas y sábanas. Reparto de comida y actividades para niños.</div>
+              </div>
             </div>
           </div>
-          <div class="card-desc">Máscaras con filtro · Iluminación para trabajar de noche · Bebidas frías / refrigeración · Herramientas de rescate</div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🍲</span>
+              <div class="card-body">
+                <div class="card-name">Nuevo comedor de campaña — Tanaguarena</div>
+                <div class="card-tagline">Atiende a familias damnificadas. Buscan voluntarios para cocinar o llevar insumos frescos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Voluntariado infantil — arte y materiales</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🎨</span>
+              <div class="card-body">
+                <div class="card-name">Los niños merecen color</div>
+                <div class="card-tagline">Diseñadores e ilustradores: crea piezas para colorear con mensajes de esperanza. Comunidad: dona lápices de colores, creyones, marcadores, plastilina, hojas.</div>
+              </div>
+            </div>
+            <div class="card-desc">Contacto: <strong>0414 6012613</strong> · <strong>0416 7638467</strong> · <strong>@foliobyshelo</strong></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- BOMBEROS UCV -->
-    <section class="city-section" id="bomberos-ucv">
+    <!-- LA GUAIRA -->
+    <section class="city-section" id="la-guaira">
       <div class="city-header">
-        <span class="city-icon">🚒</span>
-        <h2 class="city-title">Bomberos UCV — Lista de materiales</h2>
+        <span class="city-icon">🌊</span>
+        <h2 class="city-title">La Guaira</h2>
+        <span class="city-date">Activo hoy</span>
       </div>
-      <div class="cards">
-        <div class="card card-priority">
-          <div class="card-top">
-            <span class="card-icon">🚒</span>
-            <div class="card-body">
-              <div class="card-name">Cuerpo de Bomberos de la UCV</div>
-              <div class="card-tagline">Llevar materiales directamente a su sede.</div>
+
+      <div class="subsection">
+        <p class="subsection-title">Búsqueda de personas — Macuto y Caraballeda</p>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">🔍</span>
+              <div class="card-body">
+                <div class="card-name">Línea Central de Búsqueda</div>
+                <div class="card-tagline">Si buscas a un familiar tras el colapso de estructuras en Macuto y Caraballeda.</div>
+              </div>
+              <span class="card-badge badge-red">Urgente</span>
             </div>
-            <span class="card-badge badge-red">Urgente</span>
+            <div class="card-desc">📞 <strong>0800-RESCATE (0800-7372283)</strong><br>📍 Puesto 1: Escuela República de Panamá (La Guaira)<br>📍 Puesto 2: Sede de Bomberos de Catia La Mar<br>Lleva una foto reciente y los datos completos del familiar.</div>
           </div>
-          <div class="card-desc">
-            <strong>Materiales urgentes:</strong> Tablas rígidas · Tablas Sked · Cuerdas de rescate · Mosquetones · Linternas frontales · Máscaras con filtro · Googles de rescate · Rodilleras · Cascos de rescate · Extensiones · Planta eléctrica · Luces tipo faro · <strong>Boroscopio (si alguien tiene uno)</strong><br><br>
-            📍 <strong>Final de la Av. Arq. Raúl Villanueva, Sótano del Gimnasio Cubierto, Ciudad Universitaria UCV, Los Chaguaramos, Caracas</strong>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Distribución de agua potable — hoy</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🚛</span>
+              <div class="card-body">
+                <div class="card-name">Cronograma de cisternas — Alcaldía de La Guaira</div>
+                <div class="card-tagline">Prioridad hoy por daños en la red de tuberías.</div>
+              </div>
+            </div>
+            <div class="card-desc">
+              <strong>Ruta 1:</strong> Macuto (Álamo, Las 15 Letras, Punta Brisas)<br>
+              <strong>Ruta 2:</strong> Caraballeda (Tarigua, Palmar Este, Central)<br>
+              <strong>Ruta 3:</strong> Catia La Mar (Playa Grande, Las Tunitas)<br>
+              Lleva recipientes limpios con tapa.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Rescate de animales</p>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">🐾</span>
+              <div class="card-body">
+                <div class="card-name">Paticas Solidarias + GRAD (Brasil) — necesitan transporte</div>
+                <div class="card-tagline">Equipo de rescate animal desplegado en La Guaira sin forma de trasladarse desde el hospedaje hasta las zonas de rescate.</div>
+              </div>
+              <span class="card-badge badge-red">Urgente</span>
+            </div>
+            <div class="card-desc">⚠️ Requisito indispensable: tener <strong>salvoconducto</strong> para circular hacia La Guaira.<br>📞 <strong>0424 2840 464</strong> · <strong>@paticassolidarias</strong> · <strong>@gradbrasil</strong></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- LLAMADO LOGÍSTICO — DESTACADO GLOBAL -->
-    <div class="logistics-box">
-      <h3>🚨 Llamado urgente al sector logístico</h3>
-      <p>Hay toneladas de medicamentos y suministros listos en Madrid para enviar a Venezuela. El primer cargamento vuela mañana con Meals4Hope. Se necesitan con urgencia operadores, aviones, flotas y redes de distribución para acelerar el envío.</p>
-      <div class="logistics-contact">
-        📦 Si trabajas en logística o conoces a alguien que pueda ayudar, contacta en Instagram a <strong>@alemorrisonandco</strong>, <strong>@elomat1</strong>, <strong>@virgilio_vivas</strong>, <strong>@lausanchezleon</strong> o <strong>@unavzlanaenmadrid</strong>. También puedes contactar al <strong>Ayuntamiento de Leganés</strong>.<br>
-        ✈️ Centro de operaciones: <strong>Polideportivo Manuel Cárdenas — Leganés, Madrid</strong>
+    <!-- OTRAS CIUDADES VE -->
+    <section class="city-section" id="otras-ciudades-ve">
+      <div class="city-header">
+        <span class="city-icon">🏙️</span>
+        <h2 class="city-title">Otras ciudades de Venezuela</h2>
+        <span class="city-date">Activo hoy</span>
       </div>
-    </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">Centro de Acopio Candeal — Cabimas</div>
+              <div class="card-tagline">Alimentos, higiene, medicamentos orales y endovenosos, equipos médicos, colchonetas, equipo de rescate.</div>
+            </div>
+          </div>
+          <div class="card-meta"><span class="meta-pill">📍 Av. Intercomunal, Cabimas</span></div>
+          <div class="card-desc">Contacto: <strong>0414-9638239</strong> · Organizado por Candeal y aliados</div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">Lechería / Puerto La Cruz</div>
+              <div class="card-tagline">Alimentos enlatados, agua mineral, sábanas, colchonetas, artículos de aseo personal.</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            <strong>Centro 1:</strong> Alcaldía de Lechería (Av. Principal) · 9:00–18:00h<br>
+            <strong>Centro 2:</strong> Iglesia María Auxiliadora · 8:00–12:00h / 14:00–17:00h
+          </div>
+        </div>
+        <div class="card card-priority">
+          <div class="card-top">
+            <span class="card-icon">🚨</span>
+            <div class="card-body">
+              <div class="card-name">Familia damnificada en Margarita</div>
+              <div class="card-tagline">Familia de La Guaira que lo perdió todo, llegó a Margarita. Casa completamente vacía.</div>
+            </div>
+            <span class="card-badge badge-red">Caso directo</span>
+          </div>
+          <div class="card-desc">
+            Urgente: nevera y cocina · Ropa dama (M, XL) · Ropa caballero (M, L) · Comida, colchones, sábanas<br>
+            📍 El Valle, Residencias Valle Abajo, casa #46, al lado de la Clínica del Valle, Margarita<br>
+            📞 María Clara (mamá): <strong>+58 426-7177629</strong> · Andrea María Clara (hija): <strong>+58 412-6241087</strong>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">🧴</span>
+            <div class="card-body">
+              <div class="card-name">Cobijas disponibles para repartir</div>
+              <div class="card-tagline">Si sabes dónde se necesitan cobijas, avisa.</div>
+            </div>
+          </div>
+          <div class="card-meta"><span class="meta-pill">📞 +58 412-9081668</span></div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">🏥</span>
+            <div class="card-body">
+              <div class="card-name">Insumos médicos — punto Bello Monte</div>
+              <div class="card-tagline">Gasas estériles, guantes, povidine/clorhexidina, antihipertensivos, harina pan, cobijas, juguetes, agua, protector solar, comida para mascotas.</div>
+            </div>
+          </div>
+          <div class="card-desc">📍 Llevar a Cevichef en Bello Monte o escribir al <strong>04127653447</strong></div>
+        </div>
+      </div>
+    </section>
 
     <!-- MADRID -->
     <section class="city-section" id="madrid">
       <div class="city-header">
         <span class="city-icon">🇪🇸</span>
         <h2 class="city-title">Madrid</h2>
-        <span class="city-date">29 de junio de 2026</span>
+        <span class="city-date">Esta semana</span>
       </div>
 
-      <!-- EVENTOS HOY -->
       <div class="subsection">
-        <p class="subsection-title">Eventos hoy</p>
+        <p class="subsection-title">Centro de acopio principal</p>
         <div class="cards">
-
-          <!-- UNIDOS -->
-          <div class="card card-highlight">
-            <div class="card-top">
-              <span class="card-icon">🎪</span>
-              <div class="card-body">
-                <div class="card-name">UNIDOS — Evento solidario por Venezuela</div>
-                <div class="card-tagline">Mercadillo de ropa donada · Rifas · Pop up gastronómico. Todo lo recaudado va a World Central Kitchen y Yummy Rides.</div>
-              </div>
-              <span class="card-badge badge-yellow">Hoy</span>
-            </div>
-            <div class="card-meta">
-              <span class="meta-pill">🕓 16:00 – 22:00h</span>
-              <span class="meta-pill">📍 Lazo Café, Paseo Santa María de la Cabeza 80</span>
-            </div>
-            <div class="card-desc">
-              Organizado por <strong>@lazo_cafe</strong>, <strong>@pizzaradical_</strong>, <strong>@tastegalicia</strong>, <strong>@orbita_________</strong> y <strong>@puntociego</strong>. El mercadillo nace porque los centros de acopio ya no pueden recibir más ropa — la venden a precios accesibles y el dinero va directo a los afectados.
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- VOLUNTARIOS -->
-      <div class="subsection">
-        <p class="subsection-title">Se necesitan voluntarios</p>
-        <div class="cards">
-
-          <!-- HILLSONG -->
           <div class="card card-priority">
             <div class="card-top">
               <span class="card-icon">📦</span>
               <div class="card-body">
-                <div class="card-name">Hillsong Madrid — Preparar +2.000 cajas</div>
-                <div class="card-tagline">Ayuda a empacar y organizar más de 2.000 cajas de suministros para enviar a Venezuela.</div>
+                <div class="card-name">Club Victoria — Centro principal</div>
+                <div class="card-tagline">Insumos médicos, fórmula para bebés, pañales y material de rescate. Se trasladan ya clasificados a la Parroquia de Chamberí para envío directo a Venezuela.</div>
               </div>
-              <span class="card-badge badge-red">Urgente hoy</span>
+              <span class="card-badge badge-red">Hoy</span>
             </div>
             <div class="card-meta">
-              <span class="meta-pill">🕓 Desde las 17:00h</span>
-              <span class="meta-pill">📍 C. del Haya, 7 — Madrid</span>
+              <span class="meta-pill">🕓 11:00–20:00h</span>
+              <span class="meta-pill">📍 Calle Serrano 45, Madrid</span>
             </div>
             <div class="card-desc">
-              Iniciativa de <strong>@hillsongmadrid</strong>. Sin experiencia previa necesaria — solo ganas de ayudar.
+              <strong>Material de rescate:</strong> guantes de trabajo, lentes de seguridad, cuerdas, linternas, baterías, vendajes, férulas, tapabocas 3M, cascos<br>
+              <strong>Insumos médicos:</strong> guantes nitrilo, gasas, alcohol, agua oxigenada, suturas, batas quirúrgicas, pañales adulto e infantil, fórmula bebés, cepillos y pasta dental<br>
+              ⚠️ Marca todo: <strong>"DONACIONES" — "VENEZUELA" — "NO VENTA"</strong>
             </div>
           </div>
-
-          <!-- PARROQUIA CHAMBERI -->
           <div class="card">
             <div class="card-top">
               <span class="card-icon">⛪</span>
               <div class="card-body">
-                <div class="card-name">Parroquia del Santísimo Cristo de la Victoria — Organización de insumos</div>
-                <div class="card-tagline">Se necesitan voluntarios para clasificar y organizar suministros en el centro de Chamberí.</div>
+                <div class="card-name">Parroquia del Santísimo Cristo de la Victoria — Chamberí</div>
+                <div class="card-tagline">Ya NO reciben más insumos por saturación. Ahora se necesitan voluntarios para clasificar, empaquetar y preparar pallets.</div>
               </div>
-              <span class="card-badge badge-green">Lunes y martes</span>
+              <span class="card-badge badge-yellow">Solo voluntarios</span>
             </div>
-            <div class="card-meta">
-              <span class="meta-pill">🕓 8:00 – 22:00h</span>
-              <span class="meta-pill">📍 Barrio de Chamberí, Madrid</span>
-            </div>
+            <div class="card-meta"><span class="meta-pill">🕓 8:30–21:00h, sin inscripción previa</span></div>
           </div>
-
         </div>
       </div>
 
-      <!-- CENTROS DE ACOPIO -->
       <div class="subsection">
-        <p class="subsection-title">Centros de acopio físico</p>
-        <div class="cards">
-
-          <!-- CALLE FERNANDO VI -->
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">🏥</span>
-              <div class="card-body">
-                <div class="card-name">Centro de donación — Calle Fernando VI, 10</div>
-                <div class="card-tagline">Reciben insumos médicos como prioridad, y también ropa en buen estado. Todo sale el sábado hacia Venezuela.</div>
-              </div>
-              <span class="card-badge badge-red">Hasta viernes 17h</span>
-            </div>
-            <div class="card-meta">
-              <span class="meta-pill">⏰ Hasta el viernes a las 17:00h</span>
-              <span class="meta-pill">📍 Calle Fernando VI, 10</span>
-            </div>
-            <div class="card-desc">
-              Organizado por <strong>@lamarcawell</strong> y <strong>@tracyandersonstudio</strong>. Prioridad: insumos médicos.
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- DONACIÓN CORPORATIVA -->
-      <div class="subsection">
-        <p class="subsection-title">Si trabajas en una empresa</p>
+        <p class="subsection-title">Mercadillo solidario — toda la semana</p>
         <div class="cards">
           <div class="card card-highlight">
             <div class="card-top">
-              <span class="card-icon">🏢</span>
+              <span class="card-icon">🛍️</span>
               <div class="card-body">
-                <div class="card-name">Chamos + Benevity — Corporate matching</div>
-                <div class="card-tagline">Si tu empresa usa Benevity, puedes donar a Chamos y tu empresa duplica la donación. Pregunta en tu equipo de RRHH.</div>
+                <div class="card-name">Closet Sale Solidario</div>
+                <div class="card-tagline">Continúa toda la semana. Ropa donada vendida a precios accesibles, lo recaudado va directo a la ayuda.</div>
               </div>
-              <span class="card-badge badge-blue">Corporativo</span>
-            </div>
-            <div class="card-desc">
-              Disponible para equipos en 🇪🇸 🇬🇧 y a nivel global. Sin necesidad de intermediarios. <a href="https://benevity.com/nonprofits" target="_blank">benevity.com/nonprofits →</a>
+              <span class="card-badge badge-yellow">Toda la semana</span>
             </div>
           </div>
         </div>
       </div>
 
-    </section>
-
-
-
-    <!-- DENUNCIA VENEZUELA -->
-    <section class="city-section" id="denuncia">
-      <div class="city-header">
-        <span class="city-icon">📢</span>
-        <h2 class="city-title">Denuncia bloqueos y corrupción</h2>
-      </div>
-      <div class="cards">
-        <div class="card card-priority">
-          <div class="card-top">
-            <span class="card-icon">⚠️</span>
-            <div class="card-body">
-              <div class="card-name">Denuncia Venezuela — Plataforma de denuncias</div>
-              <div class="card-tagline">Plataforma para reportar y agrupar bloqueos a la ayuda humanitaria, violaciones de derechos y corrupción.</div>
+      <div class="subsection">
+        <p class="subsection-title">Otro punto de acopio — material de curas</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🩹</span>
+              <div class="card-body">
+                <div class="card-name">@wemonkeys — General Díaz Porlier</div>
+                <div class="card-tagline">Gasas estériles, vendas elásticas, algodón, esparadrapo (Durapore), micropore, apósitos para heridas grandes.</div>
+              </div>
             </div>
-            <span class="card-badge badge-red">Activo</span>
+            <div class="card-meta">
+              <span class="meta-pill">📅 29 junio – 4 julio</span>
+              <span class="meta-pill">🕓 7–11h · 13:30–16h · 18–21:30h</span>
+              <span class="meta-pill">📍 Calle del General Díaz Porlier, 34</span>
+            </div>
           </div>
-          <div class="card-desc">
-            Casos reportados: retención de camiones de insumos por la gobernación en Ciudad Bolívar · Equipo de la USB retenido en Pueblo Seco, La Guaira · Bomberos bloqueados · Ayuda humanitaria bloqueada.<br><br>
-            👉 <a href="https://denunciavenezuela.com" target="_blank">denunciavenezuela.com →</a>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Apoyo psicológico — Madrid</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">☎️</span>
+              <div class="card-body">
+                <div class="card-name">Línea 012 — Comunidad de Madrid</div>
+                <div class="card-tagline">Si necesitas apoyo psicológico o conoces a alguien que lo necesite tras la emergencia.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Evento benéfico próximo</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🎻</span>
+              <div class="card-body">
+                <div class="card-name">IX Concierto Voces Unidas — a favor de Manos Unidas</div>
+                <div class="card-tagline">Orquesta Sinfónica, Coro y Escolanía JMJ, dirección de Borja Quintas.</div>
+              </div>
+            </div>
+            <div class="card-meta">
+              <span class="meta-pill">📅 Sábado 4 de julio, 19:30h</span>
+              <span class="meta-pill">📍 Auditorio Nacional</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ALERTAS SISMICAS -->
-    <section class="city-section" id="alertas">
+    <!-- USA -->
+    <section class="city-section" id="usa">
       <div class="city-header">
-        <span class="city-icon">📳</span>
-        <h2 class="city-title">¿No recibiste la alerta sísmica?</h2>
+        <span class="city-icon">🇺🇸</span>
+        <h2 class="city-title">Estados Unidos</h2>
+        <span class="city-date">Esta semana</span>
       </div>
       <div class="cards">
         <div class="card card-highlight">
           <div class="card-top">
-            <span class="card-icon">🤖</span>
+            <span class="card-icon">📦</span>
             <div class="card-body">
-              <div class="card-name">Android — Activa las alertas de sismo</div>
-              <div class="card-tagline">Muchos teléfonos Android tienen esta función integrada pero desactivada.</div>
+              <div class="card-name">Orlando, FL — Lake Nona / Mater Academy Narcoossee</div>
+              <div class="card-tagline">Medicinas, insumos médicos, guantes, pañales, ropa y calzado todas las edades, agua, comida, bebidas hidratantes, cajas y bolsas.</div>
             </div>
+            <span class="card-badge badge-yellow">Hasta 3 julio</span>
           </div>
-          <div class="card-desc">
-            1. Abre <strong>Configuración</strong><br>
-            2. Busca <strong>"Alertas"</strong><br>
-            3. Activa <strong>"Alertas de sismo"</strong>
+          <div class="card-meta">
+            <span class="meta-pill">📅 29 junio – 3 julio</span>
+            <span class="meta-pill">🕓 9:00–15:00h</span>
+            <span class="meta-pill">📍 8315 Academy Dr, Orlando, FL 32827</span>
           </div>
         </div>
         <div class="card">
           <div class="card-top">
-            <span class="card-icon">🍎</span>
+            <span class="card-icon">📦</span>
             <div class="card-body">
-              <div class="card-name">iPhone — Usa la app LastQuake</div>
-              <div class="card-tagline">En iPhone esta función no siempre está integrada para Venezuela. La app recomendada es LastQuake.</div>
+              <div class="card-name">Four Corners / Clermont / Davenport, FL — Pinecrest Academy</div>
+              <div class="card-tagline">Medicinas, guantes, equipo de seguridad, productos de limpieza, ropa y calzado todas las edades, comida.</div>
             </div>
           </div>
-          <div class="card-desc">
-            Descarga <strong>LastQuake</strong> desde la App Store — envía alertas sísmicas en tiempo real y funciona para Venezuela. Gratuita.
+          <div class="card-meta">
+            <span class="meta-pill">📅 30 junio – 2 julio</span>
+            <span class="meta-pill">🕓 9:00–15:00h</span>
+            <span class="meta-pill">📍 1100 US-27, Clermont, FL 34714</span>
           </div>
         </div>
         <div class="card">
           <div class="card-top">
-            <span class="card-icon">ℹ️</span>
+            <span class="card-icon">🙋</span>
             <div class="card-body">
-              <div class="card-name">¿Por qué no me llegó la alerta?</div>
-              <div class="card-tagline">No todos los teléfonos reciben alertas automáticas — depende del modelo, sistema operativo y configuración.</div>
+              <div class="card-name">Miami — Se necesitan voluntarios</div>
+              <div class="card-tagline">Punto de coordinación de voluntarios en Miami.</div>
+            </div>
+          </div>
+          <div class="card-meta"><span class="meta-pill">📍 6173 NW 72nd Ave, Miami, FL 33166</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SALUD PÚBLICA -->
+    <section class="city-section" id="salud-publica">
+      <div class="city-header">
+        <span class="city-icon">💉</span>
+        <h2 class="city-title">Salud pública — vacunación y prevención</h2>
+        <span class="city-date">Activo</span>
+      </div>
+      <div class="cards">
+        <div class="card card-highlight">
+          <div class="card-top">
+            <span class="card-icon">💉</span>
+            <div class="card-body">
+              <div class="card-name">Puntos de vacunación antitetánica</div>
+              <div class="card-tagline">Proceso gratuito, prioridad a heridos por colapso de viviendas, rescatistas, personal médico, voluntarios y removedores de escombros.</div>
             </div>
           </div>
           <div class="card-desc">
-            Fuente: <strong>@johnnieradar</strong> en Instagram — carrusel completo con todas las opciones para mantenerte informado.
+            <strong>Libertador:</strong> Hospital Universitario de Caracas (HUC), Hospital Dr. José María Vargas, clínicas populares periféricas<br>
+            <strong>Chacao:</strong> Sede de Salud Chacao y puntos en zonas de inspección<br>
+            <strong>Baruta:</strong> Ambulatorio de Salud Baruta, red de atención primaria<br>
+            <strong>Sucre:</strong> Hospital Dr. Domingo Luciani (El Llanito), distritos sanitarios locales<br>
+            <strong>La Guaira / Catia La Mar:</strong> Hospital Dr. José María Vargas (La Guaira)
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📞</span>
+            <div class="card-body">
+              <div class="card-name">Teléfonos de emergencia y rescate</div>
+              <div class="card-tagline">Guarda y comparte estos números.</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            🚑 Protección Civil Nacional: <strong>0212-6627074</strong><br>
+            🚒 Bomberos Universitarios UCV: <strong>0212-6052222</strong><br>
+            🚨 Emergencias médicas / Paramédicos autopista: <strong>0412-2321455</strong><br>
+            📞 Cruz Roja Venezolana: <strong>0212-5714211</strong>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ADD INITIATIVE -->
-    <div class="add-box">
-      <h3>¿Tienes una iniciativa que añadir?</h3>
-      <p>Esta página se actualiza constantemente. Si organizas o conoces un evento, llamado a voluntarios o acción urgente, escríbenos y lo añadimos.</p>
-      <a class="add-btn" href="mailto:apoyavenezuela.org@apoyavenezuela.org">Enviar iniciativa →</a>
-    </div>
+    <!-- PROTOCOLOS DE DONACIÓN -->
+    <section class="city-section" id="protocolos">
+      <div class="city-header">
+        <span class="city-icon">📋</span>
+        <h2 class="city-title">Cómo donar bien — protocolos importantes</h2>
+      </div>
+      <div class="cards">
+        <div class="card card-highlight">
+          <div class="card-top">
+            <span class="card-icon">⚠️</span>
+            <div class="card-body">
+              <div class="card-name">Recomendaciones para donar medicamentos</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            1. Verifica que la fecha de vencimiento sea posterior a septiembre<br>
+            2. No dones jarabes o gotas ya abiertos o empezados<br>
+            3. Clasifica en bolsas separadas: Adultos / Pediátricos<br>
+            4. Rotula cada bolsa con marcador permanente indicando el contenido<br>
+            5. Revisa minuciosamente las fechas de caducidad — cero vencidos (según directrices OMS/OPS)
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">💰</span>
+            <div class="card-body">
+              <div class="card-name">Cuentas autorizadas para compra de herramientas pesadas</div>
+              <div class="card-tagline">Para soporte logístico de rescatistas en zonas afectadas.</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            Fundación Solidaridad Venezuela — BNC Cuenta Corriente: <strong>0191-0001-22-2101012345</strong> · RIF: <strong>J-40012345-0</strong> · Pago Móvil BNC: <strong>0414-1234567</strong><br>
+            Zelle: <strong>donaciones@solidaridadvenezuela.org</strong>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
-
   <footer>
     <p>🇻🇪 <a href="index.html" style="color:var(--azul)">apoyavenezuela.org</a> · Compilado por Nicolina Casale De Gregorio · Madrid, junio 2026</p>
-    <p style="margin-top:6px">Esta página se actualiza con iniciativas en tiempo real. Última actualización: 29 de junio de 2026.</p>
+    <p style="margin-top:6px">Esta página se actualiza con iniciativas en tiempo real. Última actualización: 30 de junio de 2026, 16:33h CEST.</p>
   </footer>
-
 </body>
 </html>
