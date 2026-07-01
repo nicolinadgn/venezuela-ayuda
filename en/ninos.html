@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇻🇪 Child protection — Help Venezuela</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --amarillo: #C8920A; --azul: #003DA5; --rojo: #B01818; --bg: #F9F7F3; --surface: #FFFFFF; --border: #E4E0D8; --text: #1A1A1A; --muted: #6B6560; --accent-light: #FFF8E8; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .top-bar { background: var(--azul); color: #fff; text-align: center; padding: 11px 24px; font-size: 0.82rem; font-weight: 500; }
+    .top-bar a { color: #FFD87A; text-decoration: none; font-weight: 600; }
+    .alert-bar { background: var(--rojo); color: #fff; text-align: center; padding: 12px 24px; font-size: 0.88rem; font-weight: 600; }
+    .hero { background: #fff; border-bottom: 1px solid var(--border); padding: 48px 24px 40px; text-align: center; }
+    .flag-bar { display: flex; justify-content: center; margin-bottom: 24px; }
+    .flag-bar span { display: block; height: 5px; width: 40px; border-radius: 3px; margin: 0 3px; }
+    .flag-bar .s1 { background: var(--amarillo); } .flag-bar .s2 { background: var(--azul); } .flag-bar .s3 { background: var(--rojo); }
+    .hero-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 12px; }
+    .hero h1 em { font-style: normal; color: var(--rojo); }
+    .hero-sub { max-width: 560px; margin: 0 auto; font-size: 0.93rem; color: var(--muted); line-height: 1.7; }
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(249,247,243,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 24px; overflow-x: auto; }
+    .nav-inner { display: flex; max-width: 900px; margin: 0 auto; white-space: nowrap; justify-content: center; }
+    .nav a { display: inline-block; padding: 13px 14px; font-size: 0.77rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav a:hover { color: var(--text); border-bottom-color: var(--amarillo); }
+    main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .section { margin-bottom: 60px; }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
+    .section-icon { font-size: 1.3rem; } .section-title { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: var(--text); }
+    .subsection { margin-bottom: 28px; }
+    .subsection-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    .cards { display: flex; flex-direction: column; gap: 8px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; display: flex; align-items: flex-start; gap: 12px; }
+    .card-priority { border-color: var(--rojo); border-width: 2px; background: #FFF8F8; }
+    .card-highlight { border-color: var(--amarillo); background: var(--accent-light); }
+    .card-icon { font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+    .card-body { flex: 1; min-width: 0; }
+    .card-name { font-weight: 600; font-size: 0.92rem; color: var(--text); margin-bottom: 3px; }
+    .card-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+    .card-detail a { color: var(--azul); text-decoration: none; font-weight: 500; }
+    .card-badge { flex-shrink: 0; font-size: 0.65rem; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; align-self: flex-start; }
+    .badge-red { background: #FDECEA; color: #8B1010; border: 1px solid #F5C0C0; }
+    .badge-yellow { background: #FFF3D0; color: #7A5500; border: 1px solid #F0D070; }
+    .badge-green { background: #EAFAF1; color: #1A6B3C; border: 1px solid #A8DFC0; }
+    .warning-box { background: #FFF3CD; border: 1px solid #F0C040; border-left: 4px solid var(--amarillo); border-radius: 10px; padding: 16px 18px; margin-bottom: 24px; font-size: 0.88rem; color: #5A3E00; line-height: 1.6; }
+    .danger-box { background: #FDECEA; border: 1px solid #F5C0C0; border-left: 4px solid var(--rojo); border-radius: 10px; padding: 16px 18px; margin-bottom: 24px; font-size: 0.88rem; color: #6B1010; line-height: 1.6; }
+    .steps { display: flex; flex-direction: column; gap: 10px; }
+    .step { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; display: flex; gap: 14px; align-items: flex-start; }
+    .step-num { background: var(--azul); color: #fff; font-weight: 700; font-size: 0.85rem; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .step-body { flex: 1; }
+    .step-title { font-weight: 600; font-size: 0.9rem; color: var(--text); margin-bottom: 3px; }
+    .step-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+    .donot-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .donot-list li { background: #FFF8F8; border: 1px solid #F5C0C0; border-radius: 8px; padding: 10px 14px; font-size: 0.84rem; color: #6B1010; display: flex; gap: 10px; align-items: flex-start; }
+    .donot-list li::before { content: "✗"; font-weight: 700; color: var(--rojo); flex-shrink: 0; }
+    .refugios-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+    .refugio-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+    .refugio-name { font-weight: 600; font-size: 0.84rem; color: var(--text); margin-bottom: 3px; }
+    .refugio-detail { font-size: 0.76rem; color: var(--muted); }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 0.76rem; background: #fff; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">← <a href="/en/">Back to full directory</a> &nbsp;·&nbsp; apoyavenezuela.org</div>
+  <div class="alert-bar">⚠️ Children are the most vulnerable in a crisis. Always act through competent authorities.</div>
+  <section class="hero">
+    <div class="flag-bar"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
+    <p class="hero-eyebrow">Child protection · Venezuela Earthquake 2026</p>
+    <h1>Protect <em>the children</em></h1>
+    <p class="hero-sub">In emergencies, children are the most vulnerable. This guide explains how to act if you find an unaccompanied minor, which organizations to contact, and how to prevent them from falling into the wrong hands.</p>
+  </section>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#if-you-find">🧒 If you find a child</a>
+      <a href="#do-not-give">⛔ Who NOT to give them to</a>
+      <a href="#organizations">🏛️ Organizations</a>
+      <a href="#legal">⚖️ Legal support</a>
+      <a href="#supplies">🎒 Supplies</a>
+      <a href="#shelters">🏠 Shelters Caracas</a>
+      <a href="#insurance">🕊️ Insurance sector</a>
+      <a href="#disability">♿ Disability</a>
+    </div>
+  </nav>
+  <main>
+    <div class="warning-box"><strong>⚠️ Lesson from the Vargas tragedy (1999):</strong> The chaos of the first days caused dozens of children to be transferred without institutional control. Families searched for them for decades. <strong>Let's not repeat that mistake.</strong> Source: "Tras el eco de un río de voces" (UCAB).</div>
+
+    <section class="section" id="if-you-find">
+      <div class="section-header"><span class="section-icon">🧒</span><h2 class="section-title">If you find an unaccompanied child</h2></div>
+      <div class="subsection">
+        <p class="subsection-title">The main goal: safe and fast family reunification</p>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Stay with them and find a safe place</div><div class="step-desc">Don't leave them alone. Move away from unstable structures, fires or electrical cables. First protect life, then act.</div></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Identify and register their information</div><div class="step-desc">Check for any ID on their clothing or body. If they can communicate, note: name and age, parents' or relatives' names, home address or references, school name. Write it on an improvised label or bracelet and place it visibly on their clothing.</div></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Document with photos</div><div class="step-desc">Take a clear photo of the child alone to record their clothing and features. This will help their parents find them.</div></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">If injured — take them to medical care</div><div class="step-desc">Take them to the nearest health center or contact health personnel. Keep all collected data.</div></div></div>
+          <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Notify competent authorities</div><div class="step-desc">Go immediately to the <strong>Children's Protection Council (CPNNA)</strong> of the municipality, Fire Department, Civil Protection or UNICEF personnel in the area. You can also contact <strong>CECODAP</strong> for guidance.</div></div></div>
+          <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Document any transfer</div><div class="step-desc">If a official or third party takes the child, take a photo of them <strong>with the child</strong> and ask for their name, organization and credential number.</div></div></div>
+        </div>
+      </div>
+      <div class="warning-box"><strong>Legal obligation:</strong> According to article 397-A of the LOPNNA, if you are aware of a child alone or separated from their parents, you have a <strong>legal duty to act</strong> and notify the corresponding CPNNA.</div>
+    </section>
+
+    <section class="section" id="do-not-give">
+      <div class="section-header"><span class="section-icon">⛔</span><h2 class="section-title">Who NOT to give a child to</h2></div>
+      <div class="danger-box"><strong>On social media people are commenting: "Where can I get one of these children to take care of them?"</strong> While some intentions may be good, good intentions without caution are an enormous danger. Adults posing as false officials to take children have been reported.</div>
+      <ul class="donot-list">
+        <li>People who are not direct family or verified official authorities</li>
+        <li>People who insist strangely that you give them the child "to take care of them"</li>
+        <li>People who refuse to have the child reviewed first by authorities</li>
+        <li>People who avoid leaving a signed record, photo or document of who they are</li>
+        <li>Neighbors, acquaintances or third parties without official verification</li>
+      </ul>
+      <div style="margin-top:16px;" class="warning-box"><strong>Golden rule:</strong> Handover should only happen to parents, legal representatives, or through measures ordered by the <strong>Children's Protection Council (CPNNA)</strong>. To hand a child to an adult, it is mandatory to present filiation documents verified by a protection counselor.</div>
+    </section>
+
+    <section class="section" id="organizations">
+      <div class="section-header"><span class="section-icon">🏛️</span><h2 class="section-title">Child protection organizations</h2></div>
+      <div class="cards">
+        <div class="card card-highlight"><span class="card-icon">⭐</span><div class="card-body"><div class="card-name">CECODAP — Guidance and protection</div><div class="card-detail">Accompanying cases of children separated from their families during the emergency. First point of guidance on protection routes.</div></div><span class="card-badge badge-yellow">Contact first</span></div>
+        <div class="card"><span class="card-icon">🏠</span><div class="card-body"><div class="card-name">Hogar Bambi Venezuela</div><div class="card-detail">Reference center for comprehensive child care. Multidisciplinary teams for temporary shelter and legal family placement programs.</div></div></div>
+        <div class="card"><span class="card-icon">🧒</span><div class="card-body"><div class="card-name">FUNDANA — Las Villas de los Chiquiticos</div><div class="card-detail">Provides temporary home, protection and care for children in extreme crisis and coordinates their safe family reintegration. Collection points in Caracas: Av. Río de Janeiro and Av. Mariscal Sucre. Hours: 8am–5pm.</div></div><span class="card-badge badge-green">Verified</span></div>
+        <div class="card"><span class="card-icon">🌍</span><div class="card-body"><div class="card-name">UNICEF Venezuela</div><div class="card-detail">Child protection, psychosocial support and humanitarian aid. Personnel active in affected areas.</div></div></div>
+        <div class="card"><span class="card-icon">🧒</span><div class="card-body"><div class="card-name">Save the Children</div><div class="card-detail">Emergency care and protection for children and families · <a href="https://www.savethechildren.es" target="_blank">savethechildren.es →</a></div></div></div>
+        <div class="card"><span class="card-icon">⚖️</span><div class="card-body"><div class="card-name">ASONACOP</div><div class="card-detail">National Association of Protection Counselors. Guidance on activating institutional routes and contacting the CPNNA in different municipalities.</div></div></div>
+        <div class="card"><span class="card-icon">🩺</span><div class="card-body"><div class="card-name">Guardianes Azules — Free virtual teleconsults</div><div class="card-detail">Medical, neuropsychological, psychological and pediatric virtual teleconsults. Priority for autism, ADHD and other neurodivergences. Free.</div></div><span class="card-badge badge-green">Free</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="legal">
+      <div class="section-header"><span class="section-icon">⚖️</span><h2 class="section-title">Free legal support</h2></div>
+      <div class="cards">
+        <div class="card"><span class="card-icon">📞</span><div class="card-body"><div class="card-name">IDENNA — 24h emergency line</div><div class="card-detail">National Autonomous Council for Children's Rights. Report missing, unattended or at-risk children. Accepts WhatsApp and SMS.<br><strong>+58 424-8930561</strong> · Available 24 hours</div></div><span class="card-badge badge-red">24h</span></div>
+        <div class="card"><span class="card-icon">⚖️</span><div class="card-body"><div class="card-name">CJPNNA Caracas — Judicial Protection Circuit</div><div class="card-detail">Children's Protection Judicial Circuit of Greater Caracas. WhatsApp or SMS:<br><strong>(0412) 811 68 78</strong> · <strong>(0412) 543 36 5</strong></div></div><span class="card-badge badge-blue">Caracas</span></div>
+        <div class="card card-priority"><span class="card-icon">🏛️</span><div class="card-body"><div class="card-name">VCA FIRM — Free 24h legal representation</div><div class="card-detail">Free Humanitarian Legal Service activated for the emergency. Handles urgent family placement requests for children and adolescents affected by the earthquake. Lawyers, psychologists and sociologists available 24 hours.<br><br>📞 <strong>+58 412 062 7993</strong> · <strong>+58 414 525 7216</strong><br>✉️ <strong>proteccion@vcafirm.com</strong><br><br>Also available for people <strong>outside Venezuela</strong> who want to protect a minor family member.</div></div><span class="card-badge badge-red">24h · Free</span></div>
+      </div>
+      <div style="margin-top:16px;" class="warning-box"><strong>What does the Protection Council (CPNNA) do?</strong> It locates the family of origin, activates an urgent search, and only if it is impossible to locate them does it order a provisional shelter measure. Family reunification is always the absolute priority.</div>
+    </section>
+
+    <section class="section" id="supplies">
+      <div class="section-header"><span class="section-icon">🎒</span><h2 class="section-title">Supplies to protect children in an emergency</h2></div>
+      <div class="cards">
+        <div class="card card-highlight"><span class="card-icon">🆔</span><div class="card-body"><div class="card-name">Identification and location</div><div class="card-detail"><strong>Identification bracelets</strong> — help recognize the child and link them to their family · <strong>Brightly colored clothing</strong> — makes them easier to spot visually · <strong>GPS bracelets</strong> — if available · <strong>Whistles</strong> — for quick location · <strong>Paper and markers</strong> — for transfer records</div></div></div>
+        <div class="card"><span class="card-icon">📋</span><div class="card-body"><div class="card-name">If a child is being transferred — everything must be recorded</div><div class="card-detail">Child's name · Responsible adult · Contact phone · Place of origin · Place of transfer · Time of transfer · Who authorizes it. <strong>Nothing just verbal. Everything must be written down.</strong></div></div></div>
+        <div class="card"><span class="card-icon">🦺</span><div class="card-body"><div class="card-name">For volunteers working with children</div><div class="card-detail">Identified vests · Masks · Gloves · Control lists · Adhesive tape · Whistles · Markers</div></div></div>
+        <div class="card"><span class="card-icon">📵</span><div class="card-body"><div class="card-name">Basic rules on social media</div><div class="card-detail">Do not share photos of children without authorization · Do not publish sensitive locations · Do not spread rumors · Prevention is not an exaggeration, it is responsibility.</div></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="shelters">
+      <div class="section-header"><span class="section-icon">🏠</span><h2 class="section-title">Official shelters — Caracas</h2></div>
+      <div class="refugios-grid">
+        <div class="refugio-card"><div class="refugio-name">Complejo Cultural y Deportivo Guayana Esequiba</div><div class="refugio-detail">San Bernardino</div></div>
+        <div class="refugio-card"><div class="refugio-name">Estadio Chato Candela</div><div class="refugio-detail">23 de Enero</div></div>
+        <div class="refugio-card"><div class="refugio-name">IND Headquarters</div><div class="refugio-detail">El Paraíso</div></div>
+        <div class="refugio-card"><div class="refugio-name">Ipostel Headquarters</div><div class="refugio-detail">San Juan</div></div>
+        <div class="refugio-card"><div class="refugio-name">Liceo Miguel Antonio Caro</div><div class="refugio-detail">Catia</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="insurance">
+      <div class="section-header"><span class="section-icon">🕊️</span><h2 class="section-title">Dignified farewell — Insurance sector</h2></div>
+      <div class="cards">
+        <div class="card card-highlight"><span class="card-icon">🕊️</span><div class="card-body"><div class="card-name">Panatech + Interasist — Dignity fund</div><div class="card-detail">The Venezuelan insurance sector unites so no Venezuelan is left without a dignified farewell. They cover: phone location and accompaniment · transfer to nearest funeral home · thanatology · coffin · cremation service · legal process support · permanent family accompaniment.<br><br>Donate from Venezuela or abroad via <strong>@panatech</strong> bio · Bolívares or USD (Zelle/International card).</div></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="disability">
+      <div class="section-header"><span class="section-icon">♿</span><h2 class="section-title">People with disabilities in the emergency</h2></div>
+      <div class="cards">
+        <div class="card"><span class="card-icon">♿</span><div class="card-body"><div class="card-name">SOCIEVEN — Inclusive evacuation and assistance guide</div><div class="card-detail">The Venezuelan Society of Emergency Specialists published a complete guide on:<br>
+        • Inclusive evacuation and assistance in temporary shelters<br>
+        • Keeping chronic medications identified<br>
+        • Specialized assistance for people with neurodiverse conditions or reduced mobility in mass care centers<br><br>
+        Contact via <strong>@socieven</strong> on Instagram to access the full guide.</div></div></div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>🇻🇪 <a href="/en/" style="color:var(--azul)">apoyavenezuela.org</a> · Compiled by Nicolina Casale De Gregorio · Madrid, June 2026</p>
+    <p style="margin-top:6px">Follow us: <a href="https://instagram.com/apoyavenezuela.app" target="_blank" style="color:var(--azul);font-weight:600;">@apoyavenezuela.app</a> · Have additional info? DM us.</p>
+    <p style="margin-top:4px;color:var(--muted)">Sources: VCA FIRM, @thefaria, @co_humanidad, @gabrielaisler, @panatech, @socieven</p>
+  </footer>
+</body>
+</html>

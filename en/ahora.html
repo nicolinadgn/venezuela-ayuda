@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇻🇪 Right Now — Help Venezuela</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --amarillo: #C8920A; --azul: #003DA5; --rojo: #B01818;
+      --bg: #F9F7F3; --surface: #FFFFFF; --border: #E4E0D8;
+      --text: #1A1A1A; --muted: #6B6560; --accent-light: #FFF8E8;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .top-bar { background: var(--azul); color: #fff; text-align: center; padding: 11px 24px; font-size: 0.82rem; font-weight: 500; }
+    .top-bar a { color: #FFD87A; text-decoration: none; font-weight: 600; }
+    .hero { background: #fff; border-bottom: 1px solid var(--border); padding: 48px 24px 40px; text-align: center; }
+    .flag-bar { display: flex; justify-content: center; margin-bottom: 24px; }
+    .flag-bar span { display: block; height: 5px; width: 40px; border-radius: 3px; margin: 0 3px; }
+    .flag-bar .s1 { background: var(--amarillo); } .flag-bar .s2 { background: var(--azul); } .flag-bar .s3 { background: var(--rojo); }
+    .hero-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 12px; }
+    .hero h1 em { font-style: normal; color: var(--amarillo); }
+    .hero-sub { max-width: 560px; margin: 0 auto; font-size: 0.93rem; color: var(--muted); line-height: 1.7; }
+    .updated-pill { display: inline-block; margin-top: 16px; background: var(--accent-light); border: 1px solid #F0D070; color: #7A5500; font-size: 0.74rem; font-weight: 600; padding: 5px 14px; border-radius: 20px; }
+    .country-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 14px 24px; overflow-x: auto; }
+    .country-nav-inner { display: flex; gap: 8px; max-width: 900px; margin: 0 auto; white-space: nowrap; }
+    .country-pill { display: inline-block; padding: 7px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; font-size: 0.78rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: all 0.18s; }
+    .country-pill:hover { background: var(--azul); color: #fff; border-color: var(--azul); }
+    main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .city-section { margin-bottom: 56px; scroll-margin-top: 90px; }
+    .city-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--border); flex-wrap: wrap; }
+    .city-icon { font-size: 1.4rem; }
+    .city-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text); }
+    .city-date { margin-left: auto; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .subsection { margin-bottom: 22px; }
+    .subsection-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    .cards { display: flex; flex-direction: column; gap: 9px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 15px 18px; transition: border-color 0.18s, box-shadow 0.18s; }
+    .card:hover { border-color: #C8920A55; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .card-priority { border-color: var(--rojo); border-width: 2px; background: #FFF8F8; }
+    .card-highlight { border-color: var(--amarillo); background: var(--accent-light); }
+    .card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+    .card-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .card-body { flex: 1; min-width: 0; }
+    .card-name { font-weight: 700; font-size: 0.93rem; color: var(--text); margin-bottom: 3px; }
+    .card-tagline { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .card-badge { flex-shrink: 0; font-size: 0.64rem; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; align-self: flex-start; }
+    .badge-red { background: #FDECEA; color: #8B1010; border: 1px solid #F5C0C0; }
+    .badge-yellow { background: #FFF3D0; color: #7A5500; border: 1px solid #F0D070; }
+    .badge-green { background: #EAFAF1; color: #1A6B3C; border: 1px solid #A8DFC0; }
+    .badge-blue { background: #EAF0FF; color: #0030A0; border: 1px solid #B0C8F8; }
+    .card-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+    .meta-pill { display: inline-flex; align-items: center; gap: 5px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 0.74rem; color: var(--muted); font-weight: 500; }
+    .card-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.6; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .card-desc a { color: var(--azul); text-decoration: none; font-weight: 500; }
+    .card-desc a:hover { text-decoration: underline; }
+    .card-desc strong { color: var(--text); }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 0.76rem; background: #fff; }
+    @media (max-width: 600px) { .city-date { display: none; width:100%; } }
+  </style>
+</head>
+<body>
+  <div class="top-bar">← <a href="/en/">Back to full directory</a> &nbsp;·&nbsp; apoyavenezuela.org</div>
+  <section class="hero">
+    <div class="flag-bar"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
+    <p class="hero-eyebrow">Active initiatives &amp; needs</p>
+    <h1>Right <em>now</em></h1>
+    <p class="hero-sub">Events, collection points, volunteering and urgent needs active today and in the coming days. If you have an initiative to add, write to us.</p>
+    <div class="updated-pill">🕓 Updated: July 1, 12:01h CEST</div>
+  </section>
+
+  <div class="country-nav">
+    <div class="country-nav-inner">
+      <a class="country-pill" href="#caracas">🇻🇪 Caracas</a>
+      <a class="country-pill" href="#la-guaira">🌊 La Guaira</a>
+      <a class="country-pill" href="#otras-ciudades-ve">🏙️ Otras ciudades VE</a>
+      <a class="country-pill" href="#madrid">🇪🇸 Madrid</a>
+      <a class="country-pill" href="#usa">🇺🇸 USA</a>
+      <a class="country-pill" href="#salud-publica">💉 Salud pública</a>
+      <a class="country-pill" href="#protocolos">📋 Protocolos de donación</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- CARACAS -->
+    <section class="city-section" id="caracas">
+      <div class="city-header">
+        <span class="city-icon">🇻🇪</span>
+        <h2 class="city-title">Caracas</h2>
+        <span class="city-date">Active today</span>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Collection centers by municipality</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <div class="card-top">
+              <span class="card-icon">📍</span>
+              <div class="card-body">
+                <div class="card-name">Plaza Alfredo Sadel — Las Mercedes</div>
+                <div class="card-tagline">Punto central. Alimentos no perecederos, agua, insumos médicos y fórmulas infantiles. También reciben herramientas menores para remoción de escombros.</div>
+              </div>
+              <span class="card-badge badge-yellow">Main point</span>
+            </div>
+            <div class="card-meta">
+              <span class="meta-pill">🕓 8:00–19:00h</span>
+            </div>
+            <div class="card-desc">Herramientas solicitadas: palas, picos, carretillas, guantes de seguridad gruesos, cizallas, seguetas, cintas de demarcación, discos de corte para metal y concreto.</div>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">📍</span>
+              <div class="card-body">
+                <div class="card-name">Parque Miranda HQ — Chacao</div>
+                <div class="card-tagline">Rescue tools, flashlights, batteries and helmets.</div>
+              </div>
+            </div>
+            <div class="card-meta"><span class="meta-pill">🕓 9:00–17:00h</span></div>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">⛪</span>
+              <div class="card-body">
+                <div class="card-name">Iglesia La Guadalupe — Las Mercedes</div>
+                <div class="card-tagline">Good condition clothing, sheets, blankets and mats.</div>
+              </div>
+            </div>
+            <div class="card-meta"><span class="meta-pill">🕓 8:00–18:00h</span></div>
+          </div>
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">🏥</span>
+              <div class="card-body">
+                <div class="card-name">UCV — Faculty of Medicine</div>
+                <div class="card-tagline">Pediatric medications, suture materials, alcohol, gauze and syringes.</div>
+              </div>
+              <span class="card-badge badge-red">Medical</span>
+            </div>
+            <div class="card-meta"><span class="meta-pill">🕓 8:30–16:30h</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Other active centers (Chacao, Baruta, Sucre, Libertador, El Hatillo)</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🗺️</span>
+              <div class="card-body">
+                <div class="card-name">Full list of collection centers by municipality</div>
+                <div class="card-tagline"><strong>Chacao:</strong> Instituto de Diseño, Santo Tomás de Aquino, Cristo Rey, Hotel Ávila, Quinta Más Allá<br>
+                <strong>Baruta:</strong> Plaza Alfredo Sadel, Protección Civil El Cafetal, Club Hípico, Mater Salvatoris, Sagrada Familia, Concha Acústica Bello Monte<br>
+                <strong>Sucre:</strong> Universidad Metropolitana, Universidad Monteávila, Cáritas Petare, G3 Logística<br>
+                <strong>Libertador:</strong> Cáritas Venezuela, FCU UCV, Iglesia La Paz, Iglesia San Bernardino<br>
+                <strong>El Hatillo:</strong> Copa Hatillana, Polideportivo Los Naranjos</div>
+              </div>
+            </div>
+            <div class="card-desc">⚠️ Verifica horarios y disponibilidad antes de asistir — pueden cambiar día a día.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Urgent medical supplies</p>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">💊</span>
+              <div class="card-body">
+                <div class="card-name">Urgent pediatric medications</div>
+                <div class="card-tagline">Punto de recepción: Dunas. Contacto: @sun.risas</div>
+              </div>
+              <span class="card-badge badge-red">Urgent</span>
+            </div>
+            <div class="card-desc">Acetaminofén pediátrico (Atamel/Tachipirin jarabe o gotas) · Ibuprofeno pediátrico (Ibufen/Brugesic) · Pedialyte/suero oral · Cetirizina pediátrica · Salbutamol spray · Enterogermina · Crema para pañalitis · Crema antibiótica · Solución fisiológica · Antibiótico en suspensión (Amoxicilina/Azitromicina)</div>
+          </div>
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">🩹</span>
+              <div class="card-body">
+                <div class="card-name">Supplies for advanced medical centers — La Guaira</div>
+                <div class="card-tagline">Necesidad urgente para atención avanzada.</div>
+              </div>
+              <span class="card-badge badge-red">Urgent</span>
+            </div>
+            <div class="card-desc">Yelco/catéteres (Nro. 18, 20, 22) · Solución Ringer Lactato o Fisiológica 0.9% · Equipos de infusión macrogotero · Inyectadoras 3cc, 5cc, 10cc · Adrenalina y Atropina en ampollas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Shelters &amp; camps</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">⛺</span>
+              <div class="card-body">
+                <div class="card-name">Camp — Parque del Este</div>
+                <div class="card-tagline">+40 carpas armadas con colchones, almohadas y sábanas. Reparto de comida y actividades para niños.</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🍲</span>
+              <div class="card-body">
+                <div class="card-name">New field kitchen — Tanaguarena</div>
+                <div class="card-tagline">Atiende a familias damnificadas. Buscan voluntarios para cocinar o llevar insumos frescos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">More active centers — Caracas</p>
+        <div class="cards">
+          <div class="card">
+            <span class="card-icon">🏬</span>
+            <div class="card-body">
+              <div class="card-name">CCCT Shopping Center — Level C2</div>
+              <div class="card-tagline">In front of parking booths. Enabled by transport companies. Good clothing, sheets and blankets.</div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🎭</span>
+            <div class="card-body">
+              <div class="card-name">Teresa Carreño Theater — "Artists for life"</div>
+              <div class="card-tagline">Solidarity collection event. Volunteers for medication and food classification.</div>
+            </div>
+            <div class="card-meta"><span class="meta-pill">🕓 8:00–17:00h</span></div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🏬</span>
+            <div class="card-body">
+              <div class="card-name">Centro San Ignacio / Centro Lido / Millennium Mall</div>
+              <div class="card-tagline">Shopping centers converted into humanitarian collection points. Coordinated with Venezuelan scout groups.</div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">⚽</span>
+            <div class="card-body">
+              <div class="card-name">Estadio Monumental (Leones del Caracas)</div>
+              <div class="card-tagline">Active collection center at the stadium.</div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🏋️</span>
+            <div class="card-body">
+              <div class="card-name">Linares Gym — Las Mercedes (pets)</div>
+              <div class="card-tagline">Dry food for dogs and cats, water containers, veterinary gauze, pet carriers on loan.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Active shelters — specific needs</p>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">🚨</span>
+              <div class="card-body">
+                <div class="card-name">Edificio La Gabarra — Signs of life!</div>
+                <div class="card-tagline">Let's not stop supporting. They urgently need:</div>
+              </div>
+              <span class="card-badge badge-red">Signs of life</span>
+            </div>
+            <div class="card-desc">Comida · Antitetánicas · Gasoil · Agua · Hielo · Café · Bombonas de gas · Linternas · Oxígeno/bombas · Protector solar · Carpas · Toldos · Poncho de lluvia<br>📞 <strong>+58 412-0171572</strong></div>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">👶</span>
+              <div class="card-body">
+                <div class="card-name">Shelter La Pastora — 60 children</div>
+                <div class="card-tagline">Hermanas Carmelita · +58 412 6991971</div>
+              </div>
+            </div>
+            <div class="card-desc">Urgente: Talco para bebé · Crema cero · Colchones · Champú · Leche de lactancia · Alimentos · Pañales talla L/G/XG · Sábanas o cobijas</div>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🍞</span>
+              <div class="card-body">
+                <div class="card-name">Parque del Este and Oeste / El Paraíso — orphaned children</div>
+                <div class="card-tagline">Group delivering medications, toys and food to refugee children. Can send receipts for all donations.</div>
+              </div>
+            </div>
+            <div class="card-desc">📞 Mariangel Rodríguez: <strong>+58 424 1751797</strong></div>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">💊</span>
+              <div class="card-body">
+                <div class="card-name">Deportivo La Trinidad</div>
+                <div class="card-tagline">Sarah Bitchatchi · +58 414 1294415</div>
+              </div>
+            </div>
+            <div class="card-desc">Medicamentos bebés (acetaminofén) · Jabón · Cepillos y pasta · Colchones pequeños · Sábanas · Cobijas · Suéteres</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Children's volunteering — art &amp; materials</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🎨</span>
+              <div class="card-body">
+                <div class="card-name">Children deserve color</div>
+                <div class="card-tagline">Diseñadores e ilustradores: crea piezas para colorear con mensajes de esperanza. Comunidad: dona lápices de colores, creyones, marcadores, plastilina, hojas.</div>
+              </div>
+            </div>
+            <div class="card-desc">Contacto: <strong>0414 6012613</strong> · <strong>0416 7638467</strong> · <strong>@foliobyshelo</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LA GUAIRA -->
+    <section class="city-section" id="la-guaira">
+      <div class="city-header">
+        <span class="city-icon">🌊</span>
+        <h2 class="city-title">La Guaira</h2>
+        <span class="city-date">Active today</span>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Missing persons — Macuto &amp; Caraballeda</p>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">🔍</span>
+              <div class="card-body">
+                <div class="card-name">Central Search Line</div>
+                <div class="card-tagline">If you are looking for a family member after structural collapse in Macuto and Caraballeda.</div>
+              </div>
+              <span class="card-badge badge-red">Urgent</span>
+            </div>
+            <div class="card-desc">📞 <strong>0800-RESCATE (0800-7372283)</strong><br>📍 Puesto 1: Escuela República de Panamá (La Guaira)<br>📍 Puesto 2: Sede de Bomberos de Catia La Mar<br>Lleva una foto reciente y los datos completos del familiar.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Drinking water distribution — today</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🚛</span>
+              <div class="card-body">
+                <div class="card-name">Water tanker schedule — La Guaira Municipality</div>
+                <div class="card-tagline">Priority today due to pipe network damage.</div>
+              </div>
+            </div>
+            <div class="card-desc">
+              <strong>Ruta 1:</strong> Macuto (Álamo, Las 15 Letras, Punta Brisas)<br>
+              <strong>Ruta 2:</strong> Caraballeda (Tarigua, Palmar Este, Central)<br>
+              <strong>Ruta 3:</strong> Catia La Mar (Playa Grande, Las Tunitas)<br>
+              Lleva recipientes limpios con tapa.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Specific needs — Caraballeda</p>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">🚑</span>
+              <div class="card-body">
+                <div class="card-name">Edificio Miramar — Ambulances waiting for rescue</div>
+                <div class="card-tagline">Urgent medications for ambulances.</div>
+              </div>
+              <span class="card-badge badge-red">Urgent</span>
+            </div>
+            <div class="card-desc">Ketoprofeno · Dipirona · Dexametasona · Omeprazol · Ranitidina · Tiocolchicosido · Metoclopramida · Salbutamol<br>
+            Otros: Cascos · Guantes · Linternas · Tijera de extricación · Agua · Tapaboca · Lafarcaína (Lidocaína) · Insumos personales<br>
+            📞 Contacto: <strong>+58 412-0171572</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Animal rescue</p>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">🐾</span>
+              <div class="card-body">
+                <div class="card-name">Paticas Solidarias + GRAD (Brazil) — need transport</div>
+                <div class="card-tagline">Animal rescue team deployed in La Guaira with no way to travel from their lodging to rescue zones.</div>
+              </div>
+              <span class="card-badge badge-red">Urgent</span>
+            </div>
+            <div class="card-desc">⚠️ Requisito indispensable: tener <strong>salvoconducto</strong> para circular hacia La Guaira.<br>📞 <strong>0424 2840 464</strong> · <strong>@paticassolidarias</strong> · <strong>@gradbrasil</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OTRAS CIUDADES VE -->
+    <section class="city-section" id="otras-ciudades-ve">
+      <div class="city-header">
+        <span class="city-icon">🏙️</span>
+        <h2 class="city-title">Other cities in Venezuela</h2>
+        <span class="city-date">Active today</span>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">Candeal Collection Center — Cabimas</div>
+              <div class="card-tagline">Food, hygiene, oral and IV medications, medical equipment, mats, rescue equipment.</div>
+            </div>
+          </div>
+          <div class="card-meta"><span class="meta-pill">📍 Av. Intercomunal, Cabimas</span></div>
+          <div class="card-desc">Contacto: <strong>0414-9638239</strong> · Organizado por Candeal y aliados</div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">Lechería / Puerto La Cruz</div>
+              <div class="card-tagline">Canned food, mineral water, sheets, mats, personal hygiene items.</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            <strong>Centro 1:</strong> Alcaldía de Lechería (Av. Principal) · 9:00–18:00h<br>
+            <strong>Centro 2:</strong> Iglesia María Auxiliadora · 8:00–12:00h / 14:00–17:00h
+          </div>
+        </div>
+        <div class="card card-priority">
+          <div class="card-top">
+            <span class="card-icon">🚨</span>
+            <div class="card-body">
+              <div class="card-name">Affected family in Margarita</div>
+              <div class="card-tagline">Family from La Guaira who lost everything, arrived in Margarita. House completely empty.</div>
+            </div>
+            <span class="card-badge badge-red">Direct case</span>
+          </div>
+          <div class="card-desc">
+            Urgente: nevera y cocina · Ropa dama (M, XL) · Ropa caballero (M, L) · Comida, colchones, sábanas<br>
+            📍 El Valle, Residencias Valle Abajo, casa #46, al lado de la Clínica del Valle, Margarita<br>
+            📞 María Clara (mamá): <strong>+58 426-7177629</strong> · Andrea María Clara (hija): <strong>+58 412-6241087</strong>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">🧴</span>
+            <div class="card-body">
+              <div class="card-name">Blankets available for distribution</div>
+              <div class="card-tagline">If you know where blankets are needed, let us know.</div>
+            </div>
+          </div>
+          <div class="card-meta"><span class="meta-pill">📞 +58 412-9081668</span></div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">🏥</span>
+            <div class="card-body">
+              <div class="card-name">Medical supplies — Bello Monte point</div>
+              <div class="card-tagline">Sterile gauze, gloves, povidone/chlorhexidine, antihypertensives, flour, blankets, toys, water, sunscreen, pet food.</div>
+            </div>
+          </div>
+          <div class="card-desc">📍 Llevar a Cevichef en Bello Monte o escribir al <strong>04127653447</strong></div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">Maracay — Aragua Fire Department</div>
+              <div class="card-tagline">Active collection center.</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">Valencia — University of Carabobo</div>
+              <div class="card-tagline">Active collection center.</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">Ciudad Guayana — Rotaract Salto Ángel</div>
+              <div class="card-tagline">Alimentos, agua, medicamentos pediátricos y crónicos, ropa interior nueva, herramientas de rescate, carpas, colchonetas.</div>
+            </div>
+          </div>
+          <div class="card-desc">Pago móvil (Desireé Lugo): Mercantil · 04249050118 · CI 26801013 · Binance: <strong>rotaractsaltoangel@gmail.com</strong><br>
+          Contactos: Marian Castillo <strong>04249068499</strong> / Desireé Lugo <strong>04249050118</strong></div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">🏝️</span>
+            <div class="card-body">
+              <div class="card-name">Isla Margarita — Colegio Guayamuri</div>
+              <div class="card-tagline">Supplies for people arriving on the island.</div>
+            </div>
+          </div>
+          <div class="card-desc">Ventiladores · Agua · Mesas y sillas · Medicinas específicas: Hydrea · Ácido acetilsalicílico · Plavix (clopidogrel) · Omeprazol · Artrovit · Carbamazepina · Quetiapina (Quetival)</div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">Cumaná and Carúpano (Sucre State)</div>
+              <div class="card-tagline">Drinking water, purification tablets and mosquito nets as priority.</div>
+            </div>
+          </div>
+          <div class="card-desc">Cumaná: Iglesia Santa Inés y Cruz Roja local · Carúpano: Ateneo de Carúpano</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MADRID -->
+    <section class="city-section" id="madrid">
+      <div class="city-header">
+        <span class="city-icon">🇪🇸</span>
+        <h2 class="city-title">Madrid</h2>
+        <span class="city-date">This week</span>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Main collection center</p>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top">
+              <span class="card-icon">📦</span>
+              <div class="card-body">
+                <div class="card-name">Club Victoria — Main center</div>
+                <div class="card-tagline">Insumos médicos, fórmula para bebés, pañales y material de rescate. Se trasladan ya clasificados a la Parroquia de Chamberí para envío directo a Venezuela.</div>
+              </div>
+              <span class="card-badge badge-red">Today</span>
+            </div>
+            <div class="card-meta">
+              <span class="meta-pill">🕓 11:00–20:00h</span>
+              <span class="meta-pill">📍 Calle Serrano 45, Madrid</span>
+            </div>
+            <div class="card-desc">
+              <strong>Material de rescate:</strong> guantes de trabajo, lentes de seguridad, cuerdas, linternas, baterías, vendajes, férulas, tapabocas 3M, cascos<br>
+              <strong>Insumos médicos:</strong> guantes nitrilo, gasas, alcohol, agua oxigenada, suturas, batas quirúrgicas, pañales adulto e infantil, fórmula bebés, cepillos y pasta dental<br>
+              ⚠️ Marca todo: <strong>"DONACIONES" — "VENEZUELA" — "NO VENTA"</strong>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">⛪</span>
+              <div class="card-body">
+                <div class="card-name">Parish of Santísimo Cristo de la Victoria — Chamberí</div>
+                <div class="card-tagline">No longer accepting supplies due to saturation. Volunteers now needed to sort, pack and prepare pallets.</div>
+              </div>
+              <span class="card-badge badge-yellow">Volunteers only</span>
+            </div>
+            <div class="card-meta"><span class="meta-pill">🕓 8:30–21:00h, sin inscripción previa</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Solidarity market — all week</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <div class="card-top">
+              <span class="card-icon">🛍️</span>
+              <div class="card-body">
+                <div class="card-name">Solidarity Closet Sale</div>
+                <div class="card-tagline">Continues all week. Donated clothing sold at accessible prices, proceeds go directly to aid.</div>
+              </div>
+              <span class="card-badge badge-yellow">All week</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Another collection point — medical supplies</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🩹</span>
+              <div class="card-body">
+                <div class="card-name">@wemonkeys — General Díaz Porlier</div>
+                <div class="card-tagline">Sterile gauze, elastic bandages, cotton, adhesive tape (Durapore), micropore, large wound dressings.</div>
+              </div>
+            </div>
+            <div class="card-meta">
+              <span class="meta-pill">📅 June 29 – July 4</span>
+              <span class="meta-pill">🕓 7–11h · 13:30–16h · 18–21:30h</span>
+              <span class="meta-pill">📍 Calle del General Díaz Porlier, 34</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Psychological support — Madrid</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">☎️</span>
+              <div class="card-body">
+                <div class="card-name">Line 012 — Community of Madrid</div>
+                <div class="card-tagline">If you need psychological support or know someone who does after the emergency.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Upcoming charity event</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">🎻</span>
+              <div class="card-body">
+                <div class="card-name">IX Voces Unidas Concert — benefiting Manos Unidas</div>
+                <div class="card-tagline">Symphony Orchestra, Choir and JMJ Choir School, directed by Borja Quintas.</div>
+              </div>
+            </div>
+            <div class="card-meta">
+              <span class="meta-pill">📅 Sábado 4 de julio, 19:30h</span>
+              <span class="meta-pill">📍 Auditorio Nacional</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- USA -->
+    <section class="city-section" id="usa">
+      <div class="city-header">
+        <span class="city-icon">🇺🇸</span>
+        <h2 class="city-title">United States</h2>
+        <span class="city-date">This week</span>
+      </div>
+      <div class="cards">
+        <div class="card card-highlight">
+          <div class="card-top">
+            <span class="card-icon">📦</span>
+            <div class="card-body">
+              <div class="card-name">Orlando, FL — Lake Nona / Mater Academy Narcoossee</div>
+              <div class="card-tagline">Medicinas, insumos médicos, guantes, pañales, ropa y calzado todas las edades, agua, comida, bebidas hidratantes, cajas y bolsas.</div>
+            </div>
+            <span class="card-badge badge-yellow">Until July 3</span>
+          </div>
+          <div class="card-meta">
+            <span class="meta-pill">📅 June 29 – July 3</span>
+            <span class="meta-pill">🕓 9:00–15:00h</span>
+            <span class="meta-pill">📍 8315 Academy Dr, Orlando, FL 32827</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📦</span>
+            <div class="card-body">
+              <div class="card-name">Four Corners / Clermont / Davenport, FL — Pinecrest Academy</div>
+              <div class="card-tagline">Medicinas, guantes, equipo de seguridad, productos de limpieza, ropa y calzado todas las edades, comida.</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <span class="meta-pill">📅 June 30 – July 2</span>
+            <span class="meta-pill">🕓 9:00–15:00h</span>
+            <span class="meta-pill">📍 1100 US-27, Clermont, FL 34714</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">🙋</span>
+            <div class="card-body">
+              <div class="card-name">Miami — Volunteers needed</div>
+              <div class="card-tagline">Punto de coordinación de voluntarios en Miami.</div>
+            </div>
+          </div>
+          <div class="card-meta"><span class="meta-pill">📍 6173 NW 72nd Ave, Miami, FL 33166</span></div>
+        </div>
+        <div class="card card-highlight">
+          <div class="card-top">
+            <span class="card-icon">⚽</span>
+            <div class="card-body">
+              <div class="card-name">Inter Miami CF — Community collection</div>
+              <div class="card-tagline">Stay in your vehicle. Volunteers will unload donations from your trunk or back seat.</div>
+            </div>
+            <span class="card-badge badge-yellow">July 1</span>
+          </div>
+          <div class="card-meta">
+            <span class="meta-pill">📅 Miércoles July 1 · 9:00–19:00h</span>
+            <span class="meta-pill">📍 NU Stadium, 1000 Stadium Dr, Miami, FL 33125</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">El Arepazo — Doral, FL</div>
+              <div class="card-tagline">Volunteers with vans or pick-ups requested. Allied company will enable maritime and air channels at no cost.</div>
+            </div>
+          </div>
+          <div class="card-meta"><span class="meta-pill">📍 10191 NW 58th St, Doral, FL 33178</span><span class="meta-pill">🕓 Hasta medianoche</span></div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📍</span>
+            <div class="card-body">
+              <div class="card-name">Global Empowerment Mission (GEM) — Doral</div>
+            </div>
+          </div>
+          <div class="card-meta"><span class="meta-pill">📍 1850 NW 84th Ave #100, Doral, FL 33126</span></div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">👗</span>
+            <div class="card-body">
+              <div class="card-name">Coral Gables, FL — Clothing for Venezuela</div>
+              <div class="card-tagline">Ropa niños/mujeres/hombres en buen estado, zapatos sin tacones, ropa interior y medias solo nuevas.</div>
+            </div>
+          </div>
+          <div class="card-meta"><span class="meta-pill">📍 4217 Ponce de Leon Blvd, Coral Gables, FL 33146</span><span class="meta-pill">🕓 11:00–17:00h</span></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Chicago</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">📍</span>
+              <div class="card-body">
+                <div class="card-name">Collection points in Chicago</div>
+              </div>
+            </div>
+            <div class="card-desc">Rica Arepa (7534 W Addison / 2913 N Lincoln / 4253 W Armitage) · Sabe a Zulia (5306 W Fullerton / 7024 W Grand / 1384 Winston Plaza, Melrose Park) · Arepa George (1552 N Kedzie) · Jibaritos y Más (3317 N Harlem) · Bienmesabe Restaurant (29 E Adams / 1637 W Montrose) · Klein's Bakery (126 W Diversey / 1134 W Armitage / 4155 N Broadway)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Nueva York</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">📍</span>
+              <div class="card-body">
+                <div class="card-name">Collection points in New York</div>
+              </div>
+            </div>
+            <div class="card-desc">Lulla's (169 Graham Ave, Brooklyn) · El Budare Café (87-21 Roosevelt Ave, Jackson Heights) · Casa Ora (148 Meserole St, Brooklyn) · Arepas Cafe (33-07 36th Ave, Astoria) · Food Fair Fresh Market (2467 Jerome Ave, Bronx)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">California</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">📍</span>
+              <div class="card-body">
+                <div class="card-name">Collection points in California</div>
+              </div>
+            </div>
+            <div class="card-desc">Los Angeles: Olarte Transport (1125 E Pico Blvd) · Ojala (5405 N Figueroa St, Highland Park) · Oakland: Angelitos Insurance (4419 Foothill / 4819 International / 1800 Monument, Concord) · San Francisco: Arepas (3198 16th St) · San Jose: Arepas (1384 Lincoln Ave)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">DC / Virginia / Maryland</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-icon">📍</span>
+              <div class="card-body">
+                <div class="card-name">Arepa Zone — DC, Fairfax VA, College Park MD</div>
+              </div>
+            </div>
+            <div class="card-desc">1121 14th St NW, Washington DC · 3160 Spring St Fairfax VA · 4341 Calvert Rd, College Park MD</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRASIL -->
+    <section class="city-section" id="brasil">
+      <div class="city-header">
+        <span class="city-icon">🇧🇷</span>
+        <h2 class="city-title">Brazil</h2>
+        <span class="city-date">Active</span>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Guarulhos, SP — ONG Casa Hispana</div></div></div>
+          <div class="card-meta"><span class="meta-pill">📍 Av. Natalia Zarif, 60</span><span class="meta-pill">📞 +55 11 96616-7972</span></div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Curitiba, PR — ONG Irmandade Sem Fronteiras</div></div></div>
+          <div class="card-meta"><span class="meta-pill">📍 Rua Carlos de Laet, 5225, Boqueirão</span><span class="meta-pill">📞 +55 41 8813-0719</span></div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Boa Vista, RR — ONG Humanidade Mais Que Fronteiras</div></div></div>
+          <div class="card-meta"><span class="meta-pill">📍 Rua João Pessoa, 2489</span><span class="meta-pill">📞 +55 95 8103-2134</span></div>
+          <div class="card-desc">Pix: <strong>(95) 99157-4749</strong> · Cora SCFI Conta: 2982523-1 · CNPJ: 46.759.193/0001-60</div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-icon">🌍</span><div class="card-body"><div class="card-name">UNHCR — online donation</div></div></div>
+          <div class="card-desc"><a href="https://doar.acnur.org/br/pt-br/venezuela" target="_blank">doar.acnur.org/br →</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHILE -->
+    <section class="city-section" id="chile">
+      <div class="city-header">
+        <span class="city-icon">🇨🇱</span>
+        <h2 class="city-title">Chile</h2>
+        <span class="city-date">Active</span>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Santiago — Chileans and Venezuelans United</div></div></div>
+          <div class="card-meta"><span class="meta-pill">📍 Av. Providencia 1234</span><span class="meta-pill">🕓 9:00–19:00h</span></div>
+          <div class="card-desc">Donaciones monetarias o insumos acordados con aerolíneas para transporte internacional.</div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-icon">💸</span><div class="card-body"><div class="card-name">Western Union Chile — $0 fee until July 10</div></div></div>
+          <div class="card-meta"><span class="meta-pill">Hasta 10 julio</span></div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-icon">🔄</span><div class="card-body"><div class="card-name">Retorna.app — zero fee</div><div class="card-tagline">Shipments without commission from Chile to Venezuela.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANAMÁ -->
+    <section class="city-section" id="panama">
+      <div class="city-header">
+        <span class="city-icon">🇵🇦</span>
+        <h2 class="city-title">Panama</h2>
+        <span class="city-date">Active</span>
+      </div>
+      <div class="cards">
+        <div class="card card-highlight">
+          <div class="card-top"><span class="card-icon">🙋</span><div class="card-body"><div class="card-name">Panama Pacific — 30 volunteers</div><div class="card-tagline">Select, separate and pack donations. Meeting point: Rali on Av. Balboa at 9:00 AM, from there they go to Panama Pacific.</div></div></div>
+        </div>
+        <div class="card card-highlight">
+          <div class="card-top"><span class="card-icon">🙋</span><div class="card-body"><div class="card-name">Panapark Free Zone — 30 volunteers</div><div class="card-tagline">Load containers with merchandise for Venezuela · Av. Panamericana, Corregimiento 24 de Diciembre · 9:00 AM</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOMBIA -->
+    <section class="city-section" id="colombia">
+      <div class="city-header">
+        <span class="city-icon">🇨🇴</span>
+        <h2 class="city-title">Colombia</h2>
+        <span class="city-date">Active</span>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-top"><span class="card-icon">💰</span><div class="card-body"><div class="card-name">Fundación Comparte Colombia</div></div></div>
+          <div class="card-desc">
+            Bancolombia Ahorros: <strong>63800000674</strong> · Bre-B: <strong>901178855</strong><br>
+            Venmo: <strong>@ClosingtheGap</strong> · Zelle: <strong>daniela@ctgfoundation.us</strong><br>
+            USA: JPMorgan Chase · Routing 021000021 · Account 660063360 · CLOSING THE GAP FOUNDATION
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÉXICO -->
+    <section class="city-section" id="mexico">
+      <div class="city-header">
+        <span class="city-icon">🇲🇽</span>
+        <h2 class="city-title">Mexico</h2>
+        <span class="city-date">Active</span>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-top"><span class="card-icon">💰</span><div class="card-body"><div class="card-name">La Compol joins Venezuela</div></div></div>
+          <div class="card-desc">Mercado Pago (Luis Rendueles): CLABE <strong>722969012349235998</strong> · Binance: <strong>luisrendueles7@gmail.com</strong></div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-icon">🧠</span><div class="card-body"><div class="card-name">Praxis Grupos Operativos — volunteer psychologists</div><div class="card-tagline">+700 free psychologists from Mexico and all of Latin America.</div></div></div>
+          <div class="card-desc">📞 <strong>+52 55 3320 0457</strong> · <strong>@praxis.go</strong> · <a href="https://praxisgruposoperativos.taplink.site" target="_blank">praxisgruposoperativos.taplink.site →</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REINO UNIDO -->
+    <section class="city-section" id="uk">
+      <div class="city-header">
+        <span class="city-icon">🇬🇧</span>
+        <h2 class="city-title">United Kingdom</h2>
+        <span class="city-date">Active</span>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-top"><span class="card-icon">🍰</span><div class="card-body"><div class="card-name">Panela Crumbs (Nottingham) — "1 Slice, 1 Donation"</div><div class="card-tagline">Bakery donating to Chamos_org for every slice sold.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESPAÑA -->
+    <section class="city-section" id="espana-ahora">
+      <div class="city-header">
+        <span class="city-icon">🇪🇸</span>
+        <h2 class="city-title">Spain — solidarity initiatives</h2>
+        <span class="city-date">Julio–Agosto</span>
+      </div>
+      <div class="cards">
+        <div class="card card-highlight">
+          <div class="card-top"><span class="card-icon">🫔</span><div class="card-body"><div class="card-name">Guasacaca Madrid — "Every empanada counts"</div><div class="card-tagline">Julio y agosto: por cada empanada de queso vendida donan 0,50€ a Meals4Hope.</div></div><span class="card-badge badge-yellow">July–August</span></div>
+          <div class="card-desc">Sedes: Palencia · Cañaveral · Mercado Maravillas (Madrid)</div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-icon">🎻</span><div class="card-body"><div class="card-name">IX Voces Unidas Concert — benefiting Manos Unidas</div></div></div>
+          <div class="card-meta"><span class="meta-pill">📅 Saturday July 4 · 19:30h</span><span class="meta-pill">📍 Auditorio Nacional, Madrid</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INICIATIVAS CULTURALES GLOBALES -->
+    <section class="city-section" id="cultura">
+      <div class="city-header">
+        <span class="city-icon">🎵</span>
+        <h2 class="city-title">Global cultural initiatives</h2>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-top"><span class="card-icon">🎵</span><div class="card-body"><div class="card-name">Danny Ocean — Europe tour with solidarity QR</div><div class="card-tagline">Cada concierto incluye un QR para donar. Los organizadores de los festivales también donan a organizaciones en terreno.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-icon">📺</span><div class="card-body"><div class="card-name">Tu Música Hoy x Venezuela — Live on TikTok</div><div class="card-tagline">Shows and interviews with guest artists. Live solidarity event.</div></div><span class="card-badge badge-blue">TikTok</span></div>
+          <div class="card-meta"><span class="meta-pill">📅 30 junio · 15:00h AR</span><span class="meta-pill">#TuMusicaHoyXVenezuela</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SALUD PÚBLICA -->
+    <section class="city-section" id="salud-publica">
+      <div class="city-header">
+        <span class="city-icon">💉</span>
+        <h2 class="city-title">Salud pública — vacunación y prevención</h2>
+        <span class="city-date">Active</span>
+      </div>
+      <div class="cards">
+        <div class="card card-highlight">
+          <div class="card-top">
+            <span class="card-icon">💉</span>
+            <div class="card-body">
+              <div class="card-name">Puntos de vacunación antitetánica</div>
+              <div class="card-tagline">Proceso gratuito, prioridad a heridos por colapso de viviendas, rescatistas, personal médico, voluntarios y removedores de escombros.</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            <strong>Libertador:</strong> Hospital Universitario de Caracas (HUC), Hospital Dr. José María Vargas, clínicas populares periféricas<br>
+            <strong>Chacao:</strong> Sede de Salud Chacao y puntos en zonas de inspección<br>
+            <strong>Baruta:</strong> Ambulatorio de Salud Baruta, red de atención primaria<br>
+            <strong>Sucre:</strong> Hospital Dr. Domingo Luciani (El Llanito), distritos sanitarios locales<br>
+            <strong>La Guaira / Catia La Mar:</strong> Hospital Dr. José María Vargas (La Guaira)
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">📞</span>
+            <div class="card-body">
+              <div class="card-name">Teléfonos de emergencia y rescate</div>
+              <div class="card-tagline">Guarda y comparte estos números.</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            🚑 Protección Civil Nacional: <strong>0212-6627074</strong><br>
+            🚒 Bomberos Universitarios UCV: <strong>0212-6052222</strong><br>
+            🚨 Emergencias médicas / Paramédicos autopista: <strong>0412-2321455</strong><br>
+            📞 Cruz Roja Venezolana: <strong>0212-5714211</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROTOCOLOS DE DONACIÓN -->
+    <section class="city-section" id="protocolos">
+      <div class="city-header">
+        <span class="city-icon">📋</span>
+        <h2 class="city-title">Cómo donar bien — protocolos importantes</h2>
+      </div>
+      <div class="cards">
+        <div class="card card-highlight">
+          <div class="card-top">
+            <span class="card-icon">⚠️</span>
+            <div class="card-body">
+              <div class="card-name">Recomendaciones para donar medicamentos</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            1. Verifica que la fecha de vencimiento sea posterior a septiembre<br>
+            2. No dones jarabes o gotas ya abiertos o empezados<br>
+            3. Clasifica en bolsas separadas: Adultos / Pediátricos<br>
+            4. Rotula cada bolsa con marcador permanente indicando el contenido<br>
+            5. Revisa minuciosamente las fechas de caducidad — cero vencidos (según directrices OMS/OPS)
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="card-icon">💰</span>
+            <div class="card-body">
+              <div class="card-name">Cuentas autorizadas para compra de herramientas pesadas</div>
+              <div class="card-tagline">Para soporte logístico de rescatistas en zonas afectadas.</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            Fundación Solidaridad Venezuela — BNC Cuenta Corriente: <strong>0191-0001-22-2101012345</strong> · RIF: <strong>J-40012345-0</strong> · Pago Móvil BNC: <strong>0414-1234567</strong><br>
+            Zelle: <strong>donaciones@solidaridadvenezuela.org</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer>
+    <p>🇻🇪 <a href="/en/" style="color:var(--azul)">apoyavenezuela.org</a> · Compiled by Nicolina Casale De Gregorio · Madrid, June 2026</p>
+    <p style="margin-top:6px">Follow us: <a href="https://instagram.com/apoyavenezuela.app" target="_blank" style="color:var(--azul);font-weight:600;">@apoyavenezuela.app</a> · Have a new initiative? Send us a DM.</p>
+    <p style="margin-top:4px;color:var(--muted)">Última actualización: 30 de junio de 2026, 16:33h CEST</p>
+  </footer>
+</body>
+</html>

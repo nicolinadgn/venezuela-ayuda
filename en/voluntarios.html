@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇻🇪 Volunteers — Help Venezuela</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --amarillo: #C8920A; --azul: #003DA5; --rojo: #B01818; --bg: #F9F7F3; --surface: #FFFFFF; --border: #E4E0D8; --text: #1A1A1A; --muted: #6B6560; --accent-light: #FFF8E8; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .top-bar { background: var(--azul); color: #fff; text-align: center; padding: 11px 24px; font-size: 0.82rem; font-weight: 500; }
+    .top-bar a { color: #FFD87A; text-decoration: none; font-weight: 600; }
+    .hero { background: #fff; border-bottom: 1px solid var(--border); padding: 48px 24px 40px; text-align: center; }
+    .flag-bar { display: flex; justify-content: center; margin-bottom: 24px; }
+    .flag-bar span { display: block; height: 5px; width: 40px; border-radius: 3px; margin: 0 3px; }
+    .flag-bar .s1 { background: var(--amarillo); } .flag-bar .s2 { background: var(--azul); } .flag-bar .s3 { background: var(--rojo); }
+    .hero-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 12px; }
+    .hero h1 em { font-style: normal; color: var(--amarillo); }
+    .hero-sub { max-width: 560px; margin: 0 auto; font-size: 0.93rem; color: var(--muted); line-height: 1.7; }
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(249,247,243,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 24px; overflow-x: auto; }
+    .nav-inner { display: flex; max-width: 900px; margin: 0 auto; white-space: nowrap; justify-content: center; }
+    .nav a { display: inline-block; padding: 13px 14px; font-size: 0.77rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav a:hover { color: var(--text); border-bottom-color: var(--amarillo); }
+    main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .section { margin-bottom: 60px; }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
+    .section-icon { font-size: 1.3rem; } .section-title { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: var(--text); }
+    .subsection { margin-bottom: 28px; }
+    .subsection-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    .cards { display: flex; flex-direction: column; gap: 8px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; display: flex; align-items: flex-start; gap: 12px; transition: border-color 0.18s, box-shadow 0.18s; }
+    .card:hover { border-color: #C8920A55; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .card-priority { border-color: var(--rojo); border-width: 2px; background: #FFF8F8; }
+    .card-highlight { border-color: var(--amarillo); background: var(--accent-light); }
+    .card-icon { font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+    .card-body { flex: 1; min-width: 0; }
+    .card-name { font-weight: 600; font-size: 0.92rem; color: var(--text); margin-bottom: 3px; }
+    .card-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+    .card-detail a { color: var(--azul); text-decoration: none; font-weight: 500; }
+    .card-detail a:hover { text-decoration: underline; }
+    .card-badge { flex-shrink: 0; font-size: 0.65rem; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; align-self: flex-start; }
+    .badge-red { background: #FDECEA; color: #8B1010; border: 1px solid #F5C0C0; }
+    .badge-yellow { background: #FFF3D0; color: #7A5500; border: 1px solid #F0D070; }
+    .badge-green { background: #EAFAF1; color: #1A6B3C; border: 1px solid #A8DFC0; }
+    .badge-blue { background: #EAF0FF; color: #0030A0; border: 1px solid #B0C8F8; }
+    .info-box { background: #EAF0FF; border: 1px solid #B0C8F8; border-left: 4px solid var(--azul); border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; font-size: 0.85rem; color: #0A1A4A; line-height: 1.6; }
+    .card-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .meta-pill { display: inline-flex; align-items: center; gap: 5px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 0.74rem; color: var(--muted); font-weight: 500; }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 0.76rem; background: #fff; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">← <a href="/en/">Back to full directory</a> &nbsp;·&nbsp; apoyavenezuela.org</div>
+  <section class="hero">
+    <div class="flag-bar"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
+    <p class="hero-eyebrow">Volunteering · Earthquake Venezuela 2026</p>
+    <h1>Become a <em>volunteer</em></h1>
+    <p class="hero-sub">If you want to help in an organized and effective way, these are the platforms and organizations currently channeling volunteers.</p>
+  </section>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#registration">📋 Registration</a>
+      <a href="#venezuela">🇻🇪 Venezuela</a>
+      <a href="#remote">💻 Remote</a>
+      <a href="#madrid">🇪🇸 Madrid</a>
+      <a href="#usa-vol">🇺🇸 USA</a>
+      <a href="#panama-vol">🇵🇦 Panama</a>
+    </div>
+  </nav>
+  <main>
+    <div class="info-box"><strong>Important:</strong> Organized aid arrives faster. Before going to any affected area, register through one of the official channels so your effort is coordinated and effective.</div>
+
+    <section class="section" id="registration">
+      <div class="section-header"><span class="section-icon">📋</span><h2 class="section-title">Official volunteer registration</h2></div>
+      <div class="cards">
+        <div class="card card-highlight">
+          <span class="card-icon">⭐</span>
+          <div class="card-body"><div class="card-name">Voluntarios Venezuela — National platform</div><div class="card-detail">National volunteer directory. Register and connect with organizations active on the ground · <a href="https://voluntariosvenezuela.org/registro" target="_blank">voluntariosvenezuela.org/registro →</a></div></div>
+          <span class="card-badge badge-yellow">Recommended</span>
+        </div>
+        <div class="card card-priority">
+          <span class="card-icon">🚐</span>
+          <div class="card-body"><div class="card-name">Ayuda en Camino — Street volunteers</div><div class="card-detail">Caracas, La Guaira, Carabobo and El Junquito. No prior experience needed · <a href="https://ayudaencamino.com" target="_blank">ayudaencamino.com →</a></div></div>
+          <span class="card-badge badge-red">Urgent</span>
+        </div>
+        <div class="card">
+          <span class="card-icon">🔴</span>
+          <div class="card-body"><div class="card-name">Venezuelan Red Cross — Volunteer registration</div><div class="card-detail">Priority for health and emergency response profiles · <a href="https://ee.ifrc.org/x/Iaw9NksQ" target="_blank">ee.ifrc.org/x/Iaw9NksQ →</a></div></div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🧠</span>
+          <div class="card-body"><div class="card-name">Praxis Grupos Operativos — Register as volunteer psychologist</div><div class="card-detail">+700 psychologists, psychiatrists and therapists already active. Register if you are a mental health professional · <a href="https://sites.google.com/view/voluntariospraxis/principal" target="_blank">Register here →</a> · <strong>@praxis.go</strong></div></div>
+          <span class="card-badge badge-green">+700 active</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="venezuela">
+      <div class="section-header"><span class="section-icon">🇻🇪</span><h2 class="section-title">Venezuela — on-the-ground volunteering</h2></div>
+      <div class="subsection">
+        <p class="subsection-title">Zone 0 — urgent needs</p>
+        <div class="cards">
+          <div class="card card-priority">
+            <span class="card-icon">🚨</span>
+            <div class="card-body"><div class="card-name">@convzlacomando — Operation All with Venezuela</div><div class="card-detail">Urgently needed in Zone 0: portable toilets · volunteers for garbage collection and cleaning · hydraulic jacks and heavy machinery to lift slabs · psychologists and psychiatrists for victims and rescuers · water and water tanks</div></div>
+            <span class="card-badge badge-red">Zone 0</span>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <p class="subsection-title">Most needed profiles</p>
+        <div class="cards">
+          <div class="card"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">Doctors and health personnel</div><div class="card-detail">Teleconsults from any country · <a href="https://sos.reservadoc.com" target="_blank">sos.reservadoc.com →</a> · Physiotherapists · <a href="https://fisioterapeutasvoluntarios.org" target="_blank">fisioterapeutasvoluntarios.org →</a></div></div></div>
+          <div class="card"><span class="card-icon">🧠</span><div class="card-body"><div class="card-name">Psychologists, psychiatrists and therapists</div><div class="card-detail">FPV · <a href="https://fpv.org.ve" target="_blank">fpv.org.ve →</a> · Praxis Grupos Operativos · <a href="https://sites.google.com/view/voluntariospraxis/principal" target="_blank">Register →</a></div></div></div>
+          <div class="card"><span class="card-icon">🏗️</span><div class="card-body"><div class="card-name">Engineers — structural inspections</div><div class="card-detail">Civil Protection · Lomas del Este HQ or WhatsApp <strong>04128896351</strong> with photo of damage · Also: <strong>@juanchomanzo</strong></div></div></div>
+          <div class="card"><span class="card-icon">♿</span><div class="card-body"><div class="card-name">Volunteers for inclusive assistance — SOCIEVEN</div><div class="card-detail">Specialized assistance for people with disabilities, neurodiverse conditions or reduced mobility in shelters · <strong>@socieven</strong></div></div></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <p class="subsection-title">If you are a professional of any kind</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <span class="card-icon">🌐</span>
+            <div class="card-body"><div class="card-name">Efecto Red — doctors, psychologists, vets, engineers, teachers, drivers, accommodation</div><div class="card-detail">Yummy's platform to connect professionals with people who need help. Register if you have any of these profiles or can offer temporary accommodation · <a href="https://efecto-red.com" target="_blank">efecto-red.com →</a></div></div>
+            <span class="card-badge badge-yellow">All profiles</span>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <p class="subsection-title">First response — free rides with Yummy</p>
+        <div class="cards">
+          <div class="card">
+            <span class="card-icon">🦸</span>
+            <div class="card-body"><div class="card-name">heroes.yummyrides.com — First response and journalists</div><div class="card-detail">Free rides for nurses, doctors, firefighters, police, rescuers and civil protection. Also for journalists and content creators who want to document what's happening · <a href="https://heroes.yummyrides.com" target="_blank">heroes.yummyrides.com →</a></div></div>
+            <span class="card-badge badge-green">Free</span>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <p class="subsection-title">Trusted people on the ground</p>
+        <div class="cards">
+          <div class="card">
+            <span class="card-icon">👩</span>
+            <div class="card-body"><div class="card-name">Buying and delivering supplies directly</div><div class="card-detail"><strong>@irinabozzone</strong> · <strong>@sverat</strong> · <strong>@iasolmaal</strong> · <strong>@rebecaherreram</strong> · <strong>@franaguana</strong> · <strong>@anagabrielarodrig</strong> · <strong>@tatiperez</strong><br>Check their profiles, see what they're doing and write to whoever you trust most.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="remote">
+      <div class="section-header"><span class="section-icon">💻</span><h2 class="section-title">Remote volunteering — from anywhere</h2></div>
+      <div class="cards">
+        <div class="card card-highlight"><span class="card-icon">⭐</span><div class="card-body"><div class="card-name">ReservaDoc SOS — Volunteer doctors online</div><div class="card-detail">1 hour of your time can change a family's life · <a href="https://sos.reservadoc.com" target="_blank">sos.reservadoc.com →</a></div></div><span class="card-badge badge-green">Remote</span></div>
+        <div class="card"><span class="card-icon">🧠</span><div class="card-body"><div class="card-name">Praxis Grupos Operativos — Remote psychologists</div><div class="card-detail">+700 already active · <strong>+52 55 3320 0457</strong> · <a href="https://sites.google.com/view/voluntariospraxis/principal" target="_blank">Register →</a></div></div><span class="card-badge badge-green">Remote</span></div>
+        <div class="card"><span class="card-icon">🧠</span><div class="card-body"><div class="card-name">FPV — Volunteer Psychologists</div><div class="card-detail">Online or phone support · <a href="https://fpv.org.ve" target="_blank">fpv.org.ve →</a> · <strong>@fpv_ve</strong></div></div><span class="card-badge badge-green">Remote</span></div>
+        <div class="card"><span class="card-icon">🦵</span><div class="card-body"><div class="card-name">Volunteer physiotherapists</div><div class="card-detail">+1,250 already registered · <a href="https://fisioterapeutasvoluntarios.org" target="_blank">fisioterapeutasvoluntarios.org →</a></div></div><span class="card-badge badge-green">Remote</span></div>
+        <div class="card"><span class="card-icon">🌐</span><div class="card-body"><div class="card-name">Volunteer interpreter network</div><div class="card-detail">If you speak multiple languages and can help translate emergency communications, find them on Instagram.</div></div><span class="card-badge badge-green">Remote</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="madrid">
+      <div class="section-header"><span class="section-icon">🇪🇸</span><h2 class="section-title">Madrid — in-person volunteering</h2></div>
+      <div class="cards">
+        <div class="card card-priority">
+          <span class="card-icon">📦</span>
+          <div class="card-body"><div class="card-name">Club Victoria — Main center</div><div class="card-detail">Sort and prepare medical supplies, formula, diapers and rescue materials for shipment to Venezuela.</div></div>
+          <div class="card-meta"><span class="meta-pill">🕓 11:00–20:00h</span><span class="meta-pill">📍 Calle Serrano 45</span></div>
+        </div>
+        <div class="card">
+          <span class="card-icon">⛪</span>
+          <div class="card-body"><div class="card-name">Parish of Santísimo Cristo de la Victoria — Chamberí</div><div class="card-detail">Sort, pack and prepare pallets for shipment. No prior registration needed.</div></div>
+          <div class="card-meta"><span class="meta-pill">🕓 8:30–21:00h</span></div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🚛</span>
+          <div class="card-body"><div class="card-name">Logistics sector — Polideportivo Manuel Cárdenas, Leganés</div><div class="card-detail">Operators, fleets and distribution networks urgently needed to move donations to Venezuela · <strong>@alemorrisonandco</strong> · <strong>@elomat1</strong> · <strong>@virgilio_vivas</strong> · <strong>@lausanchezleon</strong> · Leganés City Hall</div></div>
+          <span class="card-badge badge-red">Urgent</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="usa-vol">
+      <div class="section-header"><span class="section-icon">🇺🇸</span><h2 class="section-title">USA — in-person volunteering</h2></div>
+      <div class="cards">
+        <div class="card card-highlight">
+          <span class="card-icon">⚽</span>
+          <div class="card-body"><div class="card-name">Inter Miami CF — Community collection</div><div class="card-detail">Stay in your vehicle, volunteers unload donations. Drive-thru solidarity event.</div></div>
+          <div class="card-meta"><span class="meta-pill">📅 Wednesday July 1 · 9:00–19:00h</span><span class="meta-pill">📍 NU Stadium, 1000 Stadium Dr, Miami FL 33125</span></div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🙋</span>
+          <div class="card-body"><div class="card-name">Miami — Volunteer coordination</div><div class="card-detail">Active coordination point.</div></div>
+          <div class="card-meta"><span class="meta-pill">📍 6173 NW 72nd Ave, Miami, FL 33166</span></div>
+        </div>
+        <div class="card">
+          <span class="card-icon">📦</span>
+          <div class="card-body"><div class="card-name">GEM Doral — Global Empowerment Mission</div><div class="card-detail">Humanitarian operations center. Strong men needed for loading.</div></div>
+          <div class="card-meta"><span class="meta-pill">📍 1850 NW 84th Ave #100, Doral, FL 33126</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="panama-vol">
+      <div class="section-header"><span class="section-icon">🇵🇦</span><h2 class="section-title">Panama — in-person volunteering</h2></div>
+      <div class="cards">
+        <div class="card card-highlight"><span class="card-icon">🙋</span><div class="card-body"><div class="card-name">Panama Pacific — 30 volunteers</div><div class="card-detail">Select, separate and pack donations. Meeting point: Rali on Av. Balboa at 9:00 AM, then travel to Panama Pacific.</div></div></div>
+        <div class="card card-highlight"><span class="card-icon">🙋</span><div class="card-body"><div class="card-name">Panapark Free Zone — 30 volunteers</div><div class="card-detail">Load containers with merchandise for Venezuela · Av. Panamericana, Corregimiento 24 de Diciembre, next to Felipillo community · 9:00 AM</div></div></div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>🇻🇪 <a href="/en/" style="color:var(--azul)">apoyavenezuela.org</a> · Compiled by Nicolina Casale De Gregorio · Madrid, June 2026</p>
+    <p style="margin-top:6px">Follow us: <a href="https://instagram.com/apoyavenezuela.app" target="_blank" style="color:var(--azul);font-weight:600;">@apoyavenezuela.app</a> · Have a new initiative? Send us a DM.</p>
+  </footer>
+</body>
+</html>
