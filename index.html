@@ -38,6 +38,12 @@
     .section-icon { font-size: 1.3rem; } .section-title { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: var(--text); }
     .subsection { margin-bottom: 28px; }
     .subsection-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    details.subsection { margin-bottom: 20px; }
+    details.subsection > summary { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amarillo); padding-bottom: 6px; border-bottom: 1px solid var(--border); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    details.subsection > summary::-webkit-details-marker { display: none; }
+    details.subsection > summary::after { content: "＋"; font-size: 0.9rem; color: var(--amarillo); font-weight: 700; transition: transform 0.2s; }
+    details.subsection[open] > summary::after { content: "－"; }
+    details.subsection > summary + * { margin-top: 10px; }
     .cards { display: flex; flex-direction: column; gap: 7px; }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; display: flex; align-items: flex-start; gap: 12px; transition: border-color 0.18s, box-shadow 0.18s; }
     .card:hover { border-color: #C8920A55; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
@@ -94,9 +100,9 @@
     <h1>Venezuela<br>necesita <em>auxilio</em></h1>
     <p class="hero-sub">Dos terremotos de magnitud 7,2 y 7,5 golpearon el norte del país con apenas 39 segundos de diferencia. Este directorio reúne todos los recursos verificados para donar, buscar personas, coordinar ayuda y apoyar la salud mental.</p>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num red">+1.000</div><div class="stat-label">fallecidos</div></div>
-      <div class="stat"><div class="stat-num yellow">+4.300</div><div class="stat-label">heridos</div></div>
-      <div class="stat"><div class="stat-num">Miles</div><div class="stat-label">sin hogar</div></div>
+      <div class="stat"><div class="stat-num red">+2.500</div><div class="stat-label">fallecidos</div></div>
+      <div class="stat"><div class="stat-num yellow">+12.000</div><div class="stat-label">heridos</div></div>
+      <div class="stat"><div class="stat-num">+350.000</div><div class="stat-label">sin hogar</div></div>
     </div>
   </section>
 
@@ -107,10 +113,10 @@
       <a href="ninos.html" style="color:var(--rojo);font-weight:600">🧒 Protección infantil</a>
       <a href="#salud">🏥 Salud</a>
       <a href="#salud-mental">🧠 Salud mental</a>
+      <a href="#coordinacion">🤝 Coordinación</a>
       <a href="#inspecciones">🏗️ Estructuras</a>
       <a href="#busqueda">🔍 Buscar personas</a>
       <a href="#emergencias">🚨 Emergencias</a>
-      <a href="#coordinacion">🤝 Coordinación</a>
       <a href="#mascotas">🐾 Mascotas</a>
       <a href="#otros">✈️ Más</a>
       <a href="paises.html" style="color:var(--azul);font-weight:600">🌍 Por país</a>
@@ -179,7 +185,18 @@
       </div>
 
       <div class="subsection">
-        <p class="subsection-title">Más fundaciones verificadas</p>
+        <p class="subsection-title">Iniciativas solidarias — marcas y artistas</p>
+        <div class="cards">
+          <div class="card card-highlight"><span class="card-icon">🍽️</span><div class="card-body"><div class="card-name">Acaure.ve — Comida con trazabilidad</div><div class="card-detail">7 cocinas aliadas cocinando para voluntarios, rescatistas y damnificados. Puedes ver en tiempo real a dónde va tu donación · <a href="https://donacionesacaure.com" target="_blank">donacionesacaure.com →</a> · <strong>@acaure.ve</strong></div></div><span class="card-badge badge-green">Trazable</span></div>
+          <div class="card"><span class="card-icon">👗</span><div class="card-body"><div class="card-name">AVO For Venezuela — 100% de la colección donado</div><div class="card-detail">Colección "FOR VENEZUELA" de <strong>@shop.avo</strong>. Desde $8. 100% de lo recaudado a organizaciones de ayuda humanitaria · <strong>@orianaguacate</strong></div></div></div>
+          <div class="card"><span class="card-icon">😎</span><div class="card-body"><div class="card-name">Saju x Sun.Risas — Lentes +58 edición especial</div><div class="card-detail">Donando $150 USD a Sun.Risas recibes unos lentes +58 edición especial por Venezuela. El mono asume el 100% de costos de producción y envío · <strong>@saju</strong></div></div></div>
+          <div class="card"><span class="card-icon">🎵</span><div class="card-body"><div class="card-name">@minombreeschris — 20% de su gira donado</div><div class="card-detail">El artista dona el 20% de lo recaudado en su gira. Tickets en su bio de Instagram.</div></div></div>
+          <div class="card"><span class="card-icon">💛</span><div class="card-body"><div class="card-name">Puente a Venezuela — GoFundMe</div><div class="card-detail"><a href="https://gofund.me/e86a743a" target="_blank">gofund.me/e86a743a →</a></div></div></div>
+        </div>
+      </div>
+
+      <details class="subsection">
+        <summary>Fundaciones y ONGs verificadas</summary>
         <div class="cards">
           <div class="card card-highlight"><span class="card-icon">💚</span><div class="card-body"><div class="card-name">We Love Foundation</div><div class="card-detail"><a href="https://welove.foundation" target="_blank">welove.foundation →</a></div></div></div>
           <div class="card"><span class="card-icon">☀️</span><div class="card-body"><div class="card-name">Sun.Risas</div><div class="card-detail">Compra insumos directamente en Venezuela · <a href="https://fundraise.sunrisas.org/earthquake" target="_blank">fundraise.sunrisas.org/earthquake →</a></div></div></div>
@@ -192,26 +209,28 @@
           <div class="card"><span class="card-icon">💊</span><div class="card-body"><div class="card-name">Farmatodo — Donación desde la app</div><div class="card-detail">Desde la app de Farmatodo puedes donar a <strong>Dividendo Voluntario Para la Comunidad A.C.</strong> y <strong>Cáritas Venezuela</strong>. Opciones: bolívares (pago móvil o transferencia), USD (transferencia bancaria o PayPal).</div></div><span class="card-badge badge-blue">App</span></div>
           <div class="card"><span class="card-icon">🌊</span><div class="card-body"><div class="card-name">Aguas para Venezuela</div><div class="card-detail"><a href="https://aguasparavenezuela.org" target="_blank">aguasparavenezuela.org →</a></div></div></div>
           <div class="card"><span class="card-icon">🇺🇸</span><div class="card-body"><div class="card-name">VACC Foundation</div><div class="card-detail">Venezuelan-American Chamber of Commerce · <a href="https://vaccfoundation.org/donate-now" target="_blank">vaccfoundation.org/donate-now →</a></div></div></div>
+          <div class="card"><span class="card-icon">📱</span><div class="card-body"><div class="card-name">Cashea — Donar desde la app</div><div class="card-detail">Botón "Ayuda Terremoto" dentro de la app. 100% de los fondos a labores humanitarias.</div></div><span class="card-badge badge-blue">App</span></div>
+          <div class="card"><span class="card-icon">💛</span><div class="card-body"><div class="card-name">Hermanos de la Calle</div><div class="card-detail"><a href="https://www.hermanosdelacalle.org/donate" target="_blank">hermanosdelacalle.org/donate →</a></div></div></div>
+          <div class="card"><span class="card-icon">💵</span><div class="card-body"><div class="card-name">Un Dólar por Venezuela</div><div class="card-detail"><a href="https://undolarporvenezuela.com" target="_blank">undolarporvenezuela.com →</a></div></div></div>
+          <div class="card"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">CRS — Catholic Relief Services</div><div class="card-detail">PayPal, Apple Pay, Venmo. Al donar recibes recibo y tax ID · <a href="https://crs.org" target="_blank">crs.org →</a></div></div><span class="card-badge badge-green">Tax ID</span></div>
+
+          <div class="card"><span class="card-icon">👩</span><div class="card-body"><div class="card-name">Personas de confianza en campo — Valencia y Caracas</div><div class="card-detail">Civiles comprando insumos y actuando de forma directa: <strong>@karinaridi</strong> (Valencia) · <strong>@susanafernandes1</strong> (Caracas) · <strong>@anagabrielarodrig</strong> · <strong>@tatiperez</strong></div></div><span class="card-badge badge-green">Directo</span></div>
+          <div class="card"><span class="card-icon">👩</span><div class="card-body"><div class="card-name">@almasofiasevilla — Donaciones con trazabilidad en tiempo real</div><div class="card-detail">Donaciones directas desde Argentina y USA con posibilidad de auditar en tiempo real. Link en bio de <strong>@almasofiasevilla</strong></div></div><span class="card-badge badge-green">Directo</span></div>
+        </div>
+      </details>
+
+      <details class="subsection">
+        <summary>Organizaciones internacionales</summary>
+        <div class="cards">
           <div class="card"><span class="card-icon">👶</span><div class="card-body"><div class="card-name">Aldeas Infantiles SOS</div><div class="card-detail"><a href="https://www.aldeasinfantiles.es/dona/emergencia-venezuela" target="_blank">aldeasinfantiles.es →</a></div></div></div>
           <div class="card"><span class="card-icon">🧒</span><div class="card-body"><div class="card-name">Save the Children</div><div class="card-detail"><a href="https://www.savethechildren.es" target="_blank">savethechildren.es →</a></div></div></div>
           <div class="card"><span class="card-icon">🤝</span><div class="card-body"><div class="card-name">Cadena International</div><div class="card-detail"><a href="https://donate.cadena.ngo" target="_blank">donate.cadena.ngo →</a></div></div></div>
           <div class="card"><span class="card-icon">🌍</span><div class="card-body"><div class="card-name">UNICEF Venezuela — Transferencia bancaria</div><div class="card-detail">Banco Provincial · Cuenta Corriente: <strong>0108-0021-81-0100174239</strong> · A nombre de: UNICEF · RIF: G-20006750-0 · Concepto: <strong>Emergencia Terremoto Venezuela</strong></div></div><span class="card-badge badge-green">Oficial</span></div>
-          <div class="card"><span class="card-icon">📱</span><div class="card-body"><div class="card-name">Cashea — Donar desde la app</div><div class="card-detail">Botón "Ayuda Terremoto" dentro de la app. 100% de los fondos entregados por Cruz Roja Venezolana.</div></div><span class="card-badge badge-blue">App</span></div>
-          <div class="card"><span class="card-icon">💛</span><div class="card-body"><div class="card-name">Hermanos de la Calle</div><div class="card-detail"><a href="https://www.hermanosdelacalle.org/donate" target="_blank">hermanosdelacalle.org/donate →</a></div></div></div>
-          <div class="card"><span class="card-icon">💵</span><div class="card-body"><div class="card-name">Un Dólar por Venezuela</div><div class="card-detail"><a href="https://undolarporvenezuela.com" target="_blank">undolarporvenezuela.com →</a></div></div></div>
-          <div class="card"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">CRS — Catholic Relief Services</div><div class="card-detail">PayPal, Apple Pay, Venmo. Al donar recibes recibo y tax ID · <a href="https://crs.org" target="_blank">crs.org →</a></div></div><span class="card-badge badge-green">Tax ID</span></div>
-          <div class="card"><span class="card-icon">🌐</span><div class="card-body"><div class="card-name">Hazlohoy.org</div><div class="card-detail"><a href="https://hazlohoy.org" target="_blank">hazlohoy.org →</a></div></div></div>
-          <div class="card"><span class="card-icon">👩</span><div class="card-body"><div class="card-name">Personas de confianza en campo — Valencia y Caracas</div><div class="card-detail">Civiles comprando insumos y actuando de forma directa: <strong>@karinaridi</strong> (Valencia) · <strong>@susanafernandes1</strong> (Caracas) · <strong>@anagabrielarodrig</strong> · <strong>@tatiperez</strong></div></div><span class="card-badge badge-green">Directo</span></div>
-          <div class="card"><span class="card-icon">👩</span><div class="card-body"><div class="card-name">@almasofiasevilla — Donaciones con trazabilidad en tiempo real</div><div class="card-detail">Donaciones directas desde Argentina y USA con posibilidad de auditar en tiempo real. Link en bio de <strong>@almasofiasevilla</strong></div></div><span class="card-badge badge-green">Directo</span></div>
-          <div class="card"><span class="card-icon">👗</span><div class="card-body"><div class="card-name">AVO For Venezuela — 100% de la colección donado</div><div class="card-detail">Colección "FOR VENEZUELA" de <strong>@shop.avo</strong>. Desde $8. 100% de lo recaudado a organizaciones de ayuda humanitaria · <strong>@orianaguacate</strong></div></div></div>
-          <div class="card"><span class="card-icon">😎</span><div class="card-body"><div class="card-name">Saju x Sun.Risas — Lentes +58 edición especial</div><div class="card-detail">Donando $150 USD a Sun.Risas recibes unos lentes +58 edición especial por Venezuela. El mono asume el 100% de costos de producción y envío · <strong>@saju</strong></div></div></div>
-          <div class="card"><span class="card-icon">💛</span><div class="card-body"><div class="card-name">Puente a Venezuela — GoFundMe</div><div class="card-detail"><a href="https://gofund.me/e86a743a" target="_blank">gofund.me/e86a743a →</a></div></div></div>
-          <div class="card"><span class="card-icon">🎵</span><div class="card-body"><div class="card-name">@minombreeschris — 20% de su gira donado</div><div class="card-detail">El artista dona el 20% de lo recaudado en su gira. Tickets en su bio de Instagram.</div></div></div>
         </div>
-      </div>
+      </details>
 
-      <div class="subsection">
-        <p class="subsection-title">Desde España — Bizum y transferencia</p>
+      <details class="subsection">
+        <summary>Desde España — Bizum y transferencia</summary>
         <div class="cards">
           <div class="card"><span class="card-icon">✝️</span><div class="card-body"><div class="card-name">Cáritas Madrid</div><div class="card-detail">Bizum <strong>33645</strong> · ES67 0075 7007 8506 0715 0747 (concepto: VENEZUELA) · Tel: 91 548 95 80</div></div></div>
           <div class="card"><span class="card-icon">🍽️</span><div class="card-body"><div class="card-name">Meals4Hope</div><div class="card-detail">Bizum <strong>11976</strong> · ES47 0081 0065 1400 0212 7418</div></div></div>
@@ -222,7 +241,7 @@
           <div class="card"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Donio — apoyo directo a La Guaira</div><div class="card-detail">Desde España · <a href="https://donio.es/venezuela" target="_blank">donio.es/venezuela →</a></div></div></div>
           <div class="card"><span class="card-icon">🤝</span><div class="card-body"><div class="card-name">Fundación Altamarcam</div><div class="card-detail">Bizum <strong>03357</strong> · ES04 0128 0010 9801 0025 8133 (concepto: VENEZUELA) · Canaliza a Acción contra el Hambre y Corazón de Titán</div></div></div>
         </div>
-      </div>
+      </details>
     </section>
 
     <!-- SALUD -->
@@ -237,26 +256,24 @@
           <strong>Desechables (carbón activado):</strong> 3M 8214 · 3M 8514<br>
           <strong>Filtros:</strong> 3M 60926 · 3M 6006 · 3M 2097 · Moldex 7600 · Dräger A1B1E1K1 Hg P3<br><br>
           Coordinar envío a través de <a href="https://ayudaencamino.com" target="_blank">ayudaencamino.com →</a></div></div><span class="card-badge badge-red">Crítico</span></div>
+          <div class="card card-priority"><span class="card-icon">🩸</span><div class="card-body"><div class="card-name">Síndrome de aplastamiento — insumos críticos</div><div class="card-detail"><strong>Críticos:</strong> Solución Salina 0,9% · Bicarbonato de Sodio IV · Gluconato de Calcio IV · Kayexalate<br><strong>Descartables IV:</strong> Jelcos 14g/16g/18g · Macrogoteros · Llaves de 3 vías<br><strong>Hidratación:</strong> Sales de rehidratación OMS · Pastillas purificadoras · Solución Ringer Lactato · Ciprofloxacina, Metronidazol, Azitromicina<br><strong>Trauma:</strong> Toxoide tetánico · Vendas elásticas · Férulas · Torniquetes · Cefazolina IV · Ceftriaxona · Clorhexidina 2-4% · Suturas Nylon/Vicryl</div></div><span class="card-badge badge-red">Crítico</span></div>
+          <div class="card"><span class="card-icon">💊</span><div class="card-body"><div class="card-name">Pacientes crónicos</div><div class="card-detail">Insulina NPH/cristalina + glucómetros con tiras · Inhaladores: Salbutamol y Budesonida · Antihipertensivos: Losartán, Amlodipina · Antibióticos: Ciprofloxacina, Metronidazol, Azitromicina</div></div></div>
         </div>
       </div>
-      <div class="subsection">
-        <p class="subsection-title">Teleconsultas médicas — el recurso más importante</p>
-        <div class="cards">
+      <div class="cards">
           <div class="card card-highlight"><span class="card-icon">⭐</span><div class="card-body"><div class="card-name">ReservaDoc SOS — Teleconsultas voluntarias</div><div class="card-detail">Plataforma de teleconsultas voluntarias para descongestionar hospitales. Sin descarga, desde cualquier país y especialidad. Actualmente: <strong>1.526 médicos en línea</strong> · <strong>2.404 médicos voluntarios</strong> · <strong>216 pacientes atendidos por 0€</strong>.<br><br>🩺 <strong>¿Eres médico?</strong> Únete como voluntario desde cualquier parte del mundo — 1 hora tuya puede cambiarle la vida a una familia.<br>👉 <a href="https://sos.reservadoc.com" target="_blank">sos.reservadoc.com →</a></div></div><span class="card-badge badge-yellow">1.526 médicos</span></div>
+        </div>
+      <details class="subsection">
+        <summary>Más teleconsultas y recursos médicos</summary>
+        <div class="cards">
           <div class="card"><span class="card-icon">📱</span><div class="card-body"><div class="card-name">TuDocs de Venemergencia — Telemedicina gratuita</div><div class="card-detail">Disponible a través de la app de <strong>Yummy Rides</strong>. Abre la app y busca TuDocs de Venemergencia.</div></div><span class="card-badge badge-green">Gratis</span></div>
           <div class="card"><span class="card-icon">👩‍⚕️</span><div class="card-body"><div class="card-name">@andreatvrsm — Apoyo médico a distancia</div><div class="card-detail">Médica ofreciendo orientación gratuita sobre medicación, heridas o cualquier problema de salud. Contactar por DM en Instagram: <strong>@andreatvrsm</strong></div></div><span class="card-badge badge-green">Gratis</span></div>
           <div class="card"><span class="card-icon">🧠</span><div class="card-body"><div class="card-name">Centro Médico Neurox — Consultas online gratuitas</div><div class="card-detail">Consultas médicas online gratuitas para afectados y familiares · <strong>@cmneurox</strong> · <strong>+56933443411</strong> · <a href="https://centromediconeurox.cl" target="_blank">centromediconeurox.cl →</a></div></div><span class="card-badge badge-green">Gratis</span></div>
           <div class="card"><span class="card-icon">🩻</span><div class="card-body"><div class="card-name">Sky Medical Group — Rayos X gratuitos 24h</div><div class="card-detail">Rayos X gratuitos las 24 horas · <strong>+58 424-1080426</strong></div></div><span class="card-badge badge-green">24h · Gratis</span></div>
           <div class="card"><span class="card-icon">🦵</span><div class="card-body"><div class="card-name">Fisioterapeutas Voluntarios</div><div class="card-detail">+1.250 fisioterapeutas voluntarios en toda Venezuela · <a href="https://fisioterapeutasvoluntarios.org" target="_blank">fisioterapeutasvoluntarios.org →</a></div></div><span class="card-badge badge-green">+1.250</span></div>
         </div>
-      </div>
-      <div class="subsection">
-        <p class="subsection-title">Insumos médicos críticos — síndrome de aplastamiento</p>
-        <div class="cards">
-          <div class="card card-priority"><span class="card-icon">🩸</span><div class="card-body"><div class="card-name">Tras el síndrome de aplastamiento — insumos críticos</div><div class="card-detail"><strong>Críticos:</strong> Solución Salina 0,9% · Bicarbonato de Sodio IV · Gluconato de Calcio IV · Kayexalate<br><strong>Descartables IV:</strong> Jelcos 14g/16g/18g · Macrogoteros · Llaves de 3 vías<br><strong>Hidratación:</strong> Sales de rehidratación OMS · Pastillas purificadoras · Solución Ringer Lactato · Ciprofloxacina, Metronidazol, Azitromicina<br><strong>Trauma:</strong> Toxoide tetánico · Vendas elásticas · Férulas · Torniquetes · Cefazolina IV · Ceftriaxona · Clorhexidina 2-4% · Suturas Nylon/Vicryl</div></div><span class="card-badge badge-red">Crítico</span></div>
-          <div class="card"><span class="card-icon">💊</span><div class="card-body"><div class="card-name">Pacientes crónicos</div><div class="card-detail">Insulina NPH/cristalina + glucómetros con tiras · Inhaladores: Salbutamol y Budesonida · Antihipertensivos: Losartán, Amlodipina · Antibióticos: Ciprofloxacina, Metronidazol, Azitromicina</div></div></div>
-        </div>
-      </div>
+      </details>
+
     </section>
 
     <!-- SALUD MENTAL -->
@@ -266,6 +283,11 @@
         <p class="subsection-title">Atención online gratuita</p>
         <div class="cards">
           <div class="card card-highlight"><span class="card-icon">⭐</span><div class="card-body"><div class="card-name">ReservaDoc SOS — Salud mental online</div><div class="card-detail">La plataforma de teleconsultas médicas también tiene sección específica de salud mental. Psicólogos y psiquiatras voluntarios disponibles online · <a href="https://sos.reservadoc.com" target="_blank">sos.reservadoc.com →</a></div></div><span class="card-badge badge-green">Gratis</span></div>
+        </div>
+      </div>
+      <details class="subsection">
+        <summary>Más opciones de apoyo psicológico</summary>
+        <div class="cards">
           <div class="card"><span class="card-icon">💚</span><div class="card-body"><div class="card-name">Escucha Activa</div><div class="card-detail">Hasta 2 sesiones gratuitas · <a href="https://escuchaactiva.com" target="_blank">escuchaactiva.com →</a></div></div><span class="card-badge badge-green">Gratis</span></div>
           <div class="card"><span class="card-icon">🤲</span><div class="card-body"><div class="card-name">Voluntarios Humana-Mente</div><div class="card-detail">Profesionales de salud mental venezolanos e internacionales ofreciendo apoyo voluntario · <a href="https://humanamentevenezuela.org" target="_blank">humanamentevenezuela.org →</a></div></div><span class="card-badge badge-green">Gratis</span></div>
           <div class="card"><span class="card-icon">💬</span><div class="card-body"><div class="card-name">OpcionYo — Grupos de apoyo y círculo WhatsApp</div><div class="card-detail">Recursos gratuitos: grupos de apoyo en vivo con especialistas · círculo de apoyo por WhatsApp guiado por especialistas para compartir cómo te sientes día a día · <a href="https://opcionyo.com" target="_blank">opcionyo.com →</a></div></div><span class="card-badge badge-green">Gratis</span></div>
@@ -275,29 +297,68 @@
           <div class="card card-highlight"><span class="card-icon">🧠</span><div class="card-body"><div class="card-name">Praxis Grupos Operativos — +700 psicólogos gratuitos</div><div class="card-detail">+700 psicólogos, psiquiatras y terapeutas atendiendo a afectados dentro y fuera de Venezuela. Completamente gratuito.<br>📞 <strong>+52 55 3320 0457</strong> · <strong>@praxis.go</strong><br>🔗 <a href="https://praxisgruposoperativos.taplink.site" target="_blank">praxisgruposoperativos.taplink.site →</a><br>👤 Voluntarios psicólogos: <a href="https://sites.google.com/view/voluntariospraxis/principal" target="_blank">Registro aquí →</a></div></div><span class="card-badge badge-yellow">+700 psicólogos</span></div>
           <div class="card"><span class="card-icon">🧘</span><div class="card-body"><div class="card-name">Apoyo psicológico — formularios activos</div><div class="card-detail"><a href="https://sites.google.com/view/apoyopsicologicovzla/home" target="_blank">sites.google.com/view/apoyopsicologicovzla →</a></div></div><span class="card-badge badge-green">Gratis</span></div>
         </div>
-      </div>
-      <div class="subsection">
-        <p class="subsection-title">Líneas directas (Venezuela)</p>
+      </details>
+      <details class="subsection">
+        <summary>Líneas directas (Venezuela)</summary>
         <div class="phone-grid">
           <div class="phone-card"><div class="phone-label">Federación de Psicólogos</div><div class="phone-number" style="font-size:0.82rem">0212-4163116</div></div>
           <div class="phone-card"><div class="phone-label">Psicólogos Sin Fronteras</div><div class="phone-number" style="font-size:0.82rem">0412-9270304</div></div>
           <div class="phone-card"><div class="phone-label">SNC</div><div class="phone-number" style="font-size:0.82rem">0414-4265181</div></div>
           <div class="phone-card"><div class="phone-label">Rehabilitarte</div><div class="phone-number" style="font-size:0.82rem">0424-6115506</div></div>
         </div>
-      </div>
+      </details>
     </section>
 
+    <!-- COORDINACIÓN -->
+    <section class="section" id="coordinacion">
+      <div class="section-header"><span class="section-icon">🤝</span><h2 class="section-title">Coordinación de ayuda</h2></div>
+      <div class="cards">
+        <div class="card card-priority"><span class="card-icon">🚐</span><div class="card-body"><div class="card-name">Ayuda en Camino — el más importante sobre el terreno</div><div class="card-detail"><a href="https://ayudaencamino.com" target="_blank">ayudaencamino.com →</a></div></div><span class="card-badge badge-red">Urgente</span></div>
+
+      </div>
+      <div class="cards">
+        <div class="card card-highlight"><span class="card-icon">🌐</span><div class="card-body"><div class="card-name">Hazlo Hoy — Plataforma comunitaria de emergencia</div><div class="card-detail">Conectando personas, familias y ayuda durante la emergencia. Ocho funciones en un solo lugar:<br><br>
+        ❤️ <a href="https://terremoto.hazlohoy.org" target="_blank">Donar →</a> &nbsp;·&nbsp;
+        🔎 <a href="https://terremoto.hazlohoy.org/buscar" target="_blank">Buscar o reportar desaparecido →</a><br>
+        📋 <a href="https://terremoto.hazlohoy.org/necesidades" target="_blank">Quién necesita ayuda →</a> &nbsp;·&nbsp;
+        🆘 <a href="https://terremoto.hazlohoy.org/necesito-ayuda" target="_blank">Necesito ayuda →</a><br>
+        🏚️ <a href="https://terremoto.hazlohoy.org/reportar-edificio" target="_blank">Reportar edificio dañado →</a> &nbsp;·&nbsp;
+        ✅ <a href="https://terremoto.hazlohoy.org/a-salvo" target="_blank">Estoy a salvo →</a><br>
+        🤝 <a href="https://terremoto.hazlohoy.org/puedo-ayudar" target="_blank">Puedo ayudar →</a> &nbsp;·&nbsp;
+        🌍 <a href="https://terremoto.hazlohoy.org/ayudar-fuera" target="_blank">Quiero ayudar fuera de Venezuela →</a><br>
+        🗺️ <a href="https://terremoto.hazlohoy.org/mapa" target="_blank">Ver mapa interactivo →</a><br><br>
+        <strong>En tiempo real:</strong> 157 a salvo · 46.633 desaparecidos · 2.785 encontrados · 143 solicitudes activas · 517 voluntarios · 925 edificios dañados</div></div><span class="card-badge badge-yellow">Todo en uno</span></div>
+      </div>
+      <details class="subsection">
+        <summary>Más herramientas de coordinación</summary>
+        <div class="cards">
+        <div class="card"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">Once Trece — Insumos gratis para personal de salud</div><div class="card-detail"><a href="https://oncetrece.net/GRIOT/solicitud/" target="_blank">oncetrece.net →</a></div></div><span class="card-badge badge-green">Gratis</span></div>
+        <div class="card"><span class="card-icon">🗺️</span><div class="card-body"><div class="card-name">Mapa de rescate terremoto</div><div class="card-detail"><a href="https://terremotovenezuela.app" target="_blank">terremotovenezuela.app →</a></div></div></div>
+        <div class="card"><span class="card-icon">📋</span><div class="card-body"><div class="card-name">Enlaza Venezuela</div><div class="card-detail">Solicita o ofrece ayuda directamente por WhatsApp · <a href="https://enlazavenezuela.com" target="_blank">enlazavenezuela.com →</a></div></div></div>
+        <div class="card"><span class="card-icon">⚡</span><div class="card-body"><div class="card-name">VzlaYuda</div><div class="card-detail">Conecta a personas que necesitan ayuda con quienes pueden dársela, sin intermediarios · <a href="https://vzlayuda.com" target="_blank">vzlayuda.com →</a></div></div></div>
+        <div class="card"><span class="card-icon">🔗</span><div class="card-body"><div class="card-name">Efecto Red</div><div class="card-detail">Conecta afectados con médicos, psicólogos e ingenieros voluntarios · <a href="https://efecto-red.com" target="_blank">efecto-red.com →</a></div></div></div>
+        <div class="card"><span class="card-icon">📦</span><div class="card-body"><div class="card-name">AJE Venezuela — Centros de acopio verificados</div><div class="card-detail"><a href="https://ajevenezuela.org/ayuda-venezuela" target="_blank">ajevenezuela.org/ayuda-venezuela →</a></div></div></div>
+        <div class="card"><span class="card-icon">🔍</span><div class="card-body"><div class="card-name">Red Ayuda Venezuela</div><div class="card-detail"><a href="https://redayudavenezuela.com" target="_blank">redayudavenezuela.com →</a></div></div></div>
+        <div class="card"><span class="card-icon">🚗</span><div class="card-body"><div class="card-name">Rider App — rutas de emergencia médica en Caracas</div><div class="card-detail">Flota prioritaria para rutas de emergencia médica. Viajes exclusivos a clínicas y hospitales · <strong>@rideryapp</strong></div></div><span class="card-badge badge-red">Emergencia</span></div>
+        </div>
+      </details>
+    </section>
     <!-- INSPECCIONES -->
     <section class="section" id="inspecciones">
       <div class="section-header"><span class="section-icon">🏗️</span><h2 class="section-title">Inspecciones técnicas y estructuras</h2></div>
       <div class="cards">
         <div class="card card-highlight"><span class="card-icon">⭐</span><div class="card-body"><div class="card-name">Terremoto Venezuela — Mapa de estructuras</div><div class="card-detail">Plataforma para reportar y consultar el estado estructural de edificios y zonas afectadas · <a href="https://terremotovenezuela.com" target="_blank">terremotovenezuela.com →</a></div></div></div>
+      </div>
+      <details class="subsection">
+        <summary>Más recursos estructurales</summary>
+        <div class="cards">
         <div class="card"><span class="card-icon">🔧</span><div class="card-body"><div class="card-name">Grupo Ávila — Inspecciones técnicas gratuitas</div><div class="card-detail">Evaluación estructural de viviendas afectadas · <a href="https://forms.gle/WdND9TPyJA9mdUTt8" target="_blank">forms.gle/WdND9TPyJA9mdUTt8 →</a></div></div><span class="card-badge badge-green">Gratis</span></div>
         <div class="card"><span class="card-icon">🏛️</span><div class="card-body"><div class="card-name">JAQ Ingenieros — Grupo JAQ</div><div class="card-detail"><a href="https://jaqingenieros.com" target="_blank">jaqingenieros.com →</a> · Instagram: <strong>@grupojaq</strong></div></div></div>
         <div class="card"><span class="card-icon">📐</span><div class="card-body"><div class="card-name">Sismo Ayuda VE</div><div class="card-detail"><a href="https://sismoayudave.com" target="_blank">sismoayudave.com →</a></div></div></div>
         <div class="card"><span class="card-icon">🏗️</span><div class="card-body"><div class="card-name">CAUDEC</div><div class="card-detail">Instagram: <strong>@caudec</strong></div></div></div>
         <div class="card"><span class="card-icon">👷</span><div class="card-body"><div class="card-name">Ing. José Quintana</div><div class="card-detail">Instagram: <strong>@ingjosequintana</strong></div></div></div>
-      </div>
+        </div>
+      </details>
     </section>
 
     <!-- BÚSQUEDA -->
@@ -305,13 +366,18 @@
       <div class="section-header"><span class="section-icon">🔍</span><h2 class="section-title">Búsqueda de personas</h2></div>
       <div class="cards">
         <div class="card card-highlight"><span class="card-icon">⭐</span><div class="card-body"><div class="card-name">Yummy SOS — Búsqueda centralizada</div><div class="card-detail">Cruza y unifica reportes de desaparecidos de múltiples plataformas · <a href="https://sos.yummyrides.com" target="_blank">sos.yummyrides.com →</a></div></div><span class="card-badge badge-yellow">Centralizado</span></div>
+      </div>
+      <details class="subsection">
+        <summary>Más plataformas de búsqueda</summary>
+        <div class="cards">
         <div class="card"><span class="card-icon">👤</span><div class="card-body"><div class="card-name">Desaparecidos Terremoto Venezuela</div><div class="card-detail"><a href="https://desaparecidosterremotovenezuela.com" target="_blank">desaparecidosterremotovenezuela.com →</a></div></div></div>
         <div class="card"><span class="card-icon">🤖</span><div class="card-body"><div class="card-name">VzlaEncuentra — Reconocimiento facial con IA</div><div class="card-detail"><a href="https://vzlaencuentra.com" target="_blank">vzlaencuentra.com →</a></div></div><span class="card-badge badge-blue">IA</span></div>
         <div class="card"><span class="card-icon">🧒</span><div class="card-body"><div class="card-name">Niños desaparecidos — Nexo Signal</div><div class="card-detail"><a href="https://busca.nexosignal.co" target="_blank">busca.nexosignal.co →</a></div></div></div>
         <div class="card"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">Hospitales en Venezuela</div><div class="card-detail">Encuentra familiares ingresados en hospitales · <a href="https://hospitalesenvenezuela.com" target="_blank">hospitalesenvenezuela.com →</a></div></div></div>
         <div class="card"><span class="card-icon">🏠</span><div class="card-body"><div class="card-name">Puertas Abiertas Venezuela</div><div class="card-detail"><a href="https://puertasabiertasvzla.org" target="_blank">puertasabiertasvzla.org →</a></div></div></div>
         <div class="card"><span class="card-icon">🔴</span><div class="card-body"><div class="card-name">Cruz Roja Venezolana — Contacto familiar</div><div class="card-detail">Restablecimiento del contacto entre familiares · <strong>0422 799 4880</strong></div></div></div>
-      </div>
+        </div>
+      </details>
     </section>
 
     <!-- EMERGENCIAS -->
@@ -346,27 +412,16 @@
       </div>
     </section>
 
-    <!-- COORDINACIÓN -->
-    <section class="section" id="coordinacion">
-      <div class="section-header"><span class="section-icon">🤝</span><h2 class="section-title">Coordinación de ayuda</h2></div>
-      <div class="cards">
-        <div class="card card-priority"><span class="card-icon">🚐</span><div class="card-body"><div class="card-name">Ayuda en Camino — el más importante sobre el terreno</div><div class="card-detail"><a href="https://ayudaencamino.com" target="_blank">ayudaencamino.com →</a></div></div><span class="card-badge badge-red">Urgente</span></div>
-        <div class="card"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">Once Trece — Insumos gratis para personal de salud</div><div class="card-detail"><a href="https://oncetrece.net/GRIOT/solicitud/" target="_blank">oncetrece.net →</a></div></div><span class="card-badge badge-green">Gratis</span></div>
-        <div class="card"><span class="card-icon">🗺️</span><div class="card-body"><div class="card-name">Mapa de rescate terremoto</div><div class="card-detail"><a href="https://terremotovenezuela.app" target="_blank">terremotovenezuela.app →</a></div></div></div>
-        <div class="card"><span class="card-icon">📋</span><div class="card-body"><div class="card-name">Enlaza Venezuela</div><div class="card-detail">Solicita o ofrece ayuda directamente por WhatsApp · <a href="https://enlazavenezuela.com" target="_blank">enlazavenezuela.com →</a></div></div></div>
-        <div class="card"><span class="card-icon">⚡</span><div class="card-body"><div class="card-name">VzlaYuda</div><div class="card-detail">Conecta a personas que necesitan ayuda con quienes pueden dársela, sin intermediarios · <a href="https://vzlayuda.com" target="_blank">vzlayuda.com →</a></div></div></div>
-        <div class="card"><span class="card-icon">🔗</span><div class="card-body"><div class="card-name">Efecto Red</div><div class="card-detail">Conecta afectados con médicos, psicólogos e ingenieros voluntarios · <a href="https://efecto-red.com" target="_blank">efecto-red.com →</a></div></div></div>
-        <div class="card"><span class="card-icon">📦</span><div class="card-body"><div class="card-name">AJE Venezuela — Centros de acopio verificados</div><div class="card-detail"><a href="https://ajevenezuela.org/ayuda-venezuela" target="_blank">ajevenezuela.org/ayuda-venezuela →</a></div></div></div>
-        <div class="card"><span class="card-icon">🔍</span><div class="card-body"><div class="card-name">Red Ayuda Venezuela</div><div class="card-detail"><a href="https://redayudavenezuela.com" target="_blank">redayudavenezuela.com →</a></div></div></div>
-        <div class="card"><span class="card-icon">🚗</span><div class="card-body"><div class="card-name">Rider App — rutas de emergencia médica en Caracas</div><div class="card-detail">Flota prioritaria para rutas de emergencia médica. Viajes exclusivos a clínicas y hospitales · <strong>@rideryapp</strong></div></div><span class="card-badge badge-red">Emergencia</span></div>
-      </div>
-    </section>
 
     <!-- MASCOTAS -->
     <section class="section" id="mascotas">
       <div class="section-header"><span class="section-icon">🐾</span><h2 class="section-title">Mascotas y animales</h2></div>
       <div class="cards">
         <div class="card card-priority"><span class="card-icon">🐾</span><div class="card-body"><div class="card-name">Insumos veterinarios — urgente</div><div class="card-detail">Alexandra R. Gutiérrez busca insumos en el este de Caracas para distribuir a puestos veterinarios atendiendo mascotas rescatadas.<br><br>💳 Zelle: <strong>ronaldpantin@gmail.com</strong> · Banco Venezuela — Alexandra R. Gutiérrez<br>📍 También en Plaza Altamira: <strong>+58 412-6159755</strong> · <strong>@danigarciagg</strong><br>📋 Contacto: <strong>@rebepanfer</strong></div></div><span class="card-badge badge-red">Urgente</span></div>
+      </div>
+      <details class="subsection">
+        <summary>Más organizaciones de rescate animal</summary>
+        <div class="cards">
         <div class="card"><span class="card-icon">📦</span><div class="card-body"><div class="card-name">Madrid — Cinesa Méndez Álvaro</div><div class="card-detail">Domingos 10:00–15:00h · Sala 5, salida de emergencia · Reciben: comida de animales, medicinas, insumos de higiene (NO ropa)</div></div><span class="card-badge badge-blue">Madrid</span></div>
         <div class="card"><span class="card-icon">🗺️</span><div class="card-body"><div class="card-name">Enlaza Venezuela — Categoría mascotas</div><div class="card-detail">Plataforma con categoría específica para mascotas perdidas o en peligro · <a href="https://enlazavenezuela.com" target="_blank">enlazavenezuela.com →</a></div></div></div>
         <div class="card"><span class="card-icon">🐕</span><div class="card-body"><div class="card-name">Red de Apoyo Canino (RAC)</div><div class="card-detail"><a href="https://reddeapoyocanino.org" target="_blank">reddeapoyocanino.org →</a> · <strong>@reddeapoyocanino</strong></div></div></div>
@@ -376,68 +431,68 @@
         <div class="card"><span class="card-icon">🐶</span><div class="card-body"><div class="card-name">Mesticitos Protección Animal</div><div class="card-detail">PayPal disponible en <strong>@mesticitos</strong></div></div></div>
         <div class="card"><span class="card-icon">🐾</span><div class="card-body"><div class="card-name">Animalitos Venezuela — Vaki</div><div class="card-detail">Código QR de Vaki disponible en <strong>@camilojm6</strong></div></div></div>
         <div class="card card-priority"><span class="card-icon">🐾</span><div class="card-body"><div class="card-name">@patitasdelaprotesta — Misión veterinaria Colombia → Venezuela</div><div class="card-detail">Equipo viaja de Colombia a Venezuela a rescatar animales. Buscan medicamentos veterinarios, material de curación o apoyo económico · <strong>@patitasdelaprotesta</strong> · <strong>@alimarrea</strong></div></div><span class="card-badge badge-red">Urgente</span></div>
-      </div>
+        </div>
+      </details>
     </section>
 
     <!-- MÁS RECURSOS -->
     <section class="section" id="otros">
       <div class="section-header"><span class="section-icon">✈️</span><h2 class="section-title">Más recursos</h2></div>
 
-      <div class="subsection">
-        <p class="subsection-title">Enviar dinero a Venezuela</p>
+      <div class="cards">
+          <div class="card card-priority"><span class="card-icon">🧒</span><div class="card-body"><div class="card-name">Guía completa de protección infantil</div><div class="card-detail">Qué hacer si encuentras un niño solo, a quién NO entregarlo, organizaciones de protección, apoyo legal gratuito 24h y refugios habilitados en Caracas.</div></div><a href="ninos.html" style="flex-shrink:0;background:var(--rojo);color:#fff;font-size:0.75rem;font-weight:700;padding:6px 12px;border-radius:6px;text-decoration:none;align-self:center;white-space:nowrap;">Ver guía →</a></div>
+        </div>
+
+      <details class="subsection">
+        <summary>Enviar dinero a Venezuela</summary>
         <div class="cards">
           <div class="card"><span class="card-icon">🔄</span><div class="card-body"><div class="card-name">Retorna.app — cero comisión por la emergencia</div><div class="card-detail">CERO comisión en todos los envíos a Venezuela durante la emergencia. Disponible desde: Chile, Colombia, Brasil, Perú y Unión Europea · <strong>@retorna.app</strong></div></div><span class="card-badge badge-green">0% comisión</span></div>
           <div class="card"><span class="card-icon">💱</span><div class="card-body"><div class="card-name">Western Union Chile — sin tarifa hasta el 10 de julio</div><div class="card-detail">$0 de tarifa de envío a Venezuela hasta el 10 de julio. Disponible a cuentas bancarias y pago móvil · <strong>@westernunion.chile</strong></div></div><span class="card-badge badge-yellow">Hasta 10 julio</span></div>
           <div class="card"><span class="card-icon">💳</span><div class="card-body"><div class="card-name">Meru.app — depósitos y retiros gratis</div><div class="card-detail">Todos los depósitos y retiros en Venezuela son 100% gratis, sin importar el método, por tiempo indefinido · <strong>@meru.app</strong></div></div><span class="card-badge badge-green">Gratis</span></div>
           <div class="card"><span class="card-icon">💸</span><div class="card-body"><div class="card-name">Remesa365 — dinero al momento</div><div class="card-detail">Para enviar dinero directamente a familiares en Venezuela. Llega al momento · App disponible iOS y Android · <strong>@remesa365</strong></div></div></div>
         </div>
-      </div>
+      </details>
 
-      <div class="subsection">
-        <p class="subsection-title">Denunciar bloqueos y corrupción</p>
+      <details class="subsection">
+        <summary>Denunciar bloqueos y corrupción</summary>
         <div class="cards">
           <div class="card"><span class="card-icon">📢</span><div class="card-body"><div class="card-name">Denuncia Venezuela</div><div class="card-detail">Plataforma para reportar bloqueos a la ayuda humanitaria, violaciones de derechos y corrupción · <a href="https://denunciavenezuela.com" target="_blank">denunciavenezuela.com →</a></div></div></div>
         </div>
-      </div>
+      </details>
 
-      <div class="subsection">
-        <p class="subsection-title">Alojamiento de emergencia</p>
+      <details class="subsection">
+        <summary>Alojamiento de emergencia</summary>
         <div class="cards">
           <div class="card"><span class="card-icon">🏠</span><div class="card-body"><div class="card-name">Airbnb.org</div><div class="card-detail">Alojamiento de emergencia gratuito para personas afectadas por el terremoto · <a href="https://airbnb.org" target="_blank">airbnb.org →</a></div></div><span class="card-badge badge-green">Gratis</span></div>
         </div>
-      </div>
+      </details>
 
-      <div class="subsection">
-        <p class="subsection-title">Conectividad — internet y llamadas gratis</p>
+      <details class="subsection">
+        <summary>Conectividad — internet y llamadas gratis</summary>
         <div class="cards">
           <div class="card card-highlight"><span class="card-icon">🛰️</span><div class="card-body"><div class="card-name">Starlink (SpaceX) — internet gratis hasta el 25 de julio</div><div class="card-detail">Internet satelital gratuito para clientes nuevos y existentes en zonas afectadas. Crédito automático. Desplegando terminales en zonas más afectadas. Equipos dañados reciben sustitución gratuita.</div></div><span class="card-badge badge-green">Hasta 25 julio</span></div>
           <div class="card"><span class="card-icon">📡</span><div class="card-body"><div class="card-name">Movistar — llamadas gratis y eSIM sin costo</div><div class="card-detail">Llamadas nacionales gratuitas. eSIM gratuita para quienes entren a Venezuela por emergencias humanitarias. Activo mientras dure la emergencia.</div></div><span class="card-badge badge-green">Gratis</span></div>
           <div class="card"><span class="card-icon">📱</span><div class="card-body"><div class="card-name">Digitel — llamadas y SMS gratis 48h</div><div class="card-detail">Llamadas y SMS gratuitos durante 48 horas en Caracas, La Guaira y región central.</div></div></div>
           <div class="card"><span class="card-icon">🌐</span><div class="card-body"><div class="card-name">CANTV — internet, telefonía y TV gratis 48h</div><div class="card-detail">Internet fijo, telefonía y televisión gratuitos durante 48 horas en zonas afectadas.</div></div></div>
         </div>
-      </div>
+      </details>
 
-      <div class="subsection">
-        <p class="subsection-title">Comunicación sin internet</p>
+      <details class="subsection">
+        <summary>Comunicación sin internet</summary>
         <div class="cards">
           <div class="card"><span class="card-icon">📱</span><div class="card-body"><div class="card-name">Apps para llamar sin internet</div><div class="card-detail"><strong>Talk 360</strong> · <strong>Yolla</strong> · <strong>Rebtel</strong></div></div></div>
         </div>
-      </div>
+      </details>
 
-      <div class="subsection">
-        <p class="subsection-title">Voluntariado y empleo humanitario</p>
+      <details class="subsection">
+        <summary>Voluntariado y empleo humanitario</summary>
         <div class="cards">
           <div class="card"><span class="card-icon">🙋</span><div class="card-body"><div class="card-name">Voluntarios Venezuela — Plataforma nacional</div><div class="card-detail">Directorio nacional de voluntarios. Regístrate y conecta con organizaciones activas sobre el terreno · <a href="https://voluntariosvenezuela.org/registro" target="_blank">voluntariosvenezuela.org/registro →</a></div></div></div>
           <div class="card"><span class="card-icon">🤝</span><div class="card-body"><div class="card-name">Tejiendo Redes — Voluntarios organizados</div><div class="card-detail">Formulario de inscripción en el perfil de <strong>@fundaciontejiend</strong></div></div></div>
         </div>
-      </div>
+      </details>
 
-      <div class="subsection">
-        <p class="subsection-title">Protección infantil</p>
-        <div class="cards">
-          <div class="card card-priority"><span class="card-icon">🧒</span><div class="card-body"><div class="card-name">Guía completa de protección infantil</div><div class="card-detail">Qué hacer si encuentras un niño solo, a quién NO entregarlo, organizaciones de protección, apoyo legal gratuito 24h y refugios habilitados en Caracas.</div></div><a href="ninos.html" style="flex-shrink:0;background:var(--rojo);color:#fff;font-size:0.75rem;font-weight:700;padding:6px 12px;border-radius:6px;text-decoration:none;align-self:center;white-space:nowrap;">Ver guía →</a></div>
-        </div>
-      </div>
+
     </section>
 
     <div class="cta-box">
