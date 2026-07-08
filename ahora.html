@@ -63,6 +63,11 @@
     .card-desc strong { color: var(--text); }
     footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 0.76rem; background: #fff; }
     @media (max-width: 600px) { .city-date { display: none; } }
+
+    /* TABS */
+    .city-section { display: none; }
+    .city-section.active { display: block; }
+    .country-pill.active { background: var(--azul); color: #fff; border-color: var(--azul); }
   </style>
 </head>
 <body>
@@ -73,26 +78,26 @@
     <p class="hero-eyebrow">Iniciativas y necesidades activas</p>
     <h1>Ahora <em>mismo</em></h1>
     <p class="hero-sub">Eventos, centros de acopio, voluntariado y necesidades activas. Si tienes una iniciativa para añadir, escríbenos por DM a <a href="https://instagram.com/apoyavenezuela.app" target="_blank" style="color:var(--azul);">@apoyavenezuela.app</a></p>
-    <div class="updated-pill">🕓 Actualizado: 7 de julio, 12:00h CEST</div>
+    <div class="updated-pill">🕓 Actualizado: 8 de julio, 10:00h CEST</div>
   </section>
 
   <div class="country-nav">
     <div class="country-nav-inner">
-      <a class="country-pill" href="#caracas">🇻🇪 Caracas</a>
-      <a class="country-pill" href="#la-guaira">🌊 La Guaira</a>
-      <a class="country-pill" href="#otras-ve">🏙️ Otras VE</a>
-      <a class="country-pill" href="#madrid">🇪🇸 Madrid</a>
-      <a class="country-pill" href="#usa">🇺🇸 USA</a>
-      <a class="country-pill" href="#brasil">🇧🇷 Brasil</a>
-      <a class="country-pill" href="#chile">🇨🇱 Chile</a>
-      <a class="country-pill" href="#panama">🇵🇦 Panamá</a>
-      <a class="country-pill" href="#colombia">🇨🇴 Colombia</a>
-      <a class="country-pill" href="#mexico">🇲🇽 México</a>
-      <a class="country-pill" href="#ecuador">🇪🇨 Ecuador</a>
-      <a class="country-pill" href="#barcelona">🇪🇸 Barcelona</a>
-      <a class="country-pill" href="#uk">🇬🇧 UK</a>
-      <a class="country-pill" href="#formacion">🎓 Formación</a>
-      <a class="country-pill" href="#rescate-intl">⛑️ Rescate intl.</a>
+      <a class="country-pill" data-tab="caracas" href="#caracas" onclick="event.preventDefault();showTab('caracas')">🇻🇪 Caracas</a>
+      <a class="country-pill" data-tab="la-guaira" href="#la-guaira" onclick="event.preventDefault();showTab('la-guaira')">🌊 La Guaira</a>
+      <a class="country-pill" data-tab="otras-ve" href="#otras-ve" onclick="event.preventDefault();showTab('otras-ve')">🏙️ Otras VE</a>
+      <a class="country-pill" data-tab="madrid" href="#madrid" onclick="event.preventDefault();showTab('madrid')">🇪🇸 Madrid</a>
+      <a class="country-pill" data-tab="usa" href="#usa" onclick="event.preventDefault();showTab('usa')">🇺🇸 USA</a>
+      <a class="country-pill" data-tab="brasil" href="#brasil" onclick="event.preventDefault();showTab('brasil')">🇧🇷 Brasil</a>
+      <a class="country-pill" data-tab="chile" href="#chile" onclick="event.preventDefault();showTab('chile')">🇨🇱 Chile</a>
+      <a class="country-pill" data-tab="panama" href="#panama" onclick="event.preventDefault();showTab('panama')">🇵🇦 Panamá</a>
+      <a class="country-pill" data-tab="colombia" href="#colombia" onclick="event.preventDefault();showTab('colombia')">🇨🇴 Colombia</a>
+      <a class="country-pill" data-tab="mexico" href="#mexico" onclick="event.preventDefault();showTab('mexico')">🇲🇽 México</a>
+      <a class="country-pill" data-tab="ecuador" href="#ecuador" onclick="event.preventDefault();showTab('ecuador')">🇪🇨 Ecuador</a>
+      <a class="country-pill" data-tab="barcelona" href="#barcelona" onclick="event.preventDefault();showTab('barcelona')">🇪🇸 Barcelona</a>
+      <a class="country-pill" data-tab="uk" href="#uk" onclick="event.preventDefault();showTab('uk')">🇬🇧 UK</a>
+      <a class="country-pill" data-tab="formacion" href="#formacion" onclick="event.preventDefault();showTab('formacion')">🎓 Formación</a>
+      <a class="country-pill" data-tab="rescate-intl" href="#rescate-intl" onclick="event.preventDefault();showTab('rescate-intl')">⛑️ Rescate intl.</a>
     </div>
   </div>
 
@@ -537,5 +542,28 @@
     <p style="margin-top:6px">Síguenos: <a href="https://instagram.com/apoyavenezuela.app" target="_blank" style="color:var(--azul);font-weight:600;">@apoyavenezuela.app</a> · ¿Tienes una iniciativa nueva? Escríbenos por DM.</p>
   </footer>
 
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.city-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.country-pill').forEach(p => p.classList.remove('active'));
+      const section = document.getElementById(id);
+      if (section) section.classList.add('active');
+      const pill = document.querySelector('.country-pill[data-tab="' + id + '"]');
+      if (pill) {
+        pill.classList.add('active');
+        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+
+    // Init: show first tab
+    const firstSection = document.querySelector('.city-section');
+    if (firstSection) showTab(firstSection.id);
+
+    // Handle hash on load
+    if (location.hash) {
+      const id = location.hash.slice(1);
+      if (document.getElementById(id)) showTab(id);
+    }
+  </script>
 </body>
 </html>
