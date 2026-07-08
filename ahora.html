@@ -7,11 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --amarillo: #C8920A; --azul: #003DA5; --rojo: #B01818;
-      --bg: #F9F7F3; --surface: #FFFFFF; --border: #E4E0D8;
-      --text: #1A1A1A; --muted: #6B6560; --accent-light: #FFF8E8;
-    }
+    :root { --amarillo: #C8920A; --azul: #003DA5; --rojo: #B01818; --bg: #F9F7F3; --surface: #FFFFFF; --border: #E4E0D8; --text: #1A1A1A; --muted: #6B6560; --accent-light: #FFF8E8; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
     .top-bar { background: var(--azul); color: #fff; text-align: center; padding: 11px 24px; font-size: 0.82rem; font-weight: 500; }
@@ -25,9 +21,10 @@
     .hero h1 em { font-style: normal; color: var(--amarillo); }
     .hero-sub { max-width: 560px; margin: 0 auto; font-size: 0.93rem; color: var(--muted); line-height: 1.7; }
     .updated-pill { display: inline-block; margin-top: 16px; background: var(--accent-light); border: 1px solid #F0D070; color: #7A5500; font-size: 0.74rem; font-weight: 600; padding: 5px 14px; border-radius: 20px; }
-    .country-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 14px 24px; overflow-x: auto; }
-    .country-nav-inner { display: flex; gap: 8px; max-width: 900px; margin: 0 auto; white-space: nowrap; }
-    .country-pill { display: inline-block; padding: 7px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; font-size: 0.78rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: all 0.18s; }
+    .country-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 14px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .country-nav::-webkit-scrollbar { display: none; }
+    .country-nav-inner { display: flex; gap: 8px; padding: 0 16px; white-space: nowrap; }
+    .country-pill { display: inline-block; padding: 7px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; font-size: 0.78rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: all 0.18s; white-space: nowrap; }
     .country-pill:hover { background: var(--azul); color: #fff; border-color: var(--azul); }
     main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
     .city-section { margin-bottom: 56px; scroll-margin-top: 90px; }
@@ -37,12 +34,18 @@
     .city-date { margin-left: auto; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
     .subsection { margin-bottom: 22px; }
     .subsection-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    details.city-sub { margin-bottom: 16px; }
+    details.city-sub > summary { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amarillo); padding-bottom: 6px; border-bottom: 1px solid var(--border); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    details.city-sub > summary::-webkit-details-marker { display: none; }
+    details.city-sub > summary::after { content: "＋"; font-size: 0.9rem; color: var(--amarillo); font-weight: 700; }
+    details.city-sub[open] > summary::after { content: "－"; }
+    details.city-sub > summary + * { margin-top: 10px; }
     .cards { display: flex; flex-direction: column; gap: 9px; }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 15px 18px; transition: border-color 0.18s, box-shadow 0.18s; }
     .card:hover { border-color: #C8920A55; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
     .card-priority { border-color: var(--rojo); border-width: 2px; background: #FFF8F8; }
     .card-highlight { border-color: var(--amarillo); background: var(--accent-light); }
-    .card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+    .card-top { display: flex; align-items: flex-start; gap: 12px; }
     .card-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
     .card-body { flex: 1; min-width: 0; }
     .card-name { font-weight: 700; font-size: 0.93rem; color: var(--text); margin-bottom: 3px; }
@@ -59,16 +62,17 @@
     .card-desc a:hover { text-decoration: underline; }
     .card-desc strong { color: var(--text); }
     footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 0.76rem; background: #fff; }
-    @media (max-width: 600px) { .city-date { display: none; width:100%; } }
+    @media (max-width: 600px) { .city-date { display: none; } }
   </style>
 </head>
 <body>
   <div class="top-bar">← <a href="index.html">Volver al directorio completo</a> &nbsp;·&nbsp; apoyavenezuela.org</div>
+
   <section class="hero">
     <div class="flag-bar"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
     <p class="hero-eyebrow">Iniciativas y necesidades activas</p>
     <h1>Ahora <em>mismo</em></h1>
-    <p class="hero-sub">Eventos, centros de acopio, voluntariado y necesidades urgentes activas hoy y en los próximos días. Si tienes una iniciativa para añadir, escríbenos.</p>
+    <p class="hero-sub">Eventos, centros de acopio, voluntariado y necesidades activas. Si tienes una iniciativa para añadir, escríbenos por DM a <a href="https://instagram.com/apoyavenezuela.app" target="_blank" style="color:var(--azul);">@apoyavenezuela.app</a></p>
     <div class="updated-pill">🕓 Actualizado: 7 de julio, 12:00h CEST</div>
   </section>
 
@@ -76,11 +80,18 @@
     <div class="country-nav-inner">
       <a class="country-pill" href="#caracas">🇻🇪 Caracas</a>
       <a class="country-pill" href="#la-guaira">🌊 La Guaira</a>
-      <a class="country-pill" href="#otras-ciudades-ve">🏙️ Otras ciudades VE</a>
+      <a class="country-pill" href="#otras-ve">🏙️ Otras VE</a>
       <a class="country-pill" href="#madrid">🇪🇸 Madrid</a>
       <a class="country-pill" href="#usa">🇺🇸 USA</a>
-      <a class="country-pill" href="#salud-publica">💉 Salud pública</a>
-      <a class="country-pill" href="#protocolos">📋 Protocolos de donación</a>
+      <a class="country-pill" href="#brasil">🇧🇷 Brasil</a>
+      <a class="country-pill" href="#chile">🇨🇱 Chile</a>
+      <a class="country-pill" href="#panama">🇵🇦 Panamá</a>
+      <a class="country-pill" href="#colombia">🇨🇴 Colombia</a>
+      <a class="country-pill" href="#mexico">🇲🇽 México</a>
+      <a class="country-pill" href="#ecuador">🇪🇨 Ecuador</a>
+      <a class="country-pill" href="#uk">🇬🇧 UK</a>
+      <a class="country-pill" href="#rescate-intl">⛑️ Rescate intl.</a>
+      <a class="country-pill" href="#apoyo-emocional">💙 Apoyo emocional</a>
     </div>
   </div>
 
@@ -91,400 +102,99 @@
       <div class="city-header">
         <span class="city-icon">🇻🇪</span>
         <h2 class="city-title">Caracas</h2>
-        <span class="city-date">Activo hoy</span>
+        <span class="city-date">Activo</span>
       </div>
 
-                  <div class="subsection">
-        <p class="subsection-title">Centros de acopio por municipio</p>
+      <div class="subsection">
+        <p class="subsection-title">Centros de acopio principales</p>
         <div class="cards">
-          <div class="cards">
           <div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">🏥</span>
-              <div class="card-body">
-                <div class="card-name">UCV — Facultad de Medicina</div>
-                <div class="card-tagline">Medicamentos pediátricos, material de sutura, alcohol, gasas y jeringas.</div>
-              </div>
-        </div>
-      </div>
-            <div class="subsection">
-        <p class="subsection-title">Centros de acopio por municipio — ver más</p>
-        <div class="cards">
-          <div class="cards">
-          <div class="cards">
+            <div class="card-top"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">UCV — Facultad de Medicina</div><div class="card-tagline">Medicamentos pediátricos, material de sutura, alcohol, gasas y jeringas.</div></div><span class="card-badge badge-red">Médico</span></div>
+            <div class="card-meta"><span class="meta-pill">🕓 8:30–16:30h</span></div>
+          </div>
           <div class="card card-highlight">
-            <div class="card-top">
-              <span class="card-icon">📍</span>
-              <div class="card-body">
-                <div class="card-name">Plaza Alfredo Sadel — Las Mercedes</div>
-                <div class="card-tagline">Punto central. Alimentos no perecederos, agua, insumos médicos y fórmulas infantiles. También reciben herramientas menores para remoción de escombros.</div>
-              </div>
-<div class="card-meta">
-              <span class="meta-pill">🕓 8:00–19:00h</span>
-            </div>
-            <div class="card-desc">Herramientas solicitadas: palas, picos, carretillas, guantes de seguridad gruesos, cizallas, seguetas, cintas de demarcación, discos de corte para metal y concreto.</div>
+            <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Plaza Alfredo Sadel — Las Mercedes</div><div class="card-tagline">Punto central. Alimentos no perecederos, agua, insumos médicos, fórmulas infantiles, herramientas de rescate.</div></div></div>
+            <div class="card-meta"><span class="meta-pill">🕓 8:00–19:00h</span></div>
+            <div class="card-desc">Herramientas: palas, picos, carretillas, guantes gruesos, cizallas, cintas de demarcación, discos de corte.</div>
           </div>
-<div class="card">
-            <div class="card-top">
-              <span class="card-icon">📍</span>
-              <div class="card-body">
-                <div class="card-name">Sede Parque Miranda — Chacao</div>
-                <div class="card-tagline">Herramientas de rescate, linternas, baterías, guantes de carnaza y cascos.</div>
-              </div>
-<div class="card-meta"><span class="meta-pill">🕓 9:00–17:00h</span></div>
-          </div>
-<div class="card">
-            <div class="card-top">
-              <span class="card-icon">⛪</span>
-              <div class="card-body">
-                <div class="card-name">Iglesia La Guadalupe — Las Mercedes</div>
-                <div class="card-tagline">Ropa en buen estado, sábanas, cobijas y colchonetas.</div>
-              </div>
-<div class="card-meta"><span class="meta-pill">🕓 8:00–18:00h</span></div>
-          </div>
-<div class="card-meta"><span class="meta-pill">🕓 8:30–16:30h</span></div>
-          </div>
-        </div>
-
-            <div class="subsection">
-        <p class="subsection-title">Otros centros activos (Chacao, Baruta, Sucre, Libertador, El Hatillo)</p>
-        <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">💊</span>
-              <div class="card-body">
-                <div class="card-name">Medicamentos pediátricos urgentes</div>
-                <div class="card-tagline">Punto de recepción: Dunas. Contacto: @sun.risas</div>
-              </div>
-<div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">🩹</span>
-              <div class="card-body">
-                <div class="card-name">Insumos para centros médicos avanzados — La Guaira</div>
-                <div class="card-tagline">Necesidad urgente para atención avanzada.</div>
-              </div>
         </div>
       </div>
-            <details class="city-sub">
-        <summary>Insumos médicos urgentes — ver más</summary>
+
+      <details class="city-sub">
+        <summary>Más centros de acopio — Caracas</summary>
         <div class="cards">
-          <div class="cards">
-          <div class="card-desc">Acetaminofén pediátrico (Atamel/Tachipirin jarabe o gotas) · Ibuprofeno pediátrico (Ibufen/Brugesic) · Pedialyte/suero oral · Cetirizina pediátrica · Salbutamol spray · Enterogermina · Crema para pañalitis · Crema antibiótica · Solución fisiológica · Antibiótico en suspensión (Amoxicilina/Azitromicina)</div>
-          </div>
-          <div class="card-desc">Yelco/catéteres (Nro. 18, 20, 22) · Solución Ringer Lactato o Fisiológica 0.9% · Equipos de infusión macrogotero · Inyectadoras 3cc, 5cc, 10cc · Adrenalina y Atropina en ampollas</div>
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Sede Parque Miranda — Chacao</div><div class="card-tagline">Herramientas de rescate, linternas, baterías, guantes y cascos.</div></div></div><div class="card-meta"><span class="meta-pill">🕓 9:00–17:00h</span></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">⛪</span><div class="card-body"><div class="card-name">Iglesia La Guadalupe — Las Mercedes</div><div class="card-tagline">Ropa en buen estado, sábanas, cobijas y colchonetas.</div></div></div><div class="card-meta"><span class="meta-pill">🕓 8:00–18:00h</span></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">🎓</span><div class="card-body"><div class="card-name">UCAB — Módulo gobierno estudiantil, Montalbán</div><div class="card-tagline">Alimentos, mantas y medicinas.</div></div></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">🎓</span><div class="card-body"><div class="card-name">UCV — Sede FCU</div><div class="card-tagline">Medicamentos, material de primeros auxilios y agua.</div></div></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">Colegio de Médicos — Santa Fe</div><div class="card-tagline">Insumos médicos, medicamentos, alimentos no perecederos y agua.</div></div></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">📻</span><div class="card-body"><div class="card-name">Sede Unión Radio — Chacao</div><div class="card-tagline">Agua potable, alimentos no perecederos y ropa en buen estado.</div></div></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">⛪</span><div class="card-body"><div class="card-name">Parroquia Don Bosco — Altamira</div><div class="card-tagline">Alimentos, agua y ropa. Coordinado por grupos scout y voluntarios.</div></div></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">🗺️</span><div class="card-body"><div class="card-name">Lista completa por municipio</div><div class="card-tagline"><strong>Chacao:</strong> Instituto de Diseño, Santo Tomás de Aquino, Cristo Rey, Hotel Ávila · <strong>Baruta:</strong> Protección Civil El Cafetal, Club Hípico, Mater Salvatoris, Sagrada Familia · <strong>Sucre:</strong> Unimet, Universidad Monteavila, Cáritas Petare · <strong>Libertador:</strong> Cáritas Venezuela, Iglesia La Paz, San Bernardino · <strong>El Hatillo:</strong> Copa Hatillana, Polideportivo Los Naranjos</div></div></div></div>
         </div>
       </details>
 
-        </div>
-
-            <div class="subsection">
-        <p class="subsection-title">Refugios y campamentos</p>
+      <div class="subsection">
+        <p class="subsection-title">Cubo Negro Yummy — centro de acopio activo</p>
         <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">🚨</span>
-              <div class="card-body">
-                
-                
-              </div>
-              <span class="card-badge badge-red">Señales de vida</span>
-            </div>
-            <div class="card-desc">Comida · Antitetánicas · Gasoil · Agua · Hielo · Café · Bombonas de gas · Linternas · Oxígeno/bombas · Protector solar · Carpas · Toldos · Poncho de lluvia<br>📞 <strong>+58 412-0171572</strong></div>
-          </div>
-        </div>
-      </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">👶</span>
-              <div class="card-body">
-                <div class="card-name">Refugio La Pastora — 60 niños</div>
-                <div class="card-tagline">Hermanas Carmelita · +58 412 6991971</div>
-              </div>
-<div class="card-desc">Urgente: Talco para bebé · Crema cero · Colchones · Champú · Leche de lactancia · Alimentos · Pañales talla L/G/XG · Sábanas o cobijas</div>
-          </div>
-<div class="card">
-            <div class="card-top">
-              <span class="card-icon">🍞</span>
-              <div class="card-body">
-                <div class="card-name">Parque del Este y del Oeste / El Paraíso — niños huérfanos</div>
-                <div class="card-tagline">Grupo llevando medicamentos, juguetes y comida a niños refugiados. Pueden enviar facturas de todo lo donado.</div>
-              </div>
-<div class="card-desc">📞 Mariangel Rodríguez: <strong>+58 424 1751797</strong></div>
-          </div>
-<div class="card">
-            <div class="card-top">
-              <span class="card-icon">💊</span>
-              <div class="card-body">
-                <div class="card-name">Deportivo La Trinidad</div>
-                <div class="card-tagline">Sarah Bitchatchi · +58 414 1294415</div>
-              </div>
-<div class="card-desc">Medicamentos bebés (acetaminofén) · Jabón · Cepillos y pasta · Colchones pequeños · Sábanas · Cobijas · Suéteres</div>
-          </div>
-        </div>
-
-                  <div class="subsection">
-        <p class="subsection-title">Hospitales — necesidades actualizadas</p>
-        <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">🏥</span>
-              <div class="card-body">
-                <div class="card-name">Equipos médicos especializados — prioridad actual</div>
-                <div class="card-tagline">Los hospitales han actualizado sus prioridades. Agua, alimentos e higiene siguen siendo necesarios pero ahora el foco está en equipos especializados difíciles de conseguir.</div>
-              </div>
-        </div>
-      </div>
-            <details class="city-sub">
-        <summary>Hospitales — necesidades actualizadas — ver más</summary>
-        <div class="cards">
-          <div class="cards">
-          <div class="card-desc">
-              Lámpara cialítica doble de techo · Máquina de anestesia · Equipo de alta succión para quirófano · Autoclave de 21 litros · Ecógrafo · Electrocardiograma
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">💊</span>
-              <div class="card-body">
-                <div class="card-name">Lista completa de medicamentos urgentes</div>
-                <div class="card-tagline">Según reporte actualizado de centros médicos.</div>
-              </div>
-<div class="card-desc">
-              <strong>Antihipertensivos:</strong> Lisinopril · Valsartán · Olmesartán · Hidroclorotiazida · Espironolactona · Furosemida<br>
-              <strong>Hipolipemiantes:</strong> Atorvastatina · Rosuvastatina<br>
-              <strong>Antialérgicos:</strong> Desloratadina · Loratadina · Cetirizina (tabletas y jarabe) · Clorfeniramina<br>
-              <strong>AINEs:</strong> Ibuprofeno · Acetaminofén jarabe · Tiocolchicosido · Ketoprofeno · Ketorolaco · Dipirona<br>
-              <strong>Diabetes:</strong> Metformina · Sitagliptina<br>
-              <strong>Antiplaquetarios:</strong> Aspirina · Clopidogrel<br>
-              <strong>Antibióticos:</strong> Claritromicina · Metronidazol · Azitromicina · Amoxicilina · Cefadroxilo · Ceftriaxona IV · Cefazolina · Levofloxacina · Moxifloxacina<br>
-              <strong>Electrolitos IV:</strong> KCl · Magnesio · Bicarbonato de sodio · Gluconato de calcio<br>
-              <strong>Otros:</strong> Penicilinas · Vitamina K · Ácido tranexámico · Atropina · Adrenalina · Omeprazol · Pantoprazol · Lidocaína · Norepinefrina · Heparina · Ácido fólico · Complejo B · Probióticos<br>
-              <strong>Descartables:</strong> Gasas estériles · Cepillos quirúrgicos · Bisturí · Guantes de nitrilo · Agua oxigenada · Yeso
-            </div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
           <div class="card card-highlight">
-            <div class="card-top"><span class="card-icon">🍽️</span><div class="card-body"><div class="card-name">Manos a la Mesa — Ecosistema Mag</div><div class="card-tagline">Plataforma humanitaria que conecta solicitudes reales con donantes, restaurantes y cocinas. 3.965 comidas entregadas · 3.577 personas impactadas. Buscan cocinas y comedores aliados urgente.</div></div><span class="card-badge badge-green">Activo</span></div>
+            <div class="card-top"><span class="card-icon">⭐</span><div class="card-body"><div class="card-name">Cubo Negro — 9:00 a 16:00h</div><div class="card-tagline">Centro de acopio activo de Yummy. <strong>Ya NO reciben ropa.</strong> Solo insumos médicos, agua, alimentos y herramientas.</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <details class="city-sub">
+        <summary>Manos a la Mesa — plataforma de alimentación</summary>
+        <div class="cards">
+          <div class="card card-highlight">
+            <div class="card-top"><span class="card-icon">🍽️</span><div class="card-body"><div class="card-name">Manos a la Mesa — Ecosistema Mag</div><div class="card-tagline">3.965 comidas entregadas · 3.577 personas impactadas. Conecta solicitudes reales con donantes, restaurantes y cocinas. Buscan cocinas y comedores aliados.</div></div><span class="card-badge badge-green">Activo</span></div>
             <div class="card-desc">Solicitar comida (refugios, hospitales, fundaciones): <a href="https://manosalamesa.ecosistemag.com/solicitar" target="_blank">manosalamesa.ecosistemag.com →</a> · 10:00–17:00h</div>
           </div>
         </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-highlight">
-            <div class="card-top">
-              <span class="card-icon">🍽️</span>
-              <div class="card-body">
-                <div class="card-name">Acaure.ve — 9.550 platos entregados</div>
-                <div class="card-tagline">7 cocinas aliadas cocinando para voluntarios, rescatistas y personas sin hogar. Puedes ver la trazabilidad de cada plato en tiempo real.</div>
-              </div>
-              <span class="card-badge badge-green">Verificado</span>
-            </div>
-            <div class="card-desc">
-              12.682 platos en proceso · <a href="https://donacionesacaure.com" target="_blank">donacionesacaure.com →</a> · <strong>@acaure.ve</strong><br>
-              Asociados con Finquera y Polar para comprar al mayor. Proteína y alimentos a precio costo.
-            </div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">🎨</span>
-              <div class="card-body">
-                <div class="card-name">Los niños merecen color</div>
-                <div class="card-tagline">Diseñadores e ilustradores: crea piezas para colorear con mensajes de esperanza. Comunidad: dona lápices de colores, creyones, marcadores, plastilina, hojas.</div>
-              </div>
-            </div>
-            <div class="card-desc">Contacto: <strong>0414 6012613</strong> · <strong>0416 7638467</strong> · <strong>@foliobyshelo</strong></div>
-          </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
       </details>
 
-      </div>
-      </div>
-        </div>
-      </div>
-
-      </div>
-      </div>
-      </div>
-        </div>
-        </div>
-        </div>
-        </div>
-      </div>
       <details class="city-sub">
-        <summary>Refugios y campamentos — ver más</summary>
+        <summary>Acaure.ve — comida con trazabilidad en tiempo real</summary>
         <div class="cards">
-          <div class="cards">
           <div class="card">
-            <div class="card-top">
-              <span class="card-icon">⛺</span>
-              <div class="card-body">
-                <div class="card-name">Campamento — Parque del Este</div>
-                <div class="card-tagline">+40 carpas armadas con colchones, almohadas y sábanas. Reparto de comida y actividades para niños.</div>
-              </div>
-            </div>
+            <div class="card-top"><span class="card-icon">🍽️</span><div class="card-body"><div class="card-name">Acaure.ve — 7 cocinas aliadas</div><div class="card-tagline">Cocinando para voluntarios, rescatistas y damnificados. Puedes ver en tiempo real a dónde va tu donación.</div></div></div>
+            <div class="card-desc"><a href="https://donacionesacaure.com" target="_blank">donacionesacaure.com →</a> · <strong>@acaure.ve</strong></div>
           </div>
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">🍲</span>
-              <div class="card-body">
-                <div class="card-name">Nuevo comedor de campaña — Tanaguarena</div>
-                <div class="card-tagline">Atiende a familias damnificadas. Buscan voluntarios para cocinar o llevar insumos frescos.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <span class="card-icon">🏬</span>
-            <div class="card-body">
-              <div class="card-name">CCCT (Ciudad Tamanaco) — Nivel C2</div>
-              <div class="card-tagline">Frente a las taquillas de estacionamiento. Habilitado por empresas de transporte. Ropa en buen estado, sábanas y cobijas.</div>
-            </div>
-          </div>
-          <div class="card">
-            <span class="card-icon">🎭</span>
-            <div class="card-body">
-              <div class="card-name">Teatro Teresa Carreño — "Artistas por la vida"</div>
-              <div class="card-tagline">Jornada solidaria de recolección. Voluntarios para clasificación de medicamentos y alimentos.</div>
-            </div>
-            <div class="card-meta"><span class="meta-pill">🕓 8:00–17:00h</span></div>
-          </div>
-          <div class="card">
-            <span class="card-icon">🏬</span>
-            <div class="card-body">
-              <div class="card-name">Centro San Ignacio / Centro Lido / Millennium Mall</div>
-              <div class="card-tagline">Centros comerciales convertidos en puntos de acopio humanitario. Coordinados con agrupaciones de scouts de Venezuela.</div>
-            </div>
-          </div>
-          <div class="card">
-            <span class="card-icon">⚽</span>
-            <div class="card-body">
-              <div class="card-name">Estadio Monumental (Leones del Caracas)</div>
-              <div class="card-tagline">Centro de acopio activo en el estadio.</div>
-            </div>
-          </div>
-          <div class="card">
-            <span class="card-icon">🏋️</span>
-            <div class="card-body">
-              <div class="card-name">Gimnasio Linares — Las Mercedes (mascotas)</div>
-              <div class="card-tagline">Alimento seco para perros y gatos, envases para agua, gasas veterinarias, transportadoras en préstamo.</div>
-            </div>
-          </div>
-        </div>
-        </div>
         </div>
       </details>
 
-      </div>
-      </div>
-      </div>
-        </div>
-        </div>
-        </div>
-        </div>
-      </div>
       <details class="city-sub">
-        <summary>Otros centros activos (Chacao, Baruta, Sucre, Libertador, El Hatillo) — ver más</summary>
+        <summary>Medicamentos urgentes</summary>
         <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">🗺️</span>
-              <div class="card-body">
-                <div class="card-name">Lista completa de centros de acopio por municipio</div>
-                <div class="card-tagline"><strong>Chacao:</strong> Instituto de Diseño, Santo Tomás de Aquino, Cristo Rey, Hotel Ávila, Quinta Más Allá<br>
-                <strong>Baruta:</strong> Plaza Alfredo Sadel, Protección Civil El Cafetal, Club Hípico, Mater Salvatoris, Sagrada Familia, Concha Acústica Bello Monte<br>
-                <strong>Sucre:</strong> Universidad Metropolitana, Universidad Monteávila, Cáritas Petare, G3 Logística<br>
-                <strong>Libertador:</strong> Cáritas Venezuela, FCU UCV, Iglesia La Paz, Iglesia San Bernardino<br>
-                <strong>El Hatillo:</strong> Copa Hatillana, Polideportivo Los Naranjos</div>
-              </div>
-            </div>
-            <div class="card-desc">⚠️ Verifica horarios y disponibilidad antes de asistir — pueden cambiar día a día.</div>
+          <div class="card card-priority">
+            <div class="card-top"><span class="card-icon">💊</span><div class="card-body"><div class="card-name">Medicamentos pediátricos — Punto Dunas</div><div class="card-tagline">Contacto: @sun.risas</div></div><span class="card-badge badge-red">Urgente</span></div>
+            <div class="card-desc">Acetaminofén pediátrico · Ibuprofeno pediátrico · Pedialyte/suero oral · Cetirizina · Salbutamol spray · Enterogermina · Crema pañalitis · Crema antibiótica · Solución fisiológica · Amoxicilina/Azitromicina</div>
           </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">Colegio de Médicos — Santa Fe</div><div class="card-tagline">Insumos médicos, medicamentos, alimentos no perecederos y agua.</div></div></div>
+          <div class="card card-priority">
+            <div class="card-top"><span class="card-icon">🩹</span><div class="card-body"><div class="card-name">Insumos para centros médicos avanzados — La Guaira</div></div><span class="card-badge badge-red">Urgente</span></div>
+            <div class="card-desc">Yelco/catéteres (18, 20, 22) · Ringer Lactato o Fisiológica 0.9% · Equipos infusión macrogotero · Inyectadoras 3cc, 5cc, 10cc · Adrenalina y Atropina</div>
           </div>
-          <div class="card">
-            <div class="card-top"><span class="card-icon">📻</span><div class="card-body"><div class="card-name">Sede Unión Radio — Chacao</div><div class="card-tagline">Agua potable, alimentos no perecederos y ropa en buen estado.</div></div></div>
-          </div>
-          <div class="card">
-            <div class="card-top"><span class="card-icon">⛪</span><div class="card-body"><div class="card-name">Parroquia Don Bosco — Altamira</div><div class="card-tagline">Alimentos, agua y ropa. Coordinado por grupos scout y voluntarios.</div></div></div>
-          </div>
-          <div class="card">
-            <div class="card-top"><span class="card-icon">🎓</span><div class="card-body"><div class="card-name">UCV — Sede FCU</div><div class="card-tagline">Medicamentos, material de primeros auxilios y agua.</div></div></div>
-          </div>
-          <div class="card">
-            <div class="card-top"><span class="card-icon">🎓</span><div class="card-body"><div class="card-name">UCAB — Módulo gobierno estudiantil, Montalbán</div><div class="card-tagline">Alimentos, mantas y medicinas.</div></div></div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-highlight">
-            <div class="card-top">
-              <span class="card-icon">🟣</span>
-              <div class="card-body">
-                <div class="card-name">Centro de acopio Yummy — Cubo Negro Caracas</div>
-                <div class="card-tagline">Lleva tu donación <strong>gratis</strong> en Yummy Rides. ⚠️ Por favor NO traer más ropa.</div>
-              </div>
-              <span class="card-badge badge-yellow">Activo</span>
-            </div>
-            <div class="card-meta">
-              <span class="meta-pill">🕓 9:00–16:00h</span>
-              <span class="meta-pill">📍 Cubo Negro Caracas (Centro Banaven)</span>
-            </div>
-            <div class="card-desc">
-              <strong>Medicamentos más urgentes que reciben:</strong><br>
-              <strong>Antibióticos/Antifúngicos:</strong> Bacitracina · Nitrofurantoína · Antifúngicos orales<br>
-              <strong>Analgésicos/Antiinflamatorios:</strong> Acetaminofén · Ibuprofeno (adulto y pediátrico) · Diclofenac · Ketoprofeno · Aspirinas · Analgésicos endovenosos<br>
-              <strong>Otros:</strong> Antihemorrágicos · Heparina · Corticoesteroides (ampollas) · Protectores gástricos · Tiocolchicosido · Ácido fólico · Sulfato ferroso · Probióticos · Jarabe para la tos · Antitetánica · Norepinefrina<br>
-              <strong>Tópicos:</strong> Cremas de sulfato de plata · Madecassol · Cicatrizantes · Protector solar · Gotas oftálmicas/óticas/nasales · Iodo Povidona · Alcohol · Agua oxigenada<br>
-              <strong>Enfermedades crónicas:</strong> Insulina · Metformina · Levotiroxina · Losartán · Amlodipina · Hidroclorotiazida<br>
-              <strong>Respiratorios:</strong> Salbutamol (inhalador/nebulizador) · Budesonida · Bromuro de ipratropio
-            </div>
-          </div>
-        </div>
-        </div>
-        </div>
         </div>
       </details>
 
-      </div>
-      </div>
-      </div>
+      <details class="city-sub">
+        <summary>Refugios — necesidades específicas</summary>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">👶</span><div class="card-body"><div class="card-name">Refugio La Pastora — 60 niños · Hermanas Carmelita</div><div class="card-tagline">+58 412 6991971</div></div></div><div class="card-desc">Talco bebé · Crema cero · Colchones · Champú · Leche lactancia · Alimentos · Pañales L/G/XG · Sábanas o cobijas</div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">🍞</span><div class="card-body"><div class="card-name">Parque del Este/Oeste · El Paraíso — niños huérfanos</div><div class="card-tagline">Medicamentos, juguetes y comida. Pueden enviar facturas.</div></div></div><div class="card-desc">📞 Mariangel Rodríguez: <strong>+58 424 1751797</strong></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">💊</span><div class="card-body"><div class="card-name">Deportivo La Trinidad · Sarah Bitchatchi</div><div class="card-tagline">+58 414 1294415</div></div></div><div class="card-desc">Medicamentos bebés · Jabón · Cepillos · Colchones pequeños · Sábanas · Cobijas · Suéteres</div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">⛺</span><div class="card-body"><div class="card-name">Campamento — Parque del Este</div><div class="card-tagline">+40 carpas con colchones y almohadas. Comida y actividades para niños.</div></div></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">🍲</span><div class="card-body"><div class="card-name">Comedor de campaña — Tanaguarena</div><div class="card-tagline">Atiende familias damnificadas. Buscan voluntarios para cocinar o llevar insumos frescos.</div></div></div></div>
         </div>
-      </div>
+      </details>
 
-      </div>
+      <details class="city-sub">
+        <summary>Arte y materiales para niños</summary>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">🎨</span><div class="card-body"><div class="card-name">Los niños merecen color</div><div class="card-tagline">Dona lápices, creyones, marcadores, plastilina, hojas. Diseñadores: crea piezas para colorear.</div></div></div><div class="card-desc">📞 <strong>0414 6012613</strong> · <strong>0416 7638467</strong> · <strong>@foliobyshelo</strong></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">📚</span><div class="card-body"><div class="card-name">Bienmeescribe / Librería Chacaíto</div><div class="card-tagline">Reciben libros infantiles (nuevos o usados en buen estado), cartillas, cosas para colorear y juguetes para los niños afectados.</div></div></div></div>
         </div>
-      </div>
-
-      
+      </details>
     </section>
 
     <!-- LA GUAIRA -->
@@ -492,252 +202,83 @@
       <div class="city-header">
         <span class="city-icon">🌊</span>
         <h2 class="city-title">La Guaira</h2>
-        <span class="city-date">Activo hoy</span>
+        <span class="city-date">Activo</span>
       </div>
 
-                  <div class="subsection">
+      <div class="subsection">
         <p class="subsection-title">Búsqueda de personas — Macuto y Caraballeda</p>
         <div class="cards">
-          <div class="cards">
-          <div class="cards">
           <div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">🔍</span>
-              <div class="card-body">
-                <div class="card-name">Línea Central de Búsqueda</div>
-                <div class="card-tagline">Si buscas a un familiar tras el colapso de estructuras en Macuto y Caraballeda.</div>
-              </div>
-        </div>
-      </div>
-            <details class="city-sub">
-        <summary>Búsqueda de personas — Macuto y Caraballeda — ver más</summary>
-        <div class="cards">
-          <div class="cards">
-          <div class="card-desc">📞 <strong>0800-RESCATE (0800-7372283)</strong><br>📍 Puesto 1: Escuela República de Panamá (La Guaira)<br>📍 Puesto 2: Sede de Bomberos de Catia La Mar<br>Lleva una foto reciente y los datos completos del familiar.</div>
+            <div class="card-top"><span class="card-icon">🔍</span><div class="card-body"><div class="card-name">Línea Central de Búsqueda</div><div class="card-tagline">Si buscas a un familiar tras el colapso de estructuras.</div></div><span class="card-badge badge-red">Activa</span></div>
+            <div class="card-desc">📞 <strong>0800-RESCATE (0800-7372283)</strong><br>📍 Puesto 1: Escuela República de Panamá (La Guaira) · Puesto 2: Sede Bomberos Catia La Mar<br>Lleva foto reciente y datos completos del familiar.</div>
           </div>
         </div>
-      </details>
-
-
-            <div class="subsection">
-        <p class="subsection-title">Distribución de agua potable — hoy</p>
-        <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">🚑</span>
-              <div class="card-body">
-                <div class="card-name">Edificio Miramar — Ambulancias en espera de rescate</div>
-                <div class="card-tagline">Medicamentos urgentes para las ambulancias.</div>
-              </div>
-        </div>
-      </div>
-            <details class="city-sub">
-        <summary>Necesidades específicas — Caraballeda — ver más</summary>
-        <div class="cards">
-          <div class="cards">
-          <div class="card-desc">Ketoprofeno · Dipirona · Dexametasona · Omeprazol · Ranitidina · Tiocolchicosido · Metoclopramida · Salbutamol<br>
-            Otros: Cascos · Guantes · Linternas · Tijera de extricación · Agua · Tapaboca · Lafarcaína (Lidocaína) · Insumos personales<br>
-            📞 Contacto: <strong>+58 412-0171572</strong></div>
-          </div>
-        </div>
-      </details>
-
-
-                  <div class="subsection">
-        <p class="subsection-title">Rescate de animales</p>
-        <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">🐾</span>
-              <div class="card-body">
-                <div class="card-name">Paticas Solidarias + GRAD (Brasil) — necesitan transporte</div>
-                <div class="card-tagline">Equipo de rescate animal desplegado en La Guaira sin forma de trasladarse desde el hospedaje hasta las zonas de rescate.</div>
-              </div>
-        </div>
-      </div>
-            <details class="city-sub">
-        <summary>Rescate de animales — ver más</summary>
-        <div class="cards">
-          <div class="cards">
-          <div class="card-desc">⚠️ Requisito indispensable: tener <strong>salvoconducto</strong> para circular hacia La Guaira.<br>📞 <strong>0424 2840 464</strong> · <strong>@paticassolidarias</strong> · <strong>@gradbrasil</strong></div>
-          </div>
-        </div>
-      </details>
-
-    </div>
-      </div>
-        </div>
       </div>
 
-      </div>
-      </div>
-        </div>
-        </div>
-      </div>
       <details class="city-sub">
-        <summary>Distribución de agua potable — hoy — ver más</summary>
+        <summary>Distribución de agua potable</summary>
         <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">🚛</span>
-              <div class="card-body">
-                <div class="card-name">Cronograma de cisternas — Alcaldía de La Guaira</div>
-                <div class="card-tagline">Prioridad hoy por daños en la red de tuberías.</div>
-              </div>
-            </div>
-            <div class="card-desc">
-              <strong>Ruta 1:</strong> Macuto (Álamo, Las 15 Letras, Punta Brisas)<br>
-              <strong>Ruta 2:</strong> Caraballeda (Tarigua, Palmar Este, Central)<br>
-              <strong>Ruta 3:</strong> Catia La Mar (Playa Grande, Las Tunitas)<br>
-              Lleva recipientes limpios con tapa.
-            </div>
-          </div>
-        </div>
+          <div class="card"><div class="card-top"><span class="card-icon">🚛</span><div class="card-body"><div class="card-name">Cronograma de cisternas — Alcaldía de La Guaira</div></div></div><div class="card-desc"><strong>Ruta 1:</strong> Macuto (Álamo, Las 15 Letras, Punta Brisas)<br><strong>Ruta 2:</strong> Caraballeda (Tarigua, Palmar Este, Central)<br><strong>Ruta 3:</strong> Catia La Mar (Playa Grande, Las Tunitas)<br>Lleva recipientes limpios con tapa.</div></div>
         </div>
       </details>
 
-      </div>
-      </div>
+      <details class="city-sub">
+        <summary>Rescate de animales</summary>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top"><span class="card-icon">🐾</span><div class="card-body"><div class="card-name">Paticas Solidarias + GRAD (Brasil) — necesitan transporte</div><div class="card-tagline">Equipo de rescate animal sin forma de trasladarse desde el hospedaje hasta zonas de rescate.</div></div><span class="card-badge badge-red">Urgente</span></div>
+            <div class="card-desc">⚠️ Requisito: tener <strong>salvoconducto</strong> para circular hacia La Guaira.<br>📞 <strong>0424 2840 464</strong> · <strong>@paticassolidarias</strong> · <strong>@gradbrasil</strong></div>
+          </div>
         </div>
-      </div>
+      </details>
 
-      
+      <details class="city-sub">
+        <summary>Pickup Solidaridad — C/Clara del Rey 45 (expirado)</summary>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">📦</span><div class="card-body"><div class="card-name">Punto cerrado — ya partió el envío</div><div class="card-tagline">El acopio de C/Clara del Rey 45 fue 6-10 julio. Ya envió los materiales.</div></div></div></div>
+        </div>
+      </details>
     </section>
 
     <!-- OTRAS CIUDADES VE -->
-    <section class="city-section" id="otras-ciudades-ve">
+    <section class="city-section" id="otras-ve">
       <div class="city-header">
         <span class="city-icon">🏙️</span>
         <h2 class="city-title">Otras ciudades de Venezuela</h2>
-        <span class="city-date">Activo hoy</span>
+        <span class="city-date">Activo</span>
       </div>
 
-      <div class="cards">
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">📍</span>
-            <div class="card-body">
-              <div class="card-name">Centro de Acopio Candeal — Cabimas</div>
-              <div class="card-tagline">Alimentos, higiene, medicamentos orales y endovenosos, equipos médicos, colchonetas, equipo de rescate.</div>
-            </div>
+      <div class="subsection">
+        <p class="subsection-title">Valencia — Carpa Wynwood Park</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <div class="card-top"><span class="card-icon">⛺</span><div class="card-body"><div class="card-name">Carpa Wynwood Park — Centro de acopio</div><div class="card-tagline">Alimentos · hidratación · medicinas e insumos médicos · artículos de higiene · artículos para bebés · ropa, sábanas y colchones</div></div></div>
+            <div class="card-meta"><span class="meta-pill">Lun 8:00–22:00h</span><span class="meta-pill">Mar–Jue 11:00–20:00h</span><span class="meta-pill">Vie–Dom 9:00–22:00h</span></div>
           </div>
-          <div class="card-meta"><span class="meta-pill">📍 Av. Intercomunal, Cabimas</span></div>
-          <div class="card-desc">Contacto: <strong>0414-9638239</strong> · Organizado por Candeal y aliados</div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">📍</span>
-            <div class="card-body">
-              <div class="card-name">Lechería / Puerto La Cruz</div>
-              <div class="card-tagline">Alimentos enlatados, agua mineral, sábanas, colchonetas, artículos de aseo personal.</div>
-            </div>
-          </div>
-          <div class="card-desc">
-            <strong>Centro 1:</strong> Alcaldía de Lechería (Av. Principal) · 9:00–18:00h<br>
-            <strong>Centro 2:</strong> Iglesia María Auxiliadora · 8:00–12:00h / 14:00–17:00h
-          </div>
-        </div>
-        <div class="card card-priority">
-          <div class="card-top">
-            <span class="card-icon">🚨</span>
-            <div class="card-body">
-              <div class="card-name">Familia damnificada en Margarita</div>
-              <div class="card-tagline">Familia de La Guaira que lo perdió todo, llegó a Margarita. Casa completamente vacía.</div>
-            </div>
-            <span class="card-badge badge-red">Caso directo</span>
-          </div>
-          <div class="card-desc">
-            Urgente: nevera y cocina · Ropa dama (M, XL) · Ropa caballero (M, L) · Comida, colchones, sábanas<br>
-            📍 El Valle, Residencias Valle Abajo, casa #46, al lado de la Clínica del Valle, Margarita<br>
-            📞 María Clara (mamá): <strong>+58 426-7177629</strong> · Andrea María Clara (hija): <strong>+58 412-6241087</strong>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">🧴</span>
-            <div class="card-body">
-              <div class="card-name">Cobijas disponibles para repartir</div>
-              <div class="card-tagline">Si sabes dónde se necesitan cobijas, avisa.</div>
-            </div>
-          </div>
-          <div class="card-meta"><span class="meta-pill">📞 +58 412-9081668</span></div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">🏥</span>
-            <div class="card-body">
-              <div class="card-name">Insumos médicos — punto Bello Monte</div>
-              <div class="card-tagline">Gasas estériles, guantes, povidine/clorhexidina, antihipertensivos, harina pan, cobijas, juguetes, agua, protector solar, comida para mascotas.</div>
-            </div>
-          </div>
-          <div class="card-desc">📍 Llevar a Cevichef en Bello Monte o escribir al <strong>04127653447</strong></div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">📍</span>
-            <div class="card-body">
-              <div class="card-name">Maracay — Cuerpo de Bomberos de Aragua</div>
-              <div class="card-tagline">Centro de acopio activo.</div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">📍</span>
-            <div class="card-body">
-              <div class="card-name">Valencia — Rectorado Universidad de Carabobo</div>
-              <div class="card-tagline">Centro de acopio activo.</div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">📍</span>
-            <div class="card-body">
-              <div class="card-name">Ciudad Guayana — Rotaract Salto Ángel</div>
-              <div class="card-tagline">Alimentos, agua, medicamentos pediátricos y crónicos, ropa interior nueva, herramientas de rescate, carpas, colchonetas.</div>
-            </div>
-          </div>
-          <div class="card-desc">Pago móvil (Desireé Lugo): Mercantil · 04249050118 · CI 26801013 · Binance: <strong>rotaractsaltoangel@gmail.com</strong><br>
-          Contactos: Marian Castillo <strong>04249068499</strong> / Desireé Lugo <strong>04249050118</strong></div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">🏥</span>
-            <div class="card-body">
-              <div class="card-name">Maracaibo — Randal Medical International</div>
-              <div class="card-tagline">Tienen equipos médicos que se necesitan urgente en Caracas: tensiómetro, oxímetro, máscaras, ambu, flujómetro, glucómetros, kit desregulador y otros.</div>
-            </div>
-          </div>
-          <div class="card-desc">📞 <strong>+58 414-3687874</strong> · @camilareym para contacto</div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">🏝️</span>
-            <div class="card-body">
-              <div class="card-name">Isla Margarita — Colegio Guayamuri</div>
-              <div class="card-tagline">Insumos para personas llegando a la isla.</div>
-            </div>
-          </div>
-          <div class="card-desc">Ventiladores · Agua · Mesas y sillas · Medicinas específicas: Hydrea · Ácido acetilsalicílico · Plavix (clopidogrel) · Omeprazol · Artrovit · Carbamazepina · Quetiapina (Quetival)</div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">📍</span>
-            <div class="card-body">
-              <div class="card-name">Cumaná y Carúpano (Estado Sucre)</div>
-              <div class="card-tagline">Agua potable, pastillas potabilizadoras y mosquiteros como prioridad.</div>
-            </div>
-          </div>
-          <div class="card-desc">Cumaná: Iglesia Santa Inés y Cruz Roja local · Carúpano: Ateneo de Carúpano</div>
         </div>
       </div>
+
+      <details class="city-sub">
+        <summary>Maracaibo, Cabimas, Lechería</summary>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">🏥</span><div class="card-body"><div class="card-name">Maracaibo — Randal Medical</div><div class="card-tagline">Centro médico activo.</div></div></div><div class="card-meta"><span class="meta-pill">📞 +58 414-3687874</span></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Cabimas — Centro de acopio Candeal</div><div class="card-tagline">Alimentos, higiene, medicamentos, equipos médicos, colchonetas, equipo de rescate.</div></div></div><div class="card-desc">📍 Av. Intercomunal, Cabimas · 📞 <strong>0414-9638239</strong></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Lechería / Puerto La Cruz</div><div class="card-tagline">Alimentos enlatados, agua, sábanas, colchonetas, artículos de aseo.</div></div></div><div class="card-desc"><strong>Centro 1:</strong> Alcaldía de Lechería (Av. Principal) · 9:00–18:00h<br><strong>Centro 2:</strong> Iglesia María Auxiliadora · 8:00–12:00h / 14:00–17:00h</div></div>
+        </div>
+      </details>
+
+      <details class="city-sub">
+        <summary>Margarita, Ciudad Guayana, Cumaná</summary>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top"><span class="card-icon">🚨</span><div class="card-body"><div class="card-name">Familia damnificada — Isla Margarita</div><div class="card-tagline">Familia de La Guaira que lo perdió todo. Casa completamente vacía.</div></div><span class="card-badge badge-red">Caso directo</span></div>
+            <div class="card-desc">Nevera y cocina · Ropa dama (M, XL) · Ropa caballero (M, L) · Comida, colchones, sábanas<br>📍 El Valle, Residencias Valle Abajo #46, Margarita<br>📞 María Clara: <strong>+58 426-7177629</strong> · Andrea: <strong>+58 412-6241087</strong></div>
+          </div>
+          <div class="card"><div class="card-top"><span class="card-icon">🏫</span><div class="card-body"><div class="card-name">Isla Margarita — Colegio Guayamuri</div><div class="card-tagline">Insumos para personas llegando a la isla.</div></div></div><div class="card-desc">Ventiladores · Agua · Mesas y sillas · Medicinas: Hydrea · Ácido acetilsalicílico · Plavix · Omeprazol · Artrovit · Carbamazepina · Quetiapina</div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Ciudad Guayana — Rotaract Salto Ángel</div><div class="card-tagline">Alimentos, agua, medicamentos pediátricos y crónicos, ropa interior nueva, herramientas, carpas, colchonetas.</div></div></div><div class="card-desc">Pago móvil — Mercantil · 04249050118 · CI 26801013 · Binance: <strong>rotaractsaltoangel@gmail.com</strong><br>Contacto: Marian <strong>04249068499</strong> / Desireé <strong>04249050118</strong></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Cumaná y Carúpano — Estado Sucre</div><div class="card-tagline">Agua potable, pastillas potabilizadoras y mosquiteros prioritarios.</div></div></div><div class="card-desc">Cumaná: Iglesia Santa Inés y Cruz Roja local · Carúpano: Ateneo de Carúpano</div></div>
+        </div>
+      </details>
     </section>
 
     <!-- MADRID -->
@@ -745,138 +286,52 @@
       <div class="city-header">
         <span class="city-icon">🇪🇸</span>
         <h2 class="city-title">Madrid</h2>
-        <span class="city-date">Esta semana</span>
+        <span class="city-date">Julio–Agosto</span>
       </div>
 
-            <div class="subsection">
-        <p class="subsection-title">Centros de acopio activos</p>
+      <div class="subsection">
+        <p class="subsection-title">Guasacaca — cada empanada cuenta</p>
         <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">🚐</span>
-              <div class="card-body">
-                <div class="card-name">Se necesitan furgonetas para llevar pallets a Barajas</div>
-                <div class="card-tagline">Antes de las 17h. La recogida fue masiva — miles de cajas listas para enviar.</div>
-              </div>
-<div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">🏭</span>
-              <div class="card-body">
-                <div class="card-name">Se busca nave cerca de Madrid para almacenar donaciones</div>
-                <div class="card-tagline">Urgente. Se paga alquiler. Miles de cajas acumuladas en centros de recogida por toda Madrid.</div>
-              </div>
+          <div class="card card-highlight">
+            <div class="card-top"><span class="card-icon">🫔</span><div class="card-body"><div class="card-name">Guasacaca Madrid — 0,50€ por empanada a Meals4Hope</div><div class="card-tagline">Julio y agosto: por cada empanada de queso vendida en sus sedes en Madrid, donan 0,50€ a Meals4Hope. Cómete una empanada y ayudas a Venezuela.</div></div><span class="card-badge badge-yellow">Julio–Agosto</span></div>
+            <div class="card-desc">Sedes: Paseo de la Castellana · Argüelles · Mercado Maravillas</div>
+          </div>
         </div>
       </div>
-            <details class="city-sub">
-        <summary>Logística urgente — Madrid — ver más</summary>
-        <div class="cards">
-          <div class="cards">
-          <div class="card-desc">
-              Se necesitan: <strong>2 furgonetas</strong> · <strong>2–3 hombres</strong> para cargar cajas · <strong>1 persona</strong> para inventario y organización<br>
-              📍 Punto de salida: <strong>Luchana 10, Madrid</strong><br>
-              Contacto: <strong>@ivannagautier</strong> o <strong>@mafercordoba</strong>
-            </div>
-          </div>
-          <div class="card-desc">📞 <strong>+34 625 997 057</strong></div>
-        </div>
-      </details>
 
-<div class="card">
-            <div class="card-top">
-              <span class="card-icon">✈️</span>
-              <div class="card-body">
-                
-                <div class="card-tagline">Puede llevar medicamentos, efectivo o insumos específicos para familia o amigos en Venezuela.</div>
-              </div>
-<div class="card-desc">Contactar: <strong>@fj_goncalves92</strong> en Instagram</div>
-          </div>
-        </div>
-
-            <details class="city-sub">
-        <summary>Apoyo psicológico — Madrid</summary>
-        <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">☎️</span>
-              <div class="card-body">
-                <div class="card-name">Línea 012 — Comunidad de Madrid</div>
-                <div class="card-tagline">Si necesitas apoyo psicológico o conoces a alguien que lo necesite tras la emergencia.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">🎻</span>
-              
-            </div>
-            <div class="card-meta">
-              <span class="meta-pill">📅 Sábado 4 de julio, 19:30h</span>
-              <span class="meta-pill">📍 Auditorio Nacional</span>
-            </div>
-          </div>
-        </div>
-        </div>
-        </div>
-      </details>
-
-      </div>
-      </div>
-      </div>
-      </div>
-        </div>
-        </div>
-        </div>
-      </div>
       <details class="city-sub">
-        <summary>Centros de acopio activos — ver más</summary>
+        <summary>Sorteo Lupo Solidario — 19 julio</summary>
         <div class="cards">
-          <div class="cards">
-          <div class="card card-highlight">
-            <div class="card-top">
-              <span class="card-icon">📦</span>
-              <div class="card-body">
-                <div class="card-name">Pickup Solidaridad — C/ Clara del Rey 45</div>
-                <div class="card-tagline">Alimentos no perecederos, medicamentos e insumos médicos, productos de higiene y limpieza. También buscan voluntarios para recibir, organizar y clasificar donaciones.</div>
-              </div>
-              <span class="card-badge badge-yellow">6–10 julio</span>
-            </div>
-            <div class="card-meta">
-              <span class="meta-pill">📅 6 al 10 de julio</span>
-              <span class="meta-pill">🕓 17:00–20:30h</span>
-              <span class="meta-pill">📍 C/ Clara del Rey 45, Garaje</span>
-            </div>
-            <div class="card-desc">
-              Donaciones económicas: <strong>ES29 0081 0098 7600 0211 1220</strong><br>
-              Voluntarios: inscripción en perfil de <strong>@pickupsolidaridad</strong>
-            </div>
+          <div class="card">
+            <div class="card-top"><span class="card-icon">🎟️</span><div class="card-body"><div class="card-name">Sorteo Lupo Solidario — 5€/papeleta</div><div class="card-tagline">Premio: cena para 2 (entrante, 2 platos, bebidas, postre). 100% a Meals4Hope.</div></div><span class="card-badge badge-yellow">19 julio</span></div>
+            <div class="card-meta"><span class="meta-pill">📅 Domingo 19 julio · 20:00h · En directo IG de LUPO</span></div>
           </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-highlight">
-            <div class="card-top">
-              <span class="card-icon">🛍️</span>
-              <div class="card-body">
-                
-                <div class="card-tagline">Continúa toda la semana. Ropa donada vendida a precios accesibles, lo recaudado va directo a la ayuda.</div>
-              </div>
-              <span class="card-badge badge-yellow">Toda la semana</span>
-            </div>
-          </div>
-        </div>
-        </div>
         </div>
       </details>
 
-      
+      <details class="city-sub">
+        <summary>Logística urgente — Madrid</summary>
+        <div class="cards">
+          <div class="card card-priority">
+            <div class="card-top"><span class="card-icon">🚐</span><div class="card-body"><div class="card-name">Se necesitan furgonetas para llevar pallets a Barajas</div><div class="card-tagline">La recogida fue masiva — miles de cajas listas para enviar.</div></div><span class="card-badge badge-red">Urgente</span></div>
+            <div class="card-desc">2 furgonetas · 2–3 personas para cargar · 1 persona para inventario<br>📍 Punto de salida: <strong>Luchana 10, Madrid</strong><br>Contacto: <strong>@ivannagautier</strong> · <strong>+34 625 997 057</strong></div>
+          </div>
+          <div class="card card-priority">
+            <div class="card-top"><span class="card-icon">🏭</span><div class="card-body"><div class="card-name">Nave de almacenamiento — Leganés</div><div class="card-tagline">Polideportivo Manuel Cárdenas. Voluntarios y furgonetas urgentes.</div></div><span class="card-badge badge-red">Urgente</span></div>
+            <div class="card-desc">Contacto: <strong>@alemorrisonandco</strong> · <strong>@elomat1</strong> · <strong>@virgilio_vivas</strong> · Ayuntamiento de Leganés</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="city-sub">
+        <summary>Mercadillo solidario — Lazo Café</summary>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top"><span class="card-icon">🛍️</span><div class="card-body"><div class="card-name">Mercadillo solidario — Lazo Café</div><div class="card-tagline">Paseo de Santa María de la Cabeza, 80, Arganzuela, 28045 Madrid</div></div><span class="card-badge badge-yellow">Hasta sáb 4 julio</span></div>
+            <div class="card-meta"><span class="meta-pill">📅 Hasta sábado 4 julio · 13:00–19:00h</span></div>
+          </div>
+        </div>
+      </details>
     </section>
 
     <!-- USA -->
@@ -884,560 +339,189 @@
       <div class="city-header">
         <span class="city-icon">🇺🇸</span>
         <h2 class="city-title">Estados Unidos</h2>
-        <span class="city-date">Esta semana</span>
+        <span class="city-date">Activo</span>
       </div>
-      <div class="cards">
-        <div class="card card-highlight">
-          <div class="card-top">
-            <span class="card-icon">📦</span>
-            <div class="card-body">
-              <div class="card-name">Orlando, FL — Lake Nona / Mater Academy Narcoossee</div>
-              <div class="card-tagline">Medicinas, insumos médicos, guantes, pañales, ropa y calzado todas las edades, agua, comida, bebidas hidratantes, cajas y bolsas.</div>
-            </div>
-            <span class="card-badge badge-yellow">Hasta 3 julio</span>
+
+      <div class="subsection">
+        <p class="subsection-title">Miami — puntos activos</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">6173 NW 72nd Ave, Miami, FL 33166</div><div class="card-tagline">Punto de coordinación de voluntarios y acopio activo todo el mes de julio.</div></div><span class="card-badge badge-green">Todo julio</span></div>
           </div>
-          <div class="card-meta">
-            <span class="meta-pill">📅 29 junio – 3 julio</span>
-            <span class="meta-pill">🕓 9:00–15:00h</span>
-            <span class="meta-pill">📍 8315 Academy Dr, Orlando, FL 32827</span>
+          <div class="card">
+            <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">GEM Doral — 1850 NW 84th Ave #100</div><div class="card-tagline">Global Empowerment Mission. Centro de acopio activo.</div></div></div>
           </div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">📦</span>
-            <div class="card-body">
-              <div class="card-name">Four Corners / Clermont / Davenport, FL — Pinecrest Academy</div>
-              <div class="card-tagline">Medicinas, guantes, equipo de seguridad, productos de limpieza, ropa y calzado todas las edades, comida.</div>
-            </div>
+          <div class="card">
+            <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">@vascambiandovidas — Doral · 12:00–20:00h</div><div class="card-tagline">Centro de acopio activo todo el mes de julio.</div></div><span class="card-badge badge-green">Todo julio</span></div>
           </div>
-          <div class="card-meta">
-            <span class="meta-pill">📅 30 junio – 2 julio</span>
-            <span class="meta-pill">🕓 9:00–15:00h</span>
-            <span class="meta-pill">📍 1100 US-27, Clermont, FL 34714</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">🙋</span>
-            <div class="card-body">
-              <div class="card-name">Miami — Se necesitan voluntarios</div>
-              <div class="card-tagline">Punto de coordinación de voluntarios en Miami.</div>
-            </div>
-          </div>
-          <div class="card-meta"><span class="meta-pill">📍 6173 NW 72nd Ave, Miami, FL 33166</span></div>
-        </div>
-        <div class="card card-highlight">
-          <div class="card-top">
-            <span class="card-icon">⚽</span>
-            
-            
-          </div>
-          <div class="card-meta">
-            <span class="meta-pill">📅 Miércoles 1 julio · 9:00–19:00h</span>
-            <span class="meta-pill">📍 NU Stadium, 1000 Stadium Dr, Miami, FL 33125</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">📍</span>
-            <div class="card-body">
-              <div class="card-name">El Arepazo — Doral, FL</div>
-              <div class="card-tagline">Se solicitan voluntarios con vans o pick-ups. Empresa aliada habilitará canales marítimos y aéreos sin costo.</div>
-            </div>
-          </div>
-          <div class="card-meta"><span class="meta-pill">📍 10191 NW 58th St, Doral, FL 33178</span><span class="meta-pill">🕓 Hasta medianoche</span></div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">📍</span>
-            <div class="card-body">
-              <div class="card-name">Global Empowerment Mission (GEM) — Doral</div>
-            </div>
-          </div>
-          <div class="card-meta"><span class="meta-pill">📍 1850 NW 84th Ave #100, Doral, FL 33126</span></div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">👗</span>
-            <div class="card-body">
-              <div class="card-name">Coral Gables, FL — Ropa para Venezuela</div>
-              <div class="card-tagline">Ropa niños/mujeres/hombres en buen estado, zapatos sin tacones, ropa interior y medias solo nuevas.</div>
-            </div>
-          </div>
-          <div class="card-meta"><span class="meta-pill">📍 4217 Ponce de Leon Blvd, Coral Gables, FL 33146</span><span class="meta-pill">🕓 11:00–17:00h</span></div>
-        </div>
-        <div class="card card-priority">
-          <div class="card-top">
-            <span class="card-icon">✈️</span>
-            
-            
-          </div>
-          <div class="card-meta">
-            <span class="meta-pill">📍 W Aviation · 2400 W Cypress Creek Rd, Ft Lauderdale, FL 33309</span>
-            <span class="meta-pill">FXE — Ft Lauderdale Executive Airport</span>
-          </div>
-          <div class="card-desc">Contacto: <strong>@carlanunez_</strong> en Instagram</div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">🎭</span>
-            
-            
-          </div>
-          <div class="card-desc">Entradas: ver enlace en perfil de <strong>@cmcgaffney</strong></div>
         </div>
       </div>
 
-            <details class="city-sub">
-        <summary>Houston</summary>
+      <details class="city-sub">
+        <summary>Rifa solidaria Miami for Venezuela</summary>
         <div class="cards">
-          <div class="cards">
           <div class="card card-highlight">
-            <div class="card-top">
-              <span class="card-icon">⚾</span>
-              
-              
-            </div>
-            <div class="card-meta">
-              <span class="meta-pill">📅 Jueves 2 julio · 7:00–18:00h</span>
-              <span class="meta-pill">📍 Daikin Park · 501 Crawford St, Houston</span>
-            </div>
-            <div class="card-desc">Necesitan: alimentos no perecederos · artículos temporales para el hogar · bebés y niños · higiene · mascotas<br><strong>@astrosfoundation</strong></div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-highlight">
-            <div class="card-top"><span class="card-icon">🎟️</span><div class="card-body"><div class="card-name">Miami for Venezuela — Rifa solidaria</div><div class="card-tagline">Más de $5.000 en premios de 20+ marcas. 100% a @impaktemos. 1 entrada $50 · 3 por $125 · 5 por $200.</div></div><span class="card-badge badge-yellow">Cierra 7 julio</span></div>
+            <div class="card-top"><span class="card-icon">🎟️</span><div class="card-body"><div class="card-name">Miami for Venezuela — Rifa solidaria</div><div class="card-tagline">+$5.000 en premios de 20+ marcas. 100% a @impaktemos. 1 entrada $50 · 3 por $125 · 5 por $200.</div></div><span class="card-badge badge-yellow">Cierra 7 julio</span></div>
             <div class="card-desc">Ganadores anunciados el 8 de julio · Link en bio de <strong>@simonett</strong></div>
           </div>
         </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">📦</span>
-              <div class="card-body">
-                <div class="card-name">@vascambiandovidas — Doral</div>
-                <div class="card-tagline">Activo todo julio. Voluntarios, donaciones de todo tipo, ropa, cajas grandes e insumos para voluntarios.</div>
-              </div>
-              <span class="card-badge badge-green">Todo julio</span>
-            </div>
-            <div class="card-meta">
-              <span class="meta-pill">📍 8068 NW 29th St, Doral, FL 33122</span>
-              <span class="meta-pill">🕓 12:00–20:00h</span>
-            </div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">📍</span>
-              <div class="card-body">
-                <div class="card-name">Puntos de acopio en Chicago</div>
-              </div>
-            </div>
-            <div class="card-desc">Rica Arepa (7534 W Addison / 2913 N Lincoln / 4253 W Armitage) · Sabe a Zulia (5306 W Fullerton / 7024 W Grand / 1384 Winston Plaza, Melrose Park) · Arepa George (1552 N Kedzie) · Jibaritos y Más (3317 N Harlem) · Bienmesabe Restaurant (29 E Adams / 1637 W Montrose) · Klein's Bakery (126 W Diversey / 1134 W Armitage / 4155 N Broadway)</div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">📍</span>
-              <div class="card-body">
-                <div class="card-name">Puntos de acopio en Nueva York</div>
-              </div>
-            </div>
-            <div class="card-desc">Lulla's (169 Graham Ave, Brooklyn) · El Budare Café (87-21 Roosevelt Ave, Jackson Heights) · Casa Ora (148 Meserole St, Brooklyn) · Arepas Cafe (33-07 36th Ave, Astoria) · Food Fair Fresh Market (2467 Jerome Ave, Bronx)</div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">📍</span>
-              <div class="card-body">
-                <div class="card-name">Puntos de acopio en California</div>
-              </div>
-            </div>
-            <div class="card-desc">Los Angeles: Olarte Transport (1125 E Pico Blvd) · Ojala (5405 N Figueroa St, Highland Park) · Oakland: Angelitos Insurance (4419 Foothill / 4819 International / 1800 Monument, Concord) · San Francisco: Arepas (3198 16th St) · San Jose: Arepas (1384 Lincoln Ave)</div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">🇨🇦</span>
-              <div class="card-body">
-                
-                <div class="card-tagline">Help Venezuela event.</div>
-              </div>
-              
-            </div>
-            <div class="card-meta">
-              <span class="meta-pill">📅 1 julio · 9:00AM–18:00h</span>
-              <span class="meta-pill">📍 Trinity Bellwoods Park, Toronto</span>
-            </div>
-          </div>
-        </div>
-          <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <span class="card-icon">📍</span>
-              <div class="card-body">
-                <div class="card-name">Arepa Zone — DC, Fairfax VA, College Park MD</div>
-              </div>
-            </div>
-            <div class="card-desc">1121 14th St NW, Washington DC · 3160 Spring St Fairfax VA · 4341 Calvert Rd, College Park MD</div>
-          </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
+      </details>
+
+      <details class="city-sub">
+        <summary>Chicago</summary>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Puntos de acopio en Chicago</div></div></div><div class="card-desc">Rica Arepa (7534 W Addison / 2913 N Lincoln / 4253 W Armitage) · Sabe a Zulia (5306 W Fullerton / 7024 W Grand) · Arepa George (1552 N Kedzie) · Jibaritos y Más (3317 N Harlem) · Bienmesabe Restaurant (29 E Adams / 1637 W Montrose) · Klein's Bakery (126 W Diversey / 1134 W Armitage / 4155 N Broadway)</div></div>
         </div>
       </details>
 
-      
+      <details class="city-sub">
+        <summary>Nueva York</summary>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Puntos de acopio en Nueva York</div></div></div><div class="card-desc">Lulla's (169 Graham Ave, Brooklyn) · El Budare Café (87-21 Roosevelt Ave, Jackson Heights) · Casa Ora (148 Meserole St, Brooklyn) · Arepas Cafe (33-07 36th Ave, Astoria) · Food Fair Fresh Market (2467 Jerome Ave, Bronx)</div></div>
+        </div>
+      </details>
+
+      <details class="city-sub">
+        <summary>California</summary>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Puntos de acopio en California</div></div></div><div class="card-desc">Los Angeles: Olarte Transport (1125 E Pico Blvd) · Ojala (5405 N Figueroa St) · Oakland: Angelitos Insurance (4419 Foothill / 4819 International) · SF: Arepas (3198 16th St) · San Jose: Arepas (1384 Lincoln Ave)</div></div>
+        </div>
+      </details>
+
+      <details class="city-sub">
+        <summary>DC / Virginia / Maryland</summary>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Arepa Zone — DC, Fairfax VA, College Park MD</div></div></div><div class="card-desc">1121 14th St NW, Washington DC · 3160 Spring St Fairfax VA · 4341 Calvert Rd, College Park MD</div></div>
+        </div>
+      </details>
     </section>
 
     <!-- BRASIL -->
     <section class="city-section" id="brasil">
-      <div class="city-header">
-        <span class="city-icon">🇧🇷</span>
-        <h2 class="city-title">Brasil</h2>
-        <span class="city-date">Activo</span>
-      </div>
-      <div class="cards">
-        <div class="card">
-          <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Guarulhos, SP — ONG Casa Hispana</div></div></div>
-          <div class="card-meta"><span class="meta-pill">📍 Av. Natalia Zarif, 60</span><span class="meta-pill">📞 +55 11 96616-7972</span></div>
-        </div>
-        <div class="card">
-          <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Curitiba, PR — ONG Irmandade Sem Fronteiras</div></div></div>
-          <div class="card-meta"><span class="meta-pill">📍 Rua Carlos de Laet, 5225, Boqueirão</span><span class="meta-pill">📞 +55 41 8813-0719</span></div>
-        </div>
-        <div class="card">
-          <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Boa Vista, RR — ONG Humanidade Mais Que Fronteiras</div></div></div>
-          <div class="card-meta"><span class="meta-pill">📍 Rua João Pessoa, 2489</span><span class="meta-pill">📞 +55 95 8103-2134</span></div>
-          <div class="card-desc">Pix: <strong>(95) 99157-4749</strong> · Cora SCFI Conta: 2982523-1 · CNPJ: 46.759.193/0001-60</div>
-        </div>
-        <div class="card">
-          <div class="card-top"><span class="card-icon">🌍</span><div class="card-body"><div class="card-name">ACNUR — donación online</div></div></div>
-          <div class="card-desc"><a href="https://doar.acnur.org/br/pt-br/venezuela" target="_blank">doar.acnur.org/br →</a></div>
+      <div class="city-header"><span class="city-icon">🇧🇷</span><h2 class="city-title">Brasil</h2><span class="city-date">Activo</span></div>
+      <div class="subsection">
+        <p class="subsection-title">Puntos de recolección</p>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Guarulhos SP — ONG Casa Hispana</div></div></div><div class="card-desc">Av. Natalia Zarif, 60 · +55 11 96616-7972</div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Curitiba PR — ONG Irmandade Sem Fronteiras</div></div></div><div class="card-desc">Rua Carlos de Laet, 5225, Boqueirão · +55 41 8813-0719</div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Boa Vista RR — ONG Humanidade Mais Que Fronteiras</div></div></div><div class="card-desc">Rua João Pessoa, 2489 · +55 95 8103-2134 · Pix: <strong>(95) 99157-4749</strong> · CNPJ: 46.759.193/0001-60</div></div>
         </div>
       </div>
     </section>
 
     <!-- CHILE -->
     <section class="city-section" id="chile">
-      <div class="city-header">
-        <span class="city-icon">🇨🇱</span>
-        <h2 class="city-title">Chile</h2>
-        <span class="city-date">Activo</span>
-      </div>
-      <div class="cards">
-        <div class="card">
-          <div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Santiago — Chilenos y Venezolanos Unidos</div></div></div>
-          <div class="card-meta"><span class="meta-pill">📍 Av. Providencia 1234</span><span class="meta-pill">🕓 9:00–19:00h</span></div>
-          <div class="card-desc">Donaciones monetarias o insumos acordados con aerolíneas para transporte internacional.</div>
-        </div>
-        <div class="card">
-          <div class="card-top"><span class="card-icon">💸</span><div class="card-body"><div class="card-name">Western Union Chile — $0 tarifa hasta el 10 de julio</div></div></div>
-          <div class="card-meta"><span class="meta-pill">Hasta 10 julio</span></div>
-        </div>
-        <div class="card">
-          <div class="card-top"><span class="card-icon">🔄</span><div class="card-body"><div class="card-name">Retorna.app — cero comisión</div><div class="card-tagline">Envíos sin comisión desde Chile a Venezuela.</div></div></div>
+      <div class="city-header"><span class="city-icon">🇨🇱</span><h2 class="city-title">Chile</h2><span class="city-date">Activo</span></div>
+      <div class="subsection">
+        <p class="subsection-title">Santiago</p>
+        <div class="cards">
+          <div class="card card-highlight"><div class="card-top"><span class="card-icon">📍</span><div class="card-body"><div class="card-name">Chilenos y Venezolanos Unidos — Av. Providencia</div><div class="card-tagline">Centro de acopio activo. Cuenta RUT BancoEstado para envío de carga humanitaria.</div></div></div><div class="card-meta"><span class="meta-pill">🕓 9:00–19:00h</span></div></div>
+          <div class="card"><div class="card-top"><span class="card-icon">💸</span><div class="card-body"><div class="card-name">Western Union Chile — $0 de tarifa hasta el 10 de julio</div></div></div><span class="card-badge badge-yellow">Hasta 10 julio</span></div>
         </div>
       </div>
     </section>
 
     <!-- PANAMÁ -->
     <section class="city-section" id="panama">
-      <div class="city-header">
-        <span class="city-icon">🇵🇦</span>
-        <h2 class="city-title">Panamá</h2>
-        <span class="city-date">Activo</span>
-      </div>
-      <div class="cards">
-        <div class="card card-highlight">
-          <div class="card-top"><span class="card-icon">🙋</span><div class="card-body"><div class="card-name">Panamá Pacífico — 30 voluntarios</div><div class="card-tagline">Seleccionar, separar y embalar donativos. Punto de encuentro: Rali de Av. Balboa a las 9:00 AM, de allí salen a Panamá Pacífico.</div></div></div>
-        </div>
-        <div class="card card-highlight">
-          <div class="card-top"><span class="card-icon">🙋</span><div class="card-body"><div class="card-name">Panapark Free Zone — 30 voluntarios</div><div class="card-tagline">Cargar contenedores con mercancía para Venezuela · Av. Panamericana, Corregimiento 24 de Diciembre · 9:00 AM</div></div></div>
+      <div class="city-header"><span class="city-icon">🇵🇦</span><h2 class="city-title">Panamá</h2><span class="city-date">Activo</span></div>
+      <div class="subsection">
+        <p class="subsection-title">Voluntarios para cargar contenedores</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <div class="card-top"><span class="card-icon">🙋</span><div class="card-body"><div class="card-name">Panapark Free Zone + Panamá Pacífico</div><div class="card-tagline">30 voluntarios · 9:00 AM · Cargar contenedores con mercancía para Venezuela.</div></div></div>
+            <div class="card-desc"><strong>Opción 1:</strong> Panamá Pacífico · Rali de Av. Balboa<br><strong>Opción 2:</strong> Panapark Free Zone · Av. Panamericana, Corregimiento 24 de Diciembre</div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- COLOMBIA -->
     <section class="city-section" id="colombia">
-      <div class="city-header">
-        <span class="city-icon">🇨🇴</span>
-        <h2 class="city-title">Colombia</h2>
-        <span class="city-date">Activo</span>
-      </div>
-                  <div class="subsection">
-        <p class="subsection-title">Misión veterinaria humanitaria</p>
+      <div class="city-header"><span class="city-icon">🇨🇴</span><h2 class="city-title">Colombia</h2><span class="city-date">Activo</span></div>
+      <div class="subsection">
+        <p class="subsection-title">Fundación Comparte Colombia</p>
         <div class="cards">
-          <div class="cards">
-          <div class="cards">
-          <div class="card card-priority">
-            <div class="card-top">
-              <span class="card-icon">🐾</span>
-              <div class="card-body">
-                <div class="card-name">@patitasdelaprotesta — Misión veterinaria Colombia → Venezuela</div>
-                <div class="card-tagline">Equipo viaja de Colombia a Venezuela a rescatar animales. Buscan medicamentos veterinarios, material de curación o apoyo económico.</div>
-              </div>
+          <div class="card card-highlight"><div class="card-top"><span class="card-icon">💰</span><div class="card-body"><div class="card-name">Fundación Comparte Colombia</div></div></div><div class="card-desc">Bancolombia Ahorros: <strong>63800000674</strong> · Bre-B: <strong>901178855</strong><br>Venmo: <strong>@ClosingtheGap</strong> · Zelle: <strong>daniela@ctgfoundation.us</strong><br>USA: JPMorgan Chase · Routing: 021000021 · Account: 660063360 · Beneficiary: CLOSING THE GAP FOUNDATION</div></div>
         </div>
       </div>
-            <details class="city-sub">
-        <summary>Misión veterinaria humanitaria — ver más</summary>
-        <div class="cards">
-          <div class="cards">
-          <div class="card-desc">Contactar: <strong>@patitasdelaprotesta</strong> o <strong>@alimarrea</strong> en Instagram</div>
-          </div>
-        </div>
-      </details>
-
-            <details class="city-sub">
-        <summary>Donaciones y recolección</summary>
-        <div class="cards">
-          <div class="cards">
-          <div class="card">
-            <div class="card-top"><span class="card-icon">💰</span><div class="card-body"><div class="card-name">Fundación Comparte Colombia</div></div></div>
-          <div class="card-desc">
-            Bancolombia Ahorros: <strong>63800000674</strong> · Bre-B: <strong>901178855</strong><br>
-            Venmo: <strong>@ClosingtheGap</strong> · Zelle: <strong>daniela@ctgfoundation.us</strong><br>
-            USA: JPMorgan Chase · Routing 021000021 · Account 660063360 · CLOSING THE GAP FOUNDATION
-          </div>
-        </div>
-      </div>
-        </div>
-      </details>
-
-      </div>
-      </div>
-        </div>
-      </div>
-
-      
     </section>
 
     <!-- MÉXICO -->
     <section class="city-section" id="mexico">
-      <div class="city-header">
-        <span class="city-icon">🇲🇽</span>
-        <h2 class="city-title">México</h2>
-        <span class="city-date">Activo</span>
-      </div>
-      <div class="cards">
-        <div class="card">
-          <div class="card-top"><span class="card-icon">💰</span><div class="card-body"><div class="card-name">La Compol se une por Venezuela</div></div></div>
-          <div class="card-desc">Mercado Pago (Luis Rendueles): CLABE <strong>722969012349235998</strong> · Binance: <strong>luisrendueles7@gmail.com</strong></div>
-        </div>
-        <div class="card">
-          <div class="card-top"><span class="card-icon">🧠</span><div class="card-body"><div class="card-name">Praxis Grupos Operativos — psicólogos voluntarios</div><div class="card-tagline">+700 psicólogos gratuitos desde México y toda Latinoamérica.</div></div></div>
-          <div class="card-desc">📞 <strong>+52 55 3320 0457</strong> · <strong>@praxis.go</strong> · <a href="https://praxisgruposoperativos.taplink.site" target="_blank">praxisgruposoperativos.taplink.site →</a></div>
+      <div class="city-header"><span class="city-icon">🇲🇽</span><h2 class="city-title">México</h2><span class="city-date">Activo</span></div>
+      <div class="subsection">
+        <p class="subsection-title">La Compol se une por Venezuela</p>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">💰</span><div class="card-body"><div class="card-name">La Compol — Mercado Pago (Luis Rendueles)</div></div></div><div class="card-desc">CLABE: <strong>722969012349235998</strong> · Binance: <strong>luisrendueles7@gmail.com</strong></div></div>
         </div>
       </div>
     </section>
 
-    <!-- REINO UNIDO -->
+    <!-- ECUADOR -->
+    <section class="city-section" id="ecuador">
+      <div class="city-header"><span class="city-icon">🇪🇨</span><h2 class="city-title">Ecuador</h2><span class="city-date">Activo</span></div>
+      <div class="subsection">
+        <p class="subsection-title">Quito</p>
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-icon">💰</span><div class="card-body"><div class="card-name">Cuenta Banco Pichincha</div><div class="card-tagline">Para donaciones desde Ecuador.</div></div></div><div class="card-desc">Contactar a <strong>@venezolanosenquito</strong> en Instagram para los datos bancarios actualizados.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UK -->
     <section class="city-section" id="uk">
-      <div class="city-header">
-        <span class="city-icon">🇬🇧</span>
-        <h2 class="city-title">Reino Unido</h2>
-        <span class="city-date">Activo</span>
-      </div>
-      <div class="cards">
-        <div class="card">
-          <div class="card-top"><span class="card-icon">🍰</span><div class="card-body"><div class="card-name">Panela Crumbs (Nottingham) — "1 Slice, 1 Donation"</div><div class="card-tagline">Pastelería donando a Chamos_org por cada rebanada vendida.</div></div></div>
+      <div class="city-header"><span class="city-icon">🇬🇧</span><h2 class="city-title">Reino Unido</h2><span class="city-date">Activo</span></div>
+      <div class="subsection">
+        <p class="subsection-title">Nottingham</p>
+        <div class="cards">
+          <div class="card card-highlight"><div class="card-top"><span class="card-icon">🍰</span><div class="card-body"><div class="card-name">Panela Crumbs — "1 Slice, 1 Donation"</div><div class="card-tagline">Pastelería venezolana donando por cada rebanada vendida a Chamos.</div></div></div></div>
         </div>
       </div>
     </section>
 
-    <!-- THE HOUSE PROJECT -->
+    <!-- RESCATE INTERNACIONAL -->
+    <section class="city-section" id="rescate-intl">
+      <div class="city-header">
+        <span class="city-icon">⛑️</span>
+        <h2 class="city-title">Equipos internacionales de rescate</h2>
+        <span class="city-date">Activo</span>
+      </div>
+      <div class="subsection">
+        <p class="subsection-title">Topos de México</p>
+        <div class="cards">
+          <div class="card card-highlight">
+            <div class="card-top"><span class="card-icon">⛑️</span><div class="card-body"><div class="card-name">Brigada Rescates Internacional Cancún</div><div class="card-tagline">Necesitan equipos técnicos especializados para continuar labores de localización: demoledora · cortadora de concreto · descorazonadora · compresor de aire · cámara boroscópica.</div></div></div>
+            <div class="card-desc">Coordinación: Oswaldo Salazar · <strong>+52 998 419 9636</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APOYO EMOCIONAL -->
     <section class="city-section" id="apoyo-emocional">
       <div class="city-header">
         <span class="city-icon">💙</span>
-        <h2 class="city-title">Apoyo emocional — recursos globales</h2>
+        <h2 class="city-title">Apoyo emocional</h2>
         <span class="city-date">Activo</span>
       </div>
-      <div class="cards">
-        <div class="card card-highlight">
-          <div class="card-top"><span class="card-icon">🏠</span><div class="card-body"><div class="card-name">The House Project — Espacio Seguro THP</div><div class="card-tagline">Canal digital gratuito de apoyo emocional. Recursos de contención y encuentros virtuales guiados por profesionales de salud mental para afectados del terremoto.</div></div></div>
-          <div class="card-desc"><strong>@thehouseproject</strong> en Instagram</div>
-        </div>
-        <div class="card">
-          <div class="card-top"><span class="card-icon">📚</span><div class="card-body"><div class="card-name">Bienmeescribe / Librería Chacaíto — "Tu donación inspira y acompaña"</div><div class="card-tagline">Reciben libros infantiles (nuevos o usados en buen estado), cartillas, cosas para colorear y juguetes para los niños afectados del 24 de junio.</div></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FRANCIA/PARIS -->
-    <section class="city-section" id="paris">
-      <div class="city-header">
-        <span class="city-icon">🇫🇷</span>
-        <h2 class="city-title">París</h2>
-        <span class="city-date">4 julio</span>
-      </div>
-      <div class="cards">
-        <div class="card card-highlight">
-          <div class="card-top">
-            <span class="card-icon">🏃</span>
-            
-            <span class="card-badge badge-yellow">4 julio</span>
-          </div>
-          <div class="card-meta">
-            <span class="meta-pill">📅 Sábado 4 julio · 9:00AM</span>
-            <span class="meta-pill">📍 Place de la Concorde, París</span>
-            <span class="meta-pill">💶 10€ en efectivo</span>
-          </div>
-          <div class="card-desc">Organizado por <strong>@co_riendo.rc</strong> y Sweet Romance Patisserie &amp; Café</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ESPAÑA -->
-    <section class="city-section" id="espana-ahora">
-      <div class="city-header">
-        <span class="city-icon">🇪🇸</span>
-        <h2 class="city-title">España — iniciativas solidarias</h2>
-        <span class="city-date">Julio–Agosto</span>
-      </div>
-            <details class="city-sub">
-        <summary>Sorteos solidarios</summary>
+      <div class="subsection">
+        <p class="subsection-title">Recursos activos</p>
         <div class="cards">
-          <div class="cards">
           <div class="card card-highlight">
-            <div class="card-top"><span class="card-icon">🎟️</span><div class="card-body"><div class="card-name">Lupo Solidario — Sorteo por Meals4Hope</div><div class="card-tagline">5€ por papeleta. Premio: cena para 2 (entrante, 2 platos, bebidas, postre). 100% de lo recaudado a Meals4Hope.</div></div><span class="card-badge badge-yellow">19 julio</span></div>
-            <div class="card-meta"><span class="meta-pill">📅 Domingo 19 julio · 20:00h · En directo IG de LUPO</span></div>
+            <div class="card-top"><span class="card-icon">🏠</span><div class="card-body"><div class="card-name">The House Project — Espacio Seguro THP</div><div class="card-tagline">Canal digital gratuito de apoyo emocional. Recursos de contención y encuentros virtuales guiados por profesionales de salud mental.</div></div></div>
+            <div class="card-desc"><strong>@thehouseproject</strong> en Instagram</div>
           </div>
-      <div class="cards">
-        <div class="card card-highlight">
-          <div class="card-top"><span class="card-icon">🫔</span><div class="card-body"><div class="card-name">Guasacaca Madrid — "Cada empanada cuenta"</div><div class="card-tagline">Julio y agosto: por cada empanada de queso vendida donan 0,50€ a Meals4Hope.</div></div><span class="card-badge badge-yellow">Julio–Agosto</span></div>
-          <div class="card-desc">Sedes: Palencia · Cañaveral · Mercado Maravillas (Madrid)</div>
-        </div>
-        <div class="card">
-          <div class="card-top"><span class="card-icon">🎻</span><div class="card-body"><div class="card-name">IX Concierto Voces Unidas — a favor de Manos Unidas</div></div></div>
-          <div class="card-meta"><span class="meta-pill">📅 Sábado 4 julio · 19:30h</span><span class="meta-pill">📍 Auditorio Nacional, Madrid</span></div>
-        </div>
-      </div>
-    </div>
-        </div>
-      </details>
-
-      
-    </section>
-
-    <!-- INICIATIVAS CULTURALES GLOBALES -->
-    <section class="city-section" id="cultura">
-      <div class="city-header">
-        <span class="city-icon">🎵</span>
-        <h2 class="city-title">Iniciativas culturales globales</h2>
-      </div>
-      <div class="cards">
-        <div class="card">
-          <div class="card-top"><span class="card-icon">🎵</span><div class="card-body"><div class="card-name">Danny Ocean — Gira Europa con QR solidario</div><div class="card-tagline">Cada concierto incluye un QR para donar. Los organizadores de los festivales también donan a organizaciones en terreno.</div></div></div>
-        </div>
-        <div class="card">
-          <div class="card-top"><span class="card-icon">📺</span><div class="card-body"><div class="card-name">Tu Música Hoy x Venezuela — En vivo por TikTok</div><div class="card-tagline">Shows y entrevistas con artistas invitados. Evento solidario en vivo.</div></div><span class="card-badge badge-blue">TikTok</span></div>
-          <div class="card-meta"><span class="meta-pill">📅 30 junio · 15:00h AR</span><span class="meta-pill">#TuMusicaHoyXVenezuela</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SALUD PÚBLICA -->
-    <section class="city-section" id="salud-publica">
-      <div class="city-header">
-        <span class="city-icon">💉</span>
-        <h2 class="city-title">Salud pública — vacunación y prevención</h2>
-        <span class="city-date">Activo</span>
-      </div>
-      <div class="cards">
-        <div class="card card-highlight">
-          <div class="card-top">
-            <span class="card-icon">💉</span>
-            <div class="card-body">
-              <div class="card-name">Puntos de vacunación antitetánica</div>
-              <div class="card-tagline">Proceso gratuito, prioridad a heridos por colapso de viviendas, rescatistas, personal médico, voluntarios y removedores de escombros.</div>
-            </div>
-          </div>
-          <div class="card-desc">
-            <strong>Libertador:</strong> Hospital Universitario de Caracas (HUC), Hospital Dr. José María Vargas, clínicas populares periféricas<br>
-            <strong>Chacao:</strong> Sede de Salud Chacao y puntos en zonas de inspección<br>
-            <strong>Baruta:</strong> Ambulatorio de Salud Baruta, red de atención primaria<br>
-            <strong>Sucre:</strong> Hospital Dr. Domingo Luciani (El Llanito), distritos sanitarios locales<br>
-            <strong>La Guaira / Catia La Mar:</strong> Hospital Dr. José María Vargas (La Guaira)
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">📞</span>
-            <div class="card-body">
-              <div class="card-name">Teléfonos de emergencia y rescate</div>
-              <div class="card-tagline">Guarda y comparte estos números.</div>
-            </div>
-          </div>
-          <div class="card-desc">
-            🚑 Protección Civil Nacional: <strong>0212-6627074</strong><br>
-            🚒 Bomberos Universitarios UCV: <strong>0212-6052222</strong><br>
-            🚨 Emergencias médicas / Paramédicos autopista: <strong>0412-2321455</strong><br>
-            📞 Cruz Roja Venezolana: <strong>0212-5714211</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROTOCOLOS DE DONACIÓN -->
-    <section class="city-section" id="protocolos">
-      <div class="city-header">
-        <span class="city-icon">📋</span>
-        <h2 class="city-title">Cómo donar bien — protocolos importantes</h2>
-      </div>
-      <div class="cards">
-        <div class="card card-highlight">
-          <div class="card-top">
-            <span class="card-icon">⚠️</span>
-            <div class="card-body">
-              <div class="card-name">Recomendaciones para donar medicamentos</div>
-            </div>
-          </div>
-          <div class="card-desc">
-            1. Verifica que la fecha de vencimiento sea posterior a septiembre<br>
-            2. No dones jarabes o gotas ya abiertos o empezados<br>
-            3. Clasifica en bolsas separadas: Adultos / Pediátricos<br>
-            4. Rotula cada bolsa con marcador permanente indicando el contenido<br>
-            5. Revisa minuciosamente las fechas de caducidad — cero vencidos (según directrices OMS/OPS)
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <span class="card-icon">💰</span>
-            <div class="card-body">
-              <div class="card-name">Cuentas autorizadas para compra de herramientas pesadas</div>
-              <div class="card-tagline">Para soporte logístico de rescatistas en zonas afectadas.</div>
-            </div>
-          </div>
-          <div class="card-desc">
-            Fundación Solidaridad Venezuela — BNC Cuenta Corriente: <strong>0191-0001-22-2101012345</strong> · RIF: <strong>J-40012345-0</strong> · Pago Móvil BNC: <strong>0414-1234567</strong><br>
-            Zelle: <strong>donaciones@solidaridadvenezuela.org</strong>
-          </div>
+          <div class="card"><div class="card-top"><span class="card-icon">📚</span><div class="card-body"><div class="card-name">Bienmeescribe / Librería Chacaíto</div><div class="card-tagline">Reciben libros infantiles, cartillas, cosas para colorear y juguetes para niños afectados del 24 de junio.</div></div></div></div>
         </div>
       </div>
     </section>
 
   </main>
+
   <footer>
-    <p>🇻🇪 <a href="index.html" style="color:var(--azul)">apoyavenezuela.org</a> · Compilado por Nicolina Casale De Gregorio · Madrid, junio 2026</p>
+    <p>🇻🇪 <a href="index.html" style="color:var(--azul)">apoyavenezuela.org</a> · Compilado por Nicolina Casale De Gregorio &amp; Donnatella Bove Parra · Madrid, junio 2026</p>
     <p style="margin-top:6px">Síguenos: <a href="https://instagram.com/apoyavenezuela.app" target="_blank" style="color:var(--azul);font-weight:600;">@apoyavenezuela.app</a> · ¿Tienes una iniciativa nueva? Escríbenos por DM.</p>
-    <p style="margin-top:4px;color:var(--muted)">Última actualización: 30 de junio de 2026, 16:33h CEST</p>
   </footer>
+
 </body>
 </html>
