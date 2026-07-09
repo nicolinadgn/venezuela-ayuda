@@ -53,6 +53,10 @@
     .info-box { background: #EAF0FF; border: 1px solid #B0C8F8; border-left: 4px solid var(--azul); border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; font-size: 0.85rem; color: #0A1A4A; line-height: 1.6; }
     .info-box strong { color: #00206A; }
     footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 0.76rem; background: #fff; }
+    /* TABS */
+    .section { display: none; }
+    .section.active { display: block; }
+    .nav a.active { background: var(--azul); color: #fff; border-color: var(--azul); border-radius: 20px; }
   </style>
 </head>
 <body>
@@ -65,12 +69,11 @@
   </section>
   <nav class="nav">
     <div class="nav-inner">
-      <a href="#registro">📋 Registro</a>
-      <a href="#venezuela">🇻🇪 Venezuela</a>
-      <a href="#remoto">💻 Remoto</a>
-      <a href="#madrid">🇪🇸 Madrid</a>
-      <a href="#usa-vol">🇺🇸 USA</a>
-      <a href="#panama-vol">🇵🇦 Panamá</a>
+      <a href="#registro" data-tab="registro" onclick="event.preventDefault();showTab('registro')">📋 Registro</a>
+      <a href="#en-campo" data-tab="en-campo" onclick="event.preventDefault();showTab('en-campo')">🇻🇪 Venezuela</a>
+      <a href="#usa-vol" data-tab="usa-vol" onclick="event.preventDefault();showTab('usa-vol')">🇺🇸 USA</a>
+      <a href="#remoto" data-tab="remoto" onclick="event.preventDefault();showTab('remoto')">💻 Remoto</a>
+      <a href="#personas" data-tab="personas" onclick="event.preventDefault();showTab('personas')">👤 En terreno</a>
     </div>
   </nav>
   <main>
@@ -275,5 +278,24 @@
     <p>🇻🇪 <a href="index.html" style="color:var(--azul)">apoyavenezuela.org</a> · Compilado por Nicolina Casale De Gregorio · Madrid, junio 2026</p>
     <p style="margin-top:6px">Síguenos: <a href="https://instagram.com/apoyavenezuela.app" target="_blank" style="color:var(--azul);font-weight:600;">@apoyavenezuela.app</a> · ¿Tienes una iniciativa nueva? Escríbenos por DM.</p>
   </footer>
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+      const section = document.getElementById(id);
+      if (section) section.classList.add('active');
+      const link = document.querySelector('.nav a[data-tab="' + id + '"]');
+      if (link) {
+        link.classList.add('active');
+        link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+    // Init: show first tab
+    showTab('registro');
+    if (location.hash) {
+      const id = location.hash.slice(1);
+      if (document.getElementById(id)) showTab(id);
+    }
+  </script>
 </body>
 </html>
